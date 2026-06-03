@@ -1,27 +1,74 @@
 ```html
-<body class="bg-gray-200 min-h-screen p-10">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="max-w-6xl mx-auto">
+<title>DOBN Capital - Investment Policy Statement</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+    background:#e5e7eb;
+}
+
+.a4-page{
+    width:210mm;
+    min-height:297mm;
+    background:white;
+}
+
+.watermark{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    pointer-events:none;
+    opacity:0.04;
+    z-index:0;
+}
+
+.content-layer{
+    position:relative;
+    z-index:2;
+}
+
+</style>
+</head>
+
+<body class="p-8">
+
+<div class="max-w-7xl mx-auto">
 
     <!-- FORM -->
     <form id="financialForm"
-    class="bg-white p-10 shadow-2xl rounded">
+    class="bg-white rounded shadow-2xl p-10 mb-12">
 
         <!-- HEADER -->
-        <div class="flex items-center justify-between border-b-4 border-[#04045d] pb-5 mb-10">
+        <div class="flex items-center justify-between border-b-4 border-[#04045d] pb-6 mb-10">
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-5">
 
                 <img src="logo/logo1.jpg"
                 class="w-24 h-24 object-contain">
 
                 <div>
 
-                    <h1 class="text-4xl font-black text-[#04045d]">
+                    <h1 class="text-5xl font-black text-[#04045d]">
                         DOBN CAPITAL
                     </h1>
 
-                    <p class="text-gray-500 tracking-widest text-sm">
+                    <p class="text-gray-500 tracking-[5px] mt-2">
                         INVESTMENT POLICY STATEMENT
                     </p>
 
@@ -31,10 +78,10 @@
 
         </div>
 
-        <!-- CLIENT INFO -->
-        <div class="mb-10">
+        <!-- CLIENT -->
+        <div class="mb-12">
 
-            <h2 class="text-2xl font-bold text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-6">
+            <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
                 THÔNG TIN KHÁCH HÀNG
                 <span class="text-gray-500 text-lg">
                     (CLIENT'S INFORMATION)
@@ -45,22 +92,23 @@
 
                 <div>
                     <label class="font-semibold">
-                        Họ và tên (NAME)
+                        HỌ VÀ TÊN (NAME)
                     </label>
 
                     <input type="text"
                     id="custName"
-                    class="w-full border p-3 mt-2 rounded">
+                    required
+                    class="w-full border mt-2 p-3 rounded">
                 </div>
 
                 <div>
                     <label class="font-semibold">
-                        SỐ CCCD (ID)
+                        CCCD / ID
                     </label>
 
                     <input type="text"
                     id="custID"
-                    class="w-full border p-3 mt-2 rounded">
+                    class="w-full border mt-2 p-3 rounded">
                 </div>
 
                 <div>
@@ -69,7 +117,7 @@
                     </label>
 
                     <select id="custNationality"
-                    class="w-full border p-3 mt-2 rounded">
+                    class="w-full border mt-2 p-3 rounded">
 
                         <option>Vietnam</option>
                         <option>Singapore</option>
@@ -89,27 +137,27 @@
 
                     <input type="email"
                     id="custEmail"
-                    class="w-full border p-3 mt-2 rounded">
+                    class="w-full border mt-2 p-3 rounded">
                 </div>
 
                 <div>
                     <label class="font-semibold">
-                        SỐ ĐIỆN THOẠI (PHONE)
+                        PHONE
                     </label>
 
                     <input type="text"
                     id="custPhone"
-                    class="w-full border p-3 mt-2 rounded">
+                    class="w-full border mt-2 p-3 rounded">
                 </div>
 
                 <div>
                     <label class="font-semibold">
-                        ĐỊA CHỈ (ADDRESS)
+                        ADDRESS
                     </label>
 
                     <input type="text"
                     id="custAddress"
-                    class="w-full border p-3 mt-2 rounded">
+                    class="w-full border mt-2 p-3 rounded">
                 </div>
 
             </div>
@@ -117,86 +165,83 @@
         </div>
 
         <!-- FINANCIAL -->
-        <div class="mb-10">
+        <div class="mb-12">
 
-            <h2 class="text-2xl font-bold text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-6">
-                TÌNH HÌNH TÀI CHÍNH CỦA KHÁCH HÀNG
+            <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
+                TÌNH HÌNH TÀI CHÍNH
             </h2>
 
-            <!-- ASSETS -->
-            <div class="mb-8">
+            <h3 class="text-xl font-bold text-[#04045d] mb-5">
+                TÀI SẢN (ASSETS)
+            </h3>
 
-                <h3 class="font-bold text-xl mb-4 text-[#04045d]">
-                    TÀI SẢN (ASSETS)
-                </h3>
+            <div class="grid grid-cols-2 gap-6 mb-8">
 
-                <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label>Tiền mặt</label>
+                    <input type="number" id="cash"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
 
-                    <div>
-                        <label>Tiền mặt (Cash)</label>
-                        <input type="number" id="cash"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
+                <div>
+                    <label>Tiết kiệm</label>
+                    <input type="number" id="saving"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
 
-                    <div>
-                        <label>Tiết kiệm (Saving)</label>
-                        <input type="number" id="saving"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
+                <div>
+                    <label>Tài sản cố định</label>
+                    <input type="number" id="fixedAssets"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
 
-                    <div>
-                        <label>Tài sản cố định</label>
-                        <input type="number" id="fixedAssets"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
-
-                    <div>
-                        <label>Tài sản khác</label>
-                        <input type="number" id="otherAssets"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
-
+                <div>
+                    <label>Tài sản khác</label>
+                    <input type="number" id="otherAssets"
+                    class="w-full border p-3 mt-2 rounded">
                 </div>
 
             </div>
 
-            <!-- LIABILITIES -->
-            <div class="mb-8">
+            <h3 class="text-xl font-bold text-[#04045d] mb-5">
+                NỢ PHẢI TRẢ (LIABILITIES)
+            </h3>
 
-                <h3 class="font-bold text-xl mb-4 text-[#04045d]">
-                    NỢ PHẢI TRẢ (LIABILITIES)
-                </h3>
+            <div class="grid grid-cols-2 gap-6 mb-8">
 
-                <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label>Nợ ngắn hạn</label>
 
-                    <div>
-                        <label>Nợ ngắn hạn</label>
-                        <input type="number" id="shortDebt"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
+                    <input type="number"
+                    id="shortDebt"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
 
-                    <div>
-                        <label>Nợ dài hạn</label>
-                        <input type="number" id="longDebt"
-                        class="w-full border p-3 mt-2 rounded">
-                    </div>
+                <div>
+                    <label>Nợ dài hạn</label>
 
+                    <input type="number"
+                    id="longDebt"
+                    class="w-full border p-3 mt-2 rounded">
                 </div>
 
             </div>
 
-            <!-- INCOME -->
             <div class="grid grid-cols-2 gap-6">
 
                 <div>
                     <label>Thu nhập hàng tháng</label>
-                    <input type="number" id="monthlyIncome"
+
+                    <input type="number"
+                    id="monthlyIncome"
                     class="w-full border p-3 mt-2 rounded">
                 </div>
 
                 <div>
                     <label>Chi phí hàng tháng</label>
-                    <input type="number" id="monthlyExpense"
+
+                    <input type="number"
+                    id="monthlyExpense"
                     class="w-full border p-3 mt-2 rounded">
                 </div>
 
@@ -204,14 +249,14 @@
 
         </div>
 
-        <!-- INVESTMENT -->
-        <div class="mb-10">
+        <!-- SURVEY -->
+        <div class="mb-12">
 
-            <h2 class="text-2xl font-bold text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-6">
-                KHẢO SÁT KHẨU VỊ RỦI RO
+            <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
+                KHẢO SÁT ĐẦU TƯ
             </h2>
 
-            <div class="grid grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-3 gap-6 mb-10">
 
                 <div>
                     <label>Mức chấp nhận rủi ro (%)</label>
@@ -244,18 +289,9 @@
 
             </div>
 
-        </div>
-
-        <!-- QUESTIONS -->
-        <div>
-
-            <h2 class="text-2xl font-bold text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-6">
-                BẢNG ĐÁNH GIÁ KHẢ NĂNG CHẤP NHẬN RỦI RO
-            </h2>
-
+            <!-- 8 QUESTIONS -->
             <div class="space-y-8">
 
-                <!-- QUESTION TEMPLATE -->
                 <div>
                     <p class="font-bold mb-3">
                         1. Mục tiêu đầu tư của bạn là gì?
@@ -263,46 +299,640 @@
 
                     <select class="risk-question w-full border p-3 rounded">
 
-                        <option value="1">
-                            Bảo toàn vốn và tránh rủi ro
-                        </option>
-
-                        <option value="2">
-                            Tăng trưởng vốn ổn định
-                        </option>
-
-                        <option value="3">
-                            Tăng trưởng vốn nhanh
-                        </option>
-
-                        <option value="4">
-                            Tìm kiếm lợi nhuận cực cao
-                        </option>
+                        <option value="1">Bảo toàn vốn</option>
+                        <option value="2">Tăng trưởng ổn định</option>
+                        <option value="3">Tăng trưởng nhanh</option>
+                        <option value="4">Lợi nhuận cực cao</option>
 
                     </select>
                 </div>
 
-                <!-- COPY THÊM 7 CÂU TƯƠNG TỰ -->
+                <div>
+                    <p class="font-bold mb-3">
+                        2. Nếu danh mục giảm 20%?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Bán ngay</option>
+                        <option value="2">Giữ nguyên</option>
+                        <option value="3">Mua thêm</option>
+                        <option value="4">Mua mạnh</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        3. Kiến thức tài chính?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Rất ít</option>
+                        <option value="2">Cơ bản</option>
+                        <option value="3">Trung bình</option>
+                        <option value="4">Chuyên sâu</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        4. Cơ hội đầu tư rủi ro cao?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Không đầu tư</option>
+                        <option value="2">Đầu tư nhỏ</option>
+                        <option value="3">Đầu tư có nghiên cứu</option>
+                        <option value="4">Đầu tư mạnh</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        5. Khi thị trường biến động mạnh?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Hoảng loạn</option>
+                        <option value="2">Lo lắng</option>
+                        <option value="3">Theo dõi mua thêm</option>
+                        <option value="4">Tận dụng cơ hội</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        6. Khi kinh tế bất ổn?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Giữ tiền mặt</option>
+                        <option value="2">Theo dõi</option>
+                        <option value="3">Mua cổ phiếu giảm</option>
+                        <option value="4">Mua mạnh</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        7. Đầu tư mạo hiểm lợi nhuận lớn?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Từ chối</option>
+                        <option value="2">Đầu tư nhỏ</option>
+                        <option value="3">Đầu tư có nghiên cứu</option>
+                        <option value="4">Đầu tư ngay</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        8. Khả năng chấp nhận rủi ro?
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Rất thấp</option>
+                        <option value="2">Thấp</option>
+                        <option value="3">Trung bình</option>
+                        <option value="4">Cao</option>
+
+                    </select>
+                </div>
 
             </div>
 
         </div>
 
         <!-- BUTTON -->
-        <div class="mt-10">
+        <button type="submit"
+        class="w-full bg-[#04045d] text-white py-5 rounded text-xl font-bold">
 
-            <button type="submit"
-            class="w-full bg-[#04045d] text-white py-4 rounded text-xl font-bold hover:opacity-90">
+            XUẤT INVESTMENT POLICY STATEMENT PDF
 
-                XUẤT INVESTMENT POLICY STATEMENT (PDF)
-
-            </button>
-
-        </div>
+        </button>
 
     </form>
 
+    <!-- PDF -->
+    <div id="pdfTemplate"
+    class="a4-page hidden mx-auto shadow-2xl relative overflow-hidden">
+
+        <!-- WATERMARK -->
+        <div class="watermark">
+
+            <img src="logo/logo1.jpg"
+            class="w-[500px]">
+
+        </div>
+
+        <div class="content-layer p-12">
+
+            <!-- HEADER -->
+            <div class="flex justify-between items-start border-b-4 border-[#04045d] pb-6 mb-10">
+
+                <div class="flex items-center gap-5">
+
+                    <img src="logo/logo1.jpg"
+                    class="w-24">
+
+                    <div>
+
+                        <h1 class="text-5xl font-black text-[#04045d]">
+                            DOBN CAPITAL
+                        </h1>
+
+                        <p class="tracking-[5px] text-gray-500 mt-2">
+                            INVESTMENT POLICY STATEMENT
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CLIENT -->
+            <div class="mb-10">
+
+                <h2 class="text-2xl font-black text-[#04045d] mb-5">
+                    CLIENT INFORMATION
+                </h2>
+
+                <div class="grid grid-cols-2 gap-5 text-sm">
+
+                    <div>
+                        <strong>NAME:</strong>
+                        <span id="pdfName"></span>
+                    </div>
+
+                    <div>
+                        <strong>ID:</strong>
+                        <span id="pdfID"></span>
+                    </div>
+
+                    <div>
+                        <strong>NATIONALITY:</strong>
+                        <span id="pdfNationality"></span>
+                    </div>
+
+                    <div>
+                        <strong>EMAIL:</strong>
+                        <span id="pdfEmail"></span>
+                    </div>
+
+                    <div>
+                        <strong>PHONE:</strong>
+                        <span id="pdfPhone"></span>
+                    </div>
+
+                    <div>
+                        <strong>ADDRESS:</strong>
+                        <span id="pdfAddress"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FINANCIAL -->
+            <div class="mb-10">
+
+                <h2 class="text-2xl font-black text-[#04045d] mb-5">
+                    FINANCIAL OVERVIEW
+                </h2>
+
+                <div class="grid grid-cols-2 gap-6">
+
+                    <div class="border p-5 rounded">
+
+                        <h3 class="font-bold text-[#04045d] mb-4">
+                            ASSETS
+                        </h3>
+
+                        <div class="space-y-2 text-sm">
+
+                            <p>
+                                Total Assets:
+                                <span id="pdfTotalAssets"></span>
+                            </p>
+
+                            <p>
+                                Monthly Income:
+                                <span id="pdfIncome"></span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="border p-5 rounded">
+
+                        <h3 class="font-bold text-[#04045d] mb-4">
+                            LIABILITIES
+                        </h3>
+
+                        <div class="space-y-2 text-sm">
+
+                            <p>
+                                Total Debts:
+                                <span id="pdfTotalDebt"></span>
+                            </p>
+
+                            <p>
+                                Net Worth:
+                                <span id="pdfNetWorth"></span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RISK -->
+            <div class="mb-10">
+
+                <h2 class="text-2xl font-black text-[#04045d] mb-5">
+                    RISK PROFILE
+                </h2>
+
+                <div class="grid grid-cols-3 gap-5">
+
+                    <div class="border rounded p-5 text-center">
+
+                        <p class="text-gray-500 text-sm">
+                            SCORE
+                        </p>
+
+                        <h3 id="pdfScore"
+                        class="text-4xl font-black text-[#04045d] mt-3"></h3>
+
+                    </div>
+
+                    <div class="border rounded p-5 text-center">
+
+                        <p class="text-gray-500 text-sm">
+                            RISK LEVEL
+                        </p>
+
+                        <h3 id="pdfRisk"
+                        class="text-2xl font-black text-[#04045d] mt-3"></h3>
+
+                    </div>
+
+                    <div class="border rounded p-5 text-center">
+
+                        <p class="text-gray-500 text-sm">
+                            INVESTMENT HORIZON
+                        </p>
+
+                        <h3 id="pdfHorizon"
+                        class="text-2xl font-black text-[#04045d] mt-3"></h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CHART -->
+            <div class="mb-12">
+
+                <h2 class="text-2xl font-black text-[#04045d] mb-6">
+                    RECOMMENDED ASSET ALLOCATION
+                </h2>
+
+                <div class="w-[450px] mx-auto">
+
+                    <canvas id="allocationChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <!-- STOCKS -->
+            <div>
+
+                <h2 class="text-2xl font-black text-[#04045d] mb-6">
+                    RECOMMENDED STOCKS
+                </h2>
+
+                <div id="recommendedStocksList"
+                class="grid grid-cols-5 gap-4"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DOWNLOAD -->
+    <div id="downloadBtnContainer"
+    class="hidden text-center mt-8">
+
+        <button onclick="downloadPDFFile()"
+        class="bg-[#04045d] text-white px-10 py-4 rounded font-bold">
+
+            DOWNLOAD PDF
+
+        </button>
+
+    </div>
+
 </div>
 
+<script src="js/recommendation.js"></script>
+
+<script>
+
+document.getElementById('financialForm')
+.addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    // CLIENT
+    const name =
+        document.getElementById('custName').value;
+
+    const id =
+        document.getElementById('custID').value;
+
+    const nationality =
+        document.getElementById('custNationality').value;
+
+    const email =
+        document.getElementById('custEmail').value;
+
+    const phone =
+        document.getElementById('custPhone').value;
+
+    const address =
+        document.getElementById('custAddress').value;
+
+    // FINANCIAL
+    const cash =
+        Number(document.getElementById('cash').value);
+
+    const saving =
+        Number(document.getElementById('saving').value);
+
+    const fixedAssets =
+        Number(document.getElementById('fixedAssets').value);
+
+    const otherAssets =
+        Number(document.getElementById('otherAssets').value);
+
+    const shortDebt =
+        Number(document.getElementById('shortDebt').value);
+
+    const longDebt =
+        Number(document.getElementById('longDebt').value);
+
+    const income =
+        Number(document.getElementById('monthlyIncome').value);
+
+    const expense =
+        Number(document.getElementById('monthlyExpense').value);
+
+    const totalAssets =
+        cash + saving + fixedAssets + otherAssets;
+
+    const totalDebt =
+        shortDebt + longDebt;
+
+    const netWorth =
+        totalAssets - totalDebt;
+
+    // SCORE
+    let totalScore = 0;
+
+    document.querySelectorAll('.risk-question')
+    .forEach(question => {
+
+        totalScore += Number(question.value);
+
+    });
+
+    // RISK LEVEL
+    let riskLevel = '';
+    let allocation = [];
+    let stocks = [];
+
+    if(totalScore <= 14){
+
+        riskLevel = 'LOW RISK';
+
+        allocation = [70,20,10];
+
+        stocks = [
+            'VCB',
+            'FPT',
+            'REE',
+            'BVH',
+            'GAS'
+        ];
+
+    }
+
+    else if(totalScore <= 23){
+
+        riskLevel = 'MEDIUM RISK';
+
+        allocation = [50,30,20];
+
+        stocks = [
+            'MBB',
+            'FPT',
+            'HPG',
+            'GMD',
+            'SSI'
+        ];
+
+    }
+
+    else{
+
+        riskLevel = 'HIGH RISK';
+
+        allocation = [20,20,60];
+
+        stocks = [
+            'SSI',
+            'VCI',
+            'DXG',
+            'NVL',
+            'CTR'
+        ];
+
+    }
+
+    // PDF
+    document.getElementById('pdfName').innerText = name;
+    document.getElementById('pdfID').innerText = id;
+    document.getElementById('pdfNationality').innerText = nationality;
+    document.getElementById('pdfEmail').innerText = email;
+    document.getElementById('pdfPhone').innerText = phone;
+    document.getElementById('pdfAddress').innerText = address;
+
+    document.getElementById('pdfTotalAssets').innerText =
+        totalAssets.toLocaleString('vi-VN') + ' VND';
+
+    document.getElementById('pdfTotalDebt').innerText =
+        totalDebt.toLocaleString('vi-VN') + ' VND';
+
+    document.getElementById('pdfNetWorth').innerText =
+        netWorth.toLocaleString('vi-VN') + ' VND';
+
+    document.getElementById('pdfIncome').innerText =
+        income.toLocaleString('vi-VN') + ' VND';
+
+    document.getElementById('pdfScore').innerText =
+        totalScore;
+
+    document.getElementById('pdfRisk').innerText =
+        riskLevel;
+
+    document.getElementById('pdfHorizon').innerText =
+        document.getElementById('investmentHorizon').value;
+
+    // STOCKS
+    const container =
+        document.getElementById('recommendedStocksList');
+
+    container.innerHTML = '';
+
+    stocks.forEach(code => {
+
+        container.innerHTML += `
+
+            <div class="border rounded p-4 text-center">
+
+                <img src="logos/${code}.png"
+                class="w-16 h-16 object-contain mx-auto mb-3">
+
+                <h3 class="font-black text-[#04045d]">
+                    ${code}
+                </h3>
+
+            </div>
+
+        `;
+
+    });
+
+    // SHOW
+    document.getElementById('pdfTemplate')
+    .classList.remove('hidden');
+
+    document.getElementById('downloadBtnContainer')
+    .classList.remove('hidden');
+
+    // CHART
+    setTimeout(()=>{
+
+        const ctx =
+            document.getElementById('allocationChart');
+
+        if(window.allocationChartInstance){
+
+            window.allocationChartInstance.destroy();
+
+        }
+
+        window.allocationChartInstance =
+        new Chart(ctx, {
+
+            type:'pie',
+
+            data:{
+
+                labels:[
+                    'Bonds',
+                    'Cash',
+                    'Stocks'
+                ],
+
+                datasets:[{
+
+                    data:allocation,
+
+                    backgroundColor:[
+                        '#04045d',
+                        '#10b981',
+                        '#f59e0b'
+                    ]
+
+                }]
+
+            }
+
+        });
+
+    },300);
+
+});
+
+
+// DOWNLOAD PDF
+function downloadPDFFile(){
+
+    const { jsPDF } = window.jspdf;
+
+    const element =
+        document.getElementById('pdfTemplate');
+
+    html2canvas(element,{
+
+        scale:3,
+        useCORS:true
+
+    }).then(canvas=>{
+
+        const imgData =
+            canvas.toDataURL('image/png');
+
+        const pdf =
+            new jsPDF('p','mm','a4');
+
+        const width = 210;
+
+        const height =
+            canvas.height * width / canvas.width;
+
+        pdf.addImage(
+            imgData,
+            'PNG',
+            0,
+            0,
+            width,
+            height
+        );
+
+        pdf.save(
+            'DOBN_Investment_Policy_Statement.pdf'
+        );
+
+    });
+
+}
+
+</script>
+
 </body>
+</html>
 ```
