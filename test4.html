@@ -273,7 +273,6 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
             class="w-full border p-3 mt-2 rounded">
         </div>
   </div>
-
             <h3 class="text-xl font-bold text-[#04045d] mb-5">
                 NỢ PHẢI TRẢ (LIABILITIES)
             </h3>
@@ -306,7 +305,7 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
         </div>
 
     </div>
-
+</div>
 </div>
 
 <!-- SURVEY -->
@@ -316,6 +315,38 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
         KHẢO SÁT ĐẦU TƯ
     </h2>
 
+            <div class="grid grid-cols-3 gap-6 mb-10">
+
+                <div>
+                    <label>Mức chấp nhận rủi ro (%)</label>
+
+                    <input type="number"
+                    id="riskPercent"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
+
+                <div>
+                    <label>Lợi suất kỳ vọng (%)</label>
+
+                    <input type="number"
+                    id="expectedReturn"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
+
+                <div>
+                    <label>Thời gian đầu tư</label>
+
+                    <select id="investmentHorizon"
+                    class="w-full border p-3 mt-2 rounded">
+
+                        <option>Short Term</option>
+                        <option>Medium Term</option>
+                        <option>Long Term</option>
+
+                    </select>
+                </div>
+
+            </div>
     <div class="space-y-5">
 
         <div>
@@ -421,7 +452,31 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
                 <option value="4">Cao</option>
             </select>
         </div>
+        
+        <div>
+            <p class="font-bold mb-3">
+                9. Khả năng chịu rủi ro?
+            </p>
 
+            <select class="risk-question w-full border p-3 rounded">
+                <option value="1">Rất thấp</option>
+                <option value="2">Thấp</option>
+                <option value="3">Trung bình</option>
+                <option value="4">Cao</option>
+            </select>
+        </div>
+        <div>
+            <p class="font-bold mb-3">
+                10. Khả năng chịu rủi ro?
+            </p>
+
+            <select class="risk-question w-full border p-3 rounded">
+                <option value="1">Rất thấp</option>
+                <option value="2">Thấp</option>
+                <option value="3">Trung bình</option>
+                <option value="4">Cao</option>
+            </select>
+        </div>
     </div>
 
 </div>
