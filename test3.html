@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -8,49 +9,43 @@
 
 <title>DOBN Capital - Investment Recommendation Report</title>
 
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- FONT AWESOME -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- TAILWIND -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+<!-- HTML2CANVAS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+<!-- JSPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 
 body{
-    background:#f1f5f9;
+    background:#e5e7eb;
     font-family:Arial, Helvetica, sans-serif;
-    color:black;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
     background:#04045d;
-    padding:18px 40px;
+    padding:20px 60px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    box-shadow:0 4px 15px rgba(0,0,0,0.15);
-}
-
-.logo{
-    display:flex;
     align-items:center;
-    background:white;
-    padding:5px 10px;
-    border-radius:12px;
-}
-
-.logo img{
-    height:80px;
-    transform:scale(1.5);
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
 
 nav{
     display:flex;
-    gap:28px;
+    gap:25px;
 }
 
 nav a{
@@ -62,297 +57,95 @@ nav a{
 }
 
 nav a:hover{
-    color:#dbeafe;
+    color:#cbd5e1;
 }
 
-.main-layout{
-    max-width:1800px;
-    margin:auto;
-    padding:40px;
-    display:grid;
-    grid-template-columns: 430px 1fr;
-    gap:35px;
-}
-
-/* FORM */
-.form-card{
+.highlight-nav{
     background:white;
-    border-radius:24px;
-    padding:35px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.08);
-    height:fit-content;
+    color:#04045d !important;
+    padding:10px 18px;
+    border-radius:10px;
 }
 
-.section-title{
+.logo{
     display:flex;
     align-items:center;
-    gap:10px;
-    font-size:22px;
-    font-weight:900;
-    color:#04045d;
-    margin-bottom:25px;
+    justify-content:center;
+    background:white;
+    padding:8px 18px;
+    border-radius:14px;
 }
 
-.section-number{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    background:#04045d;
-    color:white;
+.logo img{
+    height:90px;
+    width:auto;
+}
+
+/* ================= PDF ================= */
+
+.a4-page{
+    width:210mm;
+    min-height:297mm;
+    background:white;
+    position:relative;
+}
+
+.watermark{
+    position:absolute;
+    inset:0;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:15px;
+    opacity:0.04;
+    z-index:0;
 }
 
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
+.content-layer{
+    position:relative;
+    z-index:2;
 }
 
-.form-group{
-    display:flex;
+.report-logo{
+    height:100px;
+    width:auto;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#04045d;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+/* ================= LOADING ================= */
+
+#loadingScreen{
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,0.9);
+    z-index:9999;
+    display:none;
+    justify-content:center;
+    align-items:center;
     flex-direction:column;
 }
 
-.form-group label{
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.form-group input,
-.form-group select{
-    border:1px solid #d1d5db;
-    padding:13px;
-    border-radius:10px;
-    font-size:14px;
-}
-
-.question{
-    margin-bottom:18px;
-}
-
-.question p{
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.submit-btn{
-    width:100%;
-    background:#04045d;
-    color:white;
-    border:none;
-    padding:18px;
-    border-radius:14px;
-    font-size:18px;
-    font-weight:800;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.submit-btn:hover{
-    transform:translateY(-2px);
-}
-
-/* REPORT */
-.report-container{
-    background:white;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,0.08);
-}
-
-.report-header{
-    background:white;
-    padding:35px 45px;
-    border-bottom:5px solid #04045d;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.report-brand{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.report-brand img{
-    height:110px;
-    object-fit:contain;
-}
-
-.report-title{
-    font-size:46px;
-    font-weight:900;
-    color:#04045d;
-    line-height:1.1;
-}
-
-.report-subtitle{
-    letter-spacing:4px;
-    color:#6b7280;
-    margin-top:8px;
-}
-
-.report-content{
-    padding:40px;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.info-item{
-    display:flex;
-    gap:10px;
-    font-size:14px;
-}
-
-.box-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
-    margin-top:25px;
-}
-
-.report-box{
-    border:2px solid #04045d;
-    border-radius:18px;
-    padding:22px;
-}
-
-.report-box h3{
-    font-size:20px;
-    font-weight:900;
-    color:#04045d;
-    margin-bottom:18px;
-}
-
-.report-row{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:12px;
-    font-size:14px;
-}
-
-.total-line{
-    border-top:2px solid #e5e7eb;
-    margin-top:15px;
-    padding-top:15px;
-    font-weight:900;
-    color:#04045d;
-}
-
-.risk-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:20px;
-    margin-top:20px;
-}
-
-.risk-card{
-    border:2px solid #e5e7eb;
-    border-radius:16px;
-    padding:25px;
-    text-align:center;
-}
-
-.risk-card p{
-    font-size:13px;
-    color:#6b7280;
-}
-
-.risk-card h2{
-    margin-top:15px;
-    font-size:32px;
-    font-weight:900;
-    color:#04045d;
-}
-
-.stock-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:18px;
-    margin-top:25px;
-}
-
-.stock-card{
-    border:1px solid #d1d5db;
-    border-radius:16px;
-    padding:18px;
-    text-align:center;
-    transition:0.3s;
-    background:white;
-}
-
-.stock-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-.stock-card img{
+.loader{
     width:70px;
     height:70px;
-    object-fit:contain;
-    margin:auto;
-    margin-bottom:12px;
+    border:8px solid #d1d5db;
+    border-top:8px solid #04045d;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
 }
 
-.stock-card h3{
-    font-size:22px;
-    font-weight:900;
-    color:#04045d;
-}
-
-.stock-card p{
-    font-size:12px;
-    margin-top:8px;
-    line-height:1.4;
-}
-
-.note-box{
-    margin-top:40px;
-    border-top:3px solid #04045d;
-    padding-top:25px;
-}
-
-.note-box h3{
-    color:#04045d;
-    font-size:20px;
-    font-weight:900;
-    margin-bottom:15px;
-}
-
-.note-box p{
-    font-size:13px;
-    line-height:1.8;
-    margin-bottom:10px;
-}
-
-.download-wrap{
-    text-align:center;
-    margin-top:25px;
-}
-
-.download-btn{
-    background:#04045d;
-    color:white;
-    border:none;
-    padding:18px 40px;
-    border-radius:14px;
-    font-size:18px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.hidden{
-    display:none;
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
 }
 
 </style>
@@ -361,345 +154,285 @@ nav a:hover{
 
 <body>
 
+<!-- LOADING -->
+<div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <p class="mt-5 text-xl font-bold text-[#04045d]">
+        Generating Report...
+    </p>
+
+</div>
+
 <!-- HEADER -->
 <header>
 
-<div class="logo">
-    <img src="DOBN/logo.jpg">
-</div>
+    <div class="logo">
+        <img src="DOBN/logo.jpg">
+    </div>
 
-<nav>
-    <a href="#">Homepage</a>
-    <a href="#">About Us</a>
-    <a href="#">Products</a>
-    <a href="#">Services</a>
-    <a href="#">Stock</a>
-    <a href="#">ESG</a>
-    <a href="#">News</a>
-    <a href="#">Support</a>
-</nav>
+    <nav>
+
+        <a href="index.html">
+            <i class="fas fa-home"></i> Homepage
+        </a>
+
+        <a href="about.html">
+            <i class="fas fa-building"></i> About Us
+        </a>
+
+        <a href="products.html">
+            <i class="fas fa-briefcase"></i> Products
+        </a>
+
+        <a href="customer.html" class="highlight-nav">
+            <i class="fas fa-user-tie"></i> Services
+        </a>
+
+        <a href="stocks.html">
+            <i class="fas fa-chart-line"></i> Stock
+        </a>
+
+        <a href="news.html">
+            <i class="fas fa-newspaper"></i> News
+        </a>
+
+        <a href="support.html">
+            <i class="fas fa-headset"></i> Support
+        </a>
+
+    </nav>
 
 </header>
 
-<div class="main-layout">
+<div class="max-w-7xl mx-auto p-8">
 
 <!-- ================= FORM ================= -->
-<form id="financialForm" class="form-card">
 
-<div class="section-title">
-    <div class="section-number">1</div>
-    CLIENT INFORMATION
-</div>
+<form id="financialForm"
+class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
 
-<div class="form-grid">
+<!-- TOP -->
+<div class="flex items-center border-b-4 border-[#04045d] pb-6 mb-10">
 
-<div class="form-group">
-<label>NAME</label>
-<input type="text" id="custName">
-</div>
+    <img src="DOBN/logo.jpg"
+    class="report-logo mr-6">
 
-<div class="form-group">
-<label>ID</label>
-<input type="text" id="custID">
-</div>
+    <div>
 
-<div class="form-group">
-<label>NATIONALITY</label>
-<select id="custNationality">
-<option>Vietnam</option>
-<option>Singapore</option>
-<option>Thailand</option>
-<option>Malaysia</option>
-</select>
-</div>
+        <h1 class="text-5xl font-black text-[#04045d]">
+            DOBN CAPITAL
+        </h1>
 
-<div class="form-group">
-<label>EMAIL</label>
-<input type="email" id="custEmail">
-</div>
+        <p class="text-gray-500 tracking-[5px] mt-2">
+            INVESTMENT RECOMMENDATION REPORT
+        </p>
 
-<div class="form-group">
-<label>PHONE</label>
-<input type="text" id="custPhone">
-</div>
-
-<div class="form-group">
-<label>ADDRESS</label>
-<input type="text" id="custAddress">
-</div>
+    </div>
 
 </div>
-
-<br><br>
-
-<div class="section-title">
-    <div class="section-number">2</div>
-    FINANCIAL OVERVIEW
-</div>
-
-<div class="form-grid">
-
-<div class="form-group">
-<label>CASH</label>
-<input type="number" id="cash">
-</div>
-
-<div class="form-group">
-<label>SAVING</label>
-<input type="number" id="saving">
-</div>
-
-<div class="form-group">
-<label>FIXED ASSETS</label>
-<input type="number" id="fixedAssets">
-</div>
-
-<div class="form-group">
-<label>OTHER ASSETS</label>
-<input type="number" id="otherAssets">
-</div>
-
-<div class="form-group">
-<label>SHORT TERM DEBT</label>
-<input type="number" id="shortDebt">
-</div>
-
-<div class="form-group">
-<label>LONG TERM DEBT</label>
-<input type="number" id="longDebt">
-</div>
-
-<div class="form-group">
-<label>MONTHLY INCOME</label>
-<input type="number" id="income">
-</div>
-
-<div class="form-group">
-<label>MONTHLY EXPENSE</label>
-<input type="number" id="expense">
-</div>
-
-</div>
-
-<br><br>
-
-<div class="section-title">
-    <div class="section-number">3</div>
-    INVESTMENT SURVEY
-</div>
-
-<div class="question">
-<p>Investment objective?</p>
-<select class="risk-question w-full border p-3 rounded">
-<option value="1">Capital Preservation</option>
-<option value="2">Stable Growth</option>
-<option value="3">Fast Growth</option>
-<option value="4">High Return</option>
-</select>
-</div>
-
-<div class="question">
-<p>Portfolio drops 20%?</p>
-<select class="risk-question w-full border p-3 rounded">
-<option value="1">Sell Immediately</option>
-<option value="2">Hold</option>
-<option value="3">Buy More</option>
-<option value="4">Strong Buy</option>
-</select>
-</div>
-
-<div class="question">
-<p>Financial Knowledge?</p>
-<select class="risk-question w-full border p-3 rounded">
-<option value="1">Very Low</option>
-<option value="2">Basic</option>
-<option value="3">Good</option>
-<option value="4">Professional</option>
-</select>
-</div>
-
-<button type="submit" class="submit-btn">
-<i class="fa-solid fa-paper-plane"></i>
-GENERATE REPORT
-</button>
-
-</form>
-
-<!-- ================= REPORT ================= -->
-<div>
-
-<div id="pdfTemplate" class="report-container hidden">
-
-<!-- HEADER -->
-<div class="report-header">
-
-<div class="report-brand">
-
-<img src="DOBN/logo.jpg">
-
-<div>
-
-<div class="report-title">
-DOBN CAPITAL
-</div>
-
-<div class="report-subtitle">
-INVESTMENT RECOMMENDATION REPORT
-</div>
-
-</div>
-
-</div>
-
-<div style="font-size:14px;">
-Date: 20/11/2026
-</div>
-
-</div>
-
-<!-- CONTENT -->
-<div class="report-content">
 
 <!-- CLIENT -->
-<h2 class="section-title" style="margin-bottom:20px;">
-CLIENT INFORMATION
+
+<div class="mb-12">
+
+<h2 class="text-2xl font-black text-[#04045d]
+border-b-2 border-[#04045d] pb-2 mb-8">
+
+THÔNG TIN KHÁCH HÀNG
+
 </h2>
 
-<div class="info-grid">
+<div class="grid grid-cols-2 gap-6">
 
-<div class="info-item">
-<strong>Name:</strong>
-<span id="pdfName"></span>
+<div>
+
+<label class="font-semibold">
+HỌ VÀ TÊN
+</label>
+
+<input type="text"
+id="custName"
+required
+class="w-full border mt-2 p-3 rounded">
+
 </div>
 
-<div class="info-item">
-<strong>ID:</strong>
-<span id="pdfID"></span>
+<div>
+
+<label class="font-semibold">
+CCCD
+</label>
+
+<input type="text"
+id="custID"
+required
+class="w-full border mt-2 p-3 rounded">
+
 </div>
 
-<div class="info-item">
-<strong>Nationality:</strong>
-<span id="pdfNationality"></span>
+<div>
+
+<label class="font-semibold">
+EMAIL
+</label>
+
+<input type="email"
+id="custEmail"
+required
+class="w-full border mt-2 p-3 rounded">
+
 </div>
 
-<div class="info-item">
-<strong>Email:</strong>
-<span id="pdfEmail"></span>
+<div>
+
+<label class="font-semibold">
+PHONE
+</label>
+
+<input type="text"
+id="custPhone"
+required
+class="w-full border mt-2 p-3 rounded">
+
 </div>
 
-<div class="info-item">
-<strong>Phone:</strong>
-<span id="pdfPhone"></span>
+<div>
+
+<label class="font-semibold">
+ADDRESS
+</label>
+
+<input type="text"
+id="custAddress"
+required
+class="w-full border mt-2 p-3 rounded">
+
 </div>
 
-<div class="info-item">
-<strong>Address:</strong>
-<span id="pdfAddress"></span>
+<div>
+
+<label class="font-semibold">
+NATIONALITY
+</label>
+
+<select id="custNationality"
+class="w-full border mt-2 p-3 rounded">
+
+<option>Vietnam</option>
+<option>Singapore</option>
+<option>Japan</option>
+
+</select>
+
+</div>
+
 </div>
 
 </div>
 
 <!-- FINANCIAL -->
-<h2 class="section-title mt-10">
-FINANCIAL OVERVIEW
+
+<div class="mb-12">
+
+<h2 class="text-2xl font-black text-[#04045d]
+border-b-2 border-[#04045d] pb-2 mb-8">
+
+TÌNH HÌNH TÀI CHÍNH
+
 </h2>
 
-<div class="box-grid">
-
 <!-- ASSETS -->
-<div class="report-box">
 
-<h3>ASSETS</h3>
+<h3 class="text-xl font-bold text-[#04045d] mb-5">
+TÀI SẢN
+</h3>
 
-<div class="report-row">
-<span>Cash</span>
-<span id="pdfCash"></span>
+<div class="grid grid-cols-2 gap-6 mb-10">
+
+<div>
+<label>Tiền mặt</label>
+<input type="number"
+min="0"
+id="cash"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
-<div class="report-row">
-<span>Saving</span>
-<span id="pdfSaving"></span>
+<div>
+<label>Tiết kiệm</label>
+<input type="number"
+min="0"
+id="saving"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
-<div class="report-row">
-<span>Fixed Assets</span>
-<span id="pdfFixedAssets"></span>
+<div>
+<label>Tài sản cố định</label>
+<input type="number"
+min="0"
+id="fixedAssets"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
-<div class="report-row">
-<span>Other Assets</span>
-<span id="pdfOtherAssets"></span>
-</div>
-
-<div class="report-row total-line">
-<span>Total Assets</span>
-<span id="pdfTotalAssets"></span>
+<div>
+<label>Tài sản khác</label>
+<input type="number"
+min="0"
+id="otherAssets"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
 </div>
 
 <!-- LIABILITIES -->
-<div class="report-box">
 
-<h3>LIABILITIES</h3>
+<h3 class="text-xl font-bold text-[#04045d] mb-5">
+NỢ PHẢI TRẢ
+</h3>
 
-<div class="report-row">
-<span>Short-term Debt</span>
-<span id="pdfShortDebt"></span>
+<div class="grid grid-cols-2 gap-6 mb-10">
+
+<div>
+<label>Nợ ngắn hạn</label>
+<input type="number"
+min="0"
+id="shortDebt"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
-<div class="report-row">
-<span>Long-term Debt</span>
-<span id="pdfLongDebt"></span>
-</div>
-
-<div class="report-row total-line">
-<span>Total Debt</span>
-<span id="pdfTotalDebt"></span>
+<div>
+<label>Nợ dài hạn</label>
+<input type="number"
+min="0"
+id="longDebt"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
 </div>
 
 <!-- CASHFLOW -->
-<div class="report-box">
 
-<h3>MONTHLY CASHFLOW</h3>
+<h3 class="text-xl font-bold text-[#04045d] mb-5">
+THU CHI HÀNG THÁNG
+</h3>
 
-<div class="report-row">
-<span>Monthly Income</span>
-<span id="pdfIncome"></span>
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+<label>Thu nhập hàng tháng</label>
+<input type="number"
+min="0"
+id="monthlyIncome"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
-<div class="report-row">
-<span>Monthly Expense</span>
-<span id="pdfExpense"></span>
-</div>
-
-<div class="report-row total-line">
-<span>Net Cashflow</span>
-<span id="pdfCashflow"></span>
-</div>
-
-</div>
-
-<!-- RATIOS -->
-<div class="report-box">
-
-<h3>FINANCIAL RATIOS</h3>
-
-<div class="report-row">
-<span>Debt / Assets Ratio</span>
-<span id="pdfDebtRatio"></span>
-</div>
-
-<div class="report-row">
-<span>Liquidity Ratio</span>
-<span id="pdfLiquidity"></span>
-</div>
-
-<div class="report-row total-line">
-<span>Net Worth</span>
-<span id="pdfNetWorth"></span>
+<div>
+<label>Chi phí hàng tháng</label>
+<input type="number"
+min="0"
+id="monthlyExpense"
+class="w-full border p-3 mt-2 rounded">
 </div>
 
 </div>
@@ -707,60 +440,222 @@ FINANCIAL OVERVIEW
 </div>
 
 <!-- RISK -->
-<h2 class="section-title mt-10">
-RISK PROFILE
+
+<div class="mb-12">
+
+<h2 class="text-2xl font-black text-[#04045d]
+border-b-2 border-[#04045d] pb-2 mb-8">
+
+KHẢO SÁT RỦI RO
+
 </h2>
 
-<div class="risk-grid">
+<div class="space-y-5">
 
-<div class="risk-card">
-<p>TOTAL SCORE</p>
-<h2 id="pdfScore"></h2>
+<div>
+
+<p class="font-bold mb-3">
+1. Mục tiêu đầu tư?
+</p>
+
+<select class="risk-question w-full border p-3 rounded">
+
+<option value="1">Bảo toàn vốn</option>
+<option value="2">Tăng trưởng ổn định</option>
+<option value="3">Tăng trưởng nhanh</option>
+<option value="4">Lợi nhuận cực cao</option>
+
+</select>
+
 </div>
 
-<div class="risk-card">
-<p>RISK TOLERANCE</p>
-<h2 id="pdfRisk"></h2>
+<div>
+
+<p class="font-bold mb-3">
+2. Khi danh mục giảm 20%?
+</p>
+
+<select class="risk-question w-full border p-3 rounded">
+
+<option value="1">Bán ngay</option>
+<option value="2">Giữ nguyên</option>
+<option value="3">Mua thêm</option>
+<option value="4">Mua mạnh</option>
+
+</select>
+
 </div>
 
-<div class="risk-card">
-<p>INVESTMENT TYPE</p>
-<h2 id="pdfType"></h2>
+<div>
+
+<p class="font-bold mb-3">
+3. Khả năng chịu rủi ro?
+</p>
+
+<select class="risk-question w-full border p-3 rounded">
+
+<option value="1">Rất thấp</option>
+<option value="2">Thấp</option>
+<option value="3">Trung bình</option>
+<option value="4">Cao</option>
+
+</select>
+
+</div>
+
 </div>
 
 </div>
 
-<!-- STOCK -->
-<h2 class="section-title mt-10">
+<button type="submit"
+class="w-full bg-[#04045d]
+text-white py-5 rounded text-xl font-bold">
+
+XÁC NHẬN
+
+</button>
+
+</form>
+
+<!-- ================= PDF ================= -->
+
+<div id="pdfTemplate"
+class="a4-page hidden mx-auto shadow-2xl overflow-hidden">
+
+<!-- WATERMARK -->
+
+<div class="watermark">
+
+<img src="DOBN/logo.jpg"
+class="w-[500px]">
+
+</div>
+
+<div class="content-layer p-12">
+
+<!-- HEADER -->
+
+<div class="flex items-center border-b-4 border-[#04045d] pb-6 mb-10">
+
+<img src="DOBN/logo.jpg"
+class="report-logo mr-6">
+
+<div>
+
+<h1 class="text-5xl font-black text-[#04045d]">
+DOBN CAPITAL
+</h1>
+
+<p class="tracking-[5px] text-gray-500 mt-2">
+INVESTMENT RECOMMENDATION REPORT
+</p>
+
+</div>
+
+</div>
+
+<!-- CLIENT -->
+
+<div class="mb-10">
+
+<h2 class="text-2xl font-black text-[#04045d] mb-5">
+CLIENT INFORMATION
+</h2>
+
+<div class="grid grid-cols-2 gap-5 text-sm">
+
+<div><strong>NAME:</strong> <span id="pdfName"></span></div>
+<div><strong>ID:</strong> <span id="pdfID"></span></div>
+<div><strong>EMAIL:</strong> <span id="pdfEmail"></span></div>
+<div><strong>PHONE:</strong> <span id="pdfPhone"></span></div>
+<div><strong>ADDRESS:</strong> <span id="pdfAddress"></span></div>
+<div><strong>NATIONALITY:</strong> <span id="pdfNationality"></span></div>
+
+</div>
+
+</div>
+
+<!-- RESULT -->
+
+<div class="grid grid-cols-3 gap-6">
+
+<div class="border rounded-xl p-5 text-center">
+
+<p class="text-gray-500 text-sm">
+TOTAL SCORE
+</p>
+
+<h3 id="pdfScore"
+class="text-4xl font-black text-[#04045d] mt-3">
+</h3>
+
+</div>
+
+<div class="border rounded-xl p-5 text-center">
+
+<p class="text-gray-500 text-sm">
+RISK PROFILE
+</p>
+
+<h3 id="pdfRisk"
+class="text-2xl font-black text-[#04045d] mt-3">
+</h3>
+
+</div>
+
+<div class="border rounded-xl p-5 text-center">
+
+<p class="text-gray-500 text-sm">
+INVESTMENT TYPE
+</p>
+
+<h3 id="pdfType"
+class="text-2xl font-black text-[#04045d] mt-3">
+</h3>
+
+</div>
+
+</div>
+
+<!-- STOCKS -->
+
+<div class="mt-10">
+
+<h2 class="text-2xl font-black text-[#04045d] mb-6">
 RECOMMENDED STOCKS
 </h2>
 
-<div id="recommendedStocksList" class="stock-grid"></div>
+<div id="recommendedStocksList"
+class="grid grid-cols-5 gap-4">
+</div>
 
-<!-- NOTE -->
-<div class="note-box">
+</div>
 
-<h3>LƯU Ý (NOTE)</h3>
+<!-- SIGNATURE -->
 
-<p>
-Các mã cổ phiếu được đề xuất dựa trên tình hình tài chính hiện tại,
-mục tiêu đầu tư và mức độ chấp nhận rủi ro của khách hàng tại thời điểm đánh giá.
+<div class="mt-20 flex justify-between">
+
+<div>
+
+<p class="font-bold">
+Client Signature
 </p>
 
-<p>
-Danh mục và các mã cổ phiếu được cung cấp chỉ mang tính chất tham khảo,
-không được xem là khuyến nghị mua, bán hoặc cam kết lợi nhuận đầu tư dưới bất kỳ hình thức nào.
+<div class="h-20"></div>
+
+__________________
+
+</div>
+
+<div>
+
+<p class="font-bold">
+DOBN Capital Advisor
 </p>
 
-<p>
-Trong trường hợp khách hàng có nhu cầu triển khai đầu tư hoặc cần thêm thông tin tư vấn,
-vui lòng xác nhận thông qua địa chỉ email:
-Investment@DOBNCapital.com.vn
-</p>
+<div class="h-20"></div>
 
-<p>
-Toàn bộ thông tin cá nhân, tài chính và dữ liệu liên quan của khách hàng được Công ty cam kết bảo mật theo quy định nội bộ và các quy định pháp luật hiện hành.
-</p>
+__________________
 
 </div>
 
@@ -768,214 +663,206 @@ Toàn bộ thông tin cá nhân, tài chính và dữ liệu liên quan của kh
 
 </div>
 
-<div class="download-wrap hidden" id="downloadBtnContainer">
+</div>
 
-<button onclick="downloadPDFFile()" class="download-btn">
+<!-- DOWNLOAD -->
+
+<div id="downloadBtnContainer"
+class="hidden text-center mt-8">
+
+<button onclick="downloadPDFFile()"
+class="bg-[#04045d]
+text-white px-10 py-4 rounded font-bold">
+
 DOWNLOAD PDF
+
 </button>
 
 </div>
 
 </div>
 
-</div>
+<!-- ================= SCRIPT ================= -->
 
 <script>
+
+/* ================= STOCK DATABASE ================= */
 
 const stockDatabase = [
 
 {
-code:"FPT",
-name:"FPT Corporation",
-logo:"logo/FPT.png"
+    code:"FPT",
+    name:"FPT Corporation",
+    type:"BALANCED"
 },
 
 {
-code:"MWG",
-name:"Mobile World Group",
-logo:"logo/MWG.png"
+    code:"HPG",
+    name:"Hoa Phat Group",
+    type:"GROWTH"
 },
 
 {
-code:"TCB",
-name:"Techcombank",
-logo:"logo/TCB.png"
+    code:"MBB",
+    name:"Military Bank",
+    type:"DEFENSIVE"
 },
 
 {
-code:"HPG",
-name:"Hoa Phat Group",
-logo:"logo/HPG.png"
+    code:"MWG",
+    name:"Mobile World",
+    type:"GROWTH"
 },
 
 {
-code:"MBB",
-name:"Military Bank",
-logo:"logo/MBB.png"
+    code:"REE",
+    name:"REE Corporation",
+    type:"BALANCED"
 }
 
 ];
 
+/* ================= RECOMMEND ================= */
+
+function getRecommendations(score){
+
+    if(score <= 5){
+
+        return stockDatabase.filter(
+            stock => stock.type === 'DEFENSIVE'
+        );
+
+    }
+
+    else if(score <= 9){
+
+        return stockDatabase.filter(
+            stock => stock.type === 'BALANCED'
+        );
+
+    }
+
+    else{
+
+        return stockDatabase.filter(
+            stock => stock.type === 'GROWTH'
+        );
+
+    }
+
+}
+
+/* ================= FORM ================= */
+
 document.getElementById('financialForm')
-.addEventListener('submit',function(e){
+.addEventListener('submit', function(e){
 
 e.preventDefault();
 
-const cash =
-Number(document.getElementById('cash').value);
+/* LOADING */
 
-const saving =
-Number(document.getElementById('saving').value);
+document.getElementById('loadingScreen')
+.style.display = 'flex';
 
-const fixedAssets =
-Number(document.getElementById('fixedAssets').value);
+/* CLIENT */
 
-const otherAssets =
-Number(document.getElementById('otherAssets').value);
-
-const shortDebt =
-Number(document.getElementById('shortDebt').value);
-
-const longDebt =
-Number(document.getElementById('longDebt').value);
-
-const income =
-Number(document.getElementById('income').value);
-
-const expense =
-Number(document.getElementById('expense').value);
-
-const totalAssets =
-cash + saving + fixedAssets + otherAssets;
-
-const totalDebt =
-shortDebt + longDebt;
-
-const netWorth =
-totalAssets - totalDebt;
-
-const debtRatio =
-((totalDebt / totalAssets) * 100).toFixed(1) + "%";
-
-const liquidity =
-((cash + saving) / totalDebt).toFixed(2);
-
-document.getElementById('pdfName').innerText =
+const name =
 document.getElementById('custName').value;
 
-document.getElementById('pdfID').innerText =
+const id =
 document.getElementById('custID').value;
 
-document.getElementById('pdfNationality').innerText =
-document.getElementById('custNationality').value;
-
-document.getElementById('pdfEmail').innerText =
+const email =
 document.getElementById('custEmail').value;
 
-document.getElementById('pdfPhone').innerText =
+const phone =
 document.getElementById('custPhone').value;
 
-document.getElementById('pdfAddress').innerText =
+const address =
 document.getElementById('custAddress').value;
 
-document.getElementById('pdfCash').innerText =
-cash.toLocaleString('vi-VN') + ' VND';
+const nationality =
+document.getElementById('custNationality').value;
 
-document.getElementById('pdfSaving').innerText =
-saving.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfFixedAssets').innerText =
-fixedAssets.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfOtherAssets').innerText =
-otherAssets.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfTotalAssets').innerText =
-totalAssets.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfShortDebt').innerText =
-shortDebt.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfLongDebt').innerText =
-longDebt.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfTotalDebt').innerText =
-totalDebt.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfIncome').innerText =
-income.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfExpense').innerText =
-expense.toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfCashflow').innerText =
-(income - expense).toLocaleString('vi-VN') + ' VND';
-
-document.getElementById('pdfDebtRatio').innerText =
-debtRatio;
-
-document.getElementById('pdfLiquidity').innerText =
-liquidity;
-
-document.getElementById('pdfNetWorth').innerText =
-netWorth.toLocaleString('vi-VN') + ' VND';
+/* SCORE */
 
 let totalScore = 0;
 
 document.querySelectorAll('.risk-question')
-.forEach(question=>{
+.forEach(question => {
 
-totalScore += Number(question.value);
+    totalScore += Number(question.value);
 
 });
 
-let risk = '';
-let type = '';
+/* RISK */
 
-if(totalScore <= 6){
+let riskLevel = '';
+let investmentType = '';
 
-risk = 'LOW RISK';
-type = 'DEFENSIVE';
+if(totalScore <= 5){
+
+    riskLevel = 'LOW RISK';
+    investmentType = 'DEFENSIVE';
 
 }
 else if(totalScore <= 9){
 
-risk = 'MEDIUM RISK';
-type = 'BALANCED';
+    riskLevel = 'MEDIUM RISK';
+    investmentType = 'BALANCED';
 
 }
 else{
 
-risk = 'HIGH RISK';
-type = 'GROWTH';
+    riskLevel = 'HIGH RISK';
+    investmentType = 'GROWTH';
 
 }
 
+/* PDF */
+
+document.getElementById('pdfName').innerText = name;
+document.getElementById('pdfID').innerText = id;
+document.getElementById('pdfEmail').innerText = email;
+document.getElementById('pdfPhone').innerText = phone;
+document.getElementById('pdfAddress').innerText = address;
+document.getElementById('pdfNationality').innerText = nationality;
+
 document.getElementById('pdfScore').innerText =
-totalScore + '/12';
+totalScore;
 
 document.getElementById('pdfRisk').innerText =
-risk;
+riskLevel;
 
 document.getElementById('pdfType').innerText =
-type;
+investmentType;
 
-const stockContainer =
+/* STOCK */
+
+const container =
 document.getElementById('recommendedStocksList');
 
-stockContainer.innerHTML = '';
+container.innerHTML = '';
 
-stockDatabase.forEach(stock=>{
+const recommendedStocks =
+getRecommendations(totalScore);
 
-stockContainer.innerHTML += `
+recommendedStocks.forEach(stock => {
 
-<div class="stock-card">
+container.innerHTML += `
 
-<img src="${stock.logo}">
+<div class="border rounded-xl p-4 text-center bg-white">
 
-<h3>${stock.code}</h3>
+<img src="logo/${stock.code}.png"
+class="w-16 h-16 object-contain mx-auto mb-3">
 
-<p>${stock.name}</p>
+<h3 class="font-black text-[#04045d]">
+${stock.code}
+</h3>
+
+<p class="text-[11px] text-gray-500">
+${stock.name}
+</p>
 
 </div>
 
@@ -983,13 +870,22 @@ stockContainer.innerHTML += `
 
 });
 
+/* SHOW */
+
 document.getElementById('pdfTemplate')
 .classList.remove('hidden');
 
 document.getElementById('downloadBtnContainer')
 .classList.remove('hidden');
 
+/* HIDE LOADING */
+
+document.getElementById('loadingScreen')
+.style.display = 'none';
+
 });
+
+/* ================= DOWNLOAD PDF ================= */
 
 async function downloadPDFFile(){
 
@@ -1001,8 +897,9 @@ document.getElementById('pdfTemplate');
 const canvas =
 await html2canvas(element,{
 
-scale:2,
-useCORS:true
+    scale:2,
+    useCORS:true,
+    backgroundColor:"#ffffff"
 
 });
 
@@ -1012,27 +909,58 @@ canvas.toDataURL('image/png');
 const pdf =
 new jsPDF('p','mm','a4');
 
-const pdfWidth = 210;
+const width = 210;
 
-const pdfHeight =
-canvas.height * pdfWidth / canvas.width;
+const height =
+canvas.height * width / canvas.width;
 
 pdf.addImage(
-imgData,
-'PNG',
-0,
-0,
-pdfWidth,
-pdfHeight
+    imgData,
+    'PNG',
+    0,
+    0,
+    width,
+    height
 );
 
 pdf.save(
-'DOBN_Investment_Recommendation_Report.pdf'
+'DOBN_Investment_Report.pdf'
 );
 
 }
 
 </script>
 
+<!-- GOOGLE ANALYTICS -->
+
+<script async
+src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN">
+</script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-VVRTLD2GMN');
+
+</script>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+© 2026 DOBN CAPITAL - Demo Website
+</p>
+
+</footer>
+
 </body>
 </html>
+```
