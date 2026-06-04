@@ -241,70 +241,118 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
 <!-- FINANCIAL -->
 <div class="mb-12">
 
+    <!-- TITLE -->
     <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
-        TÌNH HÌNH TÀI CHÍNH 
+        TÌNH HÌNH TÀI CHÍNH
     </h2>
-  <h3 class="text-xl font-bold text-[#04045d] mb-5">
-                TÀI SẢN (ASSETS)
-            </h3>
-    <div class="grid grid-cols-2 gap-6">
+
+    <!-- ASSETS -->
+    <h3 class="text-xl font-bold text-[#04045d] mb-5">
+        TÀI SẢN (ASSETS)
+    </h3>
+
+    <div class="grid grid-cols-2 gap-6 mb-10">
 
         <div>
             <label>Tiền mặt</label>
-            <input type="number" id="cash"
+
+            <input
+            type="number"
+            min="0"
+            id="cash"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
         <div>
             <label>Tiết kiệm</label>
-            <input type="number" id="saving"
+
+            <input
+            type="number"
+            min="0"
+            id="saving"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
         <div>
             <label>Tài sản cố định</label>
-            <input type="number" id="fixedAssets"
+
+            <input
+            type="number"
+            min="0"
+            id="fixedAssets"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
         <div>
             <label>Tài sản khác</label>
-            <input type="number" id="otherAssets"
+
+            <input
+            type="number"
+            min="0"
+            id="otherAssets"
             class="w-full border p-3 mt-2 rounded">
         </div>
-  </div>
-            <h3 class="text-xl font-bold text-[#04045d] mb-5">
-                NỢ PHẢI TRẢ (LIABILITIES)
-            </h3>
+
+    </div>
+
+    <!-- LIABILITIES -->
+    <h3 class="text-xl font-bold text-[#04045d] mb-5">
+        NỢ PHẢI TRẢ (LIABILITIES)
+    </h3>
+
+    <div class="grid grid-cols-2 gap-6 mb-10">
+
         <div>
             <label>Nợ ngắn hạn</label>
-            <input type="number" id="shortDebt"
+
+            <input
+            type="number"
+            min="0"
+            id="shortDebt"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
         <div>
             <label>Nợ dài hạn</label>
-            <input type="number" id="longDebt"
+
+            <input
+            type="number"
+            min="0"
+            id="longDebt"
             class="w-full border p-3 mt-2 rounded">
         </div>
-  </div>
 
-            <h3 class="text-xl font-bold text-[#04045d] mb-5">
-                THU CHI HÀNG THÁNG (MONTHLY INCOME & EXPENSES)
-            </h3>
+    </div>
+
+    <!-- CASHFLOW -->
+    <h3 class="text-xl font-bold text-[#04045d] mb-5">
+        THU CHI HÀNG THÁNG (MONTHLY INCOME & EXPENSES)
+    </h3>
+
+    <div class="grid grid-cols-2 gap-6">
+
         <div>
             <label>Thu nhập hàng tháng</label>
-            <input type="number" id="monthlyIncome"
+
+            <input
+            type="number"
+            min="0"
+            id="monthlyIncome"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
         <div>
             <label>Chi phí hàng tháng</label>
-            <input type="number" id="monthlyExpense"
+
+            <input
+            type="number"
+            min="0"
+            id="monthlyExpense"
             class="w-full border p-3 mt-2 rounded">
         </div>
 
     </div>
+
 </div>
 
 <!-- SURVEY -->
