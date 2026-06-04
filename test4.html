@@ -1034,48 +1034,77 @@ document.getElementById('downloadBtnContainer')
 });
 
 // DOWNLOAD PDF
-async function downloadPDFFile(){
+async function downloadPDFFile() {
 
-const { jsPDF } = window.jspdf;
+    const { jsPDF } = window.jspdf;
 
-const element =
-document.getElementById('pdfTemplate');
+    const element = document.getElementById('pdfTemplate');
 
-const canvas = await html2canvas(element,{
+    // HIỆN PDF TRƯỚC KHI CHỤP
+    element.classList.remove('hidden');
 
-scale:2,
-useCORS:true
+    const canvas = await html2canvas(element, {
+        scale: 3,
+        useCORS: true,
+        logging: false,
+        backgroundColor: "#ffffff"
+    });
 
-});
+    const imgData = canvas.toDataURL('image/png');
 
-const imgData =
-canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: 'a4'
+    });
 
-const pdf =
-new jsPDF('p','mm','a4');
+    const pageWidth = 210;
+    const pageHeight = 297;
 
-const pdfWidth = 210;
+    const imgWidth = pageWidth;
 
-const pdfHeight =
-canvas.height * pdfWidth / canvas.width;
+    const imgHeight =
+        (canvas.height * imgWidth) / canvas.width;
 
-pdf.addImage(
-imgData,
-'png',
-0,
-0,
-pdfWidth,
-pdfHeight
-);
+    let heightLeft = imgHeight;
+    let position = 0;
 
-pdf.save(
-'DOBN_Investment_Recommendation_Report.pdf'
-);
+    // PAGE 1
+    pdf.addImage(
+        imgData,
+        'PNG',
+        0,
+        position,
+        imgWidth,
+        imgHeight
+    );
 
+    heightLeft -= pageHeight;
+
+    // MULTI PAGE
+    while (heightLeft > 0) {
+
+        position = heightLeft - imgHeight;
+
+        pdf.addPage();
+
+        pdf.addImage(
+            imgData,
+            'PNG',
+            0,
+            position,
+            imgWidth,
+            imgHeight
+        );
+
+        heightLeft -= pageHeight;
+    }
+
+    pdf.save(
+        'DOBN_Investment_Recommendation_Report.pdf'
+    );
 }
-
-</script>
-
+<script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
 <script>
