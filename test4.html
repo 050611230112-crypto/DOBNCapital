@@ -539,324 +539,357 @@ class="w-full bg-[#04045d] text-white py-5 rounded text-xl font-bold">
 <div id="pdfTemplate"
 class="a4-page hidden mx-auto shadow-2xl relative overflow-hidden">
 
-<!-- WATERMARK -->
-<div class="watermark">
+    <!-- WATERMARK -->
+    <div class="watermark">
 
-    <img src="DOBN/logo.jpg"
-    class="w-[500px]">
-
-</div>
-
-<div class="content-layer p-12">
-
-<!-- HEADER -->
-<div class="flex items-center border-b-4 border-[#04045d] pb-6 mb-10">
-
- <img src="DOBN/logo.jpg"
-class="report-logo mr-6">
-
-    <div>
-
-        <h1 class="text-5xl font-black text-[#04045d]">
-            DOBN CAPITAL
-        </h1>
-
-        <p class="tracking-[5px] text-gray-500 mt-2">
-            INVESTMENT RECOMMENDATION REPORT
-        </p>
+        <img src="DOBN/logo.jpg"
+        class="w-[500px]">
 
     </div>
 
-</div>
+    <div class="content-layer p-12">
 
-<!-- CLIENT -->
-<div class="mb-10">
+        <!-- HEADER -->
+        <div class="flex items-center border-b-4 border-[#04045d] pb-6 mb-10">
 
-    <h2 class="text-2xl font-black text-[#04045d] mb-5">
-        THÔNG TIN KHÁCH HÀNG 
-        <span class="text-gray-500 text-lg">
-            (CLIENT'S INFORMATION)
-        </span>
-    </h2>
+            <img src="DOBN/logo.jpg"
+            class="report-logo mr-6">
 
-    <div class="grid grid-cols-2 gap-5 text-sm">
+            <div>
 
-        <div><strong>NAME:</strong> <span id="pdfName"></span></div>
-        <div><strong>ID:</strong> <span id="pdfID"></span></div>
-        <div><strong>NATIONALITY:</strong> <span id="pdfNationality"></span></div>
-        <div><strong>EMAIL:</strong> <span id="pdfEmail"></span></div>
-        <div><strong>PHONE:</strong> <span id="pdfPhone"></span></div>
-        <div><strong>ADDRESS:</strong> <span id="pdfAddress"></span></div>
+                <h1 class="text-5xl font-black text-[#04045d]">
+                    DOBN CAPITAL
+                </h1>
+
+                <p class="tracking-[5px] text-gray-500 mt-2">
+                    INVESTMENT RECOMMENDATION REPORT
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CLIENT -->
+        <div class="mb-10">
+
+            <h2 class="text-2xl font-black text-[#04045d] mb-5">
+                THÔNG TIN KHÁCH HÀNG
+                <span class="text-gray-500 text-lg">
+                    (CLIENT'S INFORMATION)
+                </span>
+            </h2>
+
+            <div class="grid grid-cols-2 gap-5 text-sm">
+
+                <div>
+                    <strong>NAME:</strong>
+                    <span id="pdfName"></span>
+                </div>
+
+                <div>
+                    <strong>ID:</strong>
+                    <span id="pdfID"></span>
+                </div>
+
+                <div>
+                    <strong>NATIONALITY:</strong>
+                    <span id="pdfNationality"></span>
+                </div>
+
+                <div>
+                    <strong>EMAIL:</strong>
+                    <span id="pdfEmail"></span>
+                </div>
+
+                <div>
+                    <strong>PHONE:</strong>
+                    <span id="pdfPhone"></span>
+                </div>
+
+                <div>
+                    <strong>ADDRESS:</strong>
+                    <span id="pdfAddress"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FINANCIAL -->
+        <div class="mb-10">
+
+            <h2 class="text-2xl font-black text-[#04045d] mb-6">
+                TÌNH HÌNH TÀI CHÍNH
+                <span class="text-gray-500 text-lg">
+                    (CLIENT'S FINANCIAL SITUATION)
+                </span>
+            </h2>
+
+            <div class="grid grid-cols-2 gap-6">
+
+                <!-- ASSETS -->
+                <div class="border-2 border-[#04045d] rounded-xl p-5">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h3 class="font-black text-[#04045d] text-lg">
+                            ASSETS
+                        </h3>
+
+                        <span class="text-xs italic text-gray-400">
+                            Unit: VND
+                        </span>
+
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+
+                        <div class="flex justify-between">
+                            <span>Cash</span>
+                            <span id="pdfCash"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Saving</span>
+                            <span id="pdfSaving"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Fixed Assets</span>
+                            <span id="pdfFixedAssets"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Other Assets</span>
+                            <span id="pdfOtherAssets"></span>
+                        </div>
+
+                        <div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
+
+                            <span>Total Assets</span>
+
+                            <span id="pdfTotalAssets"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- LIABILITIES -->
+                <div class="border-2 border-[#04045d] rounded-xl p-5">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h3 class="font-black text-[#04045d] text-lg">
+                            LIABILITIES
+                        </h3>
+
+                        <span class="text-xs italic text-gray-400">
+                            Unit: VND
+                        </span>
+
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+
+                        <div class="flex justify-between">
+                            <span>Short-term Debt</span>
+                            <span id="pdfShortDebt"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Long-term Debt</span>
+                            <span id="pdfLongDebt"></span>
+                        </div>
+
+                        <!-- FIXED -->
+                        <div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
+
+                            <span>Total Debt</span>
+
+                            <span id="pdfTotalDebt"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CASHFLOW -->
+                <div class="border-2 border-[#04045d] rounded-xl p-5">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h3 class="font-black text-[#04045d] text-lg">
+                            MONTHLY CASHFLOW
+                        </h3>
+
+                        <span class="text-xs italic text-gray-400">
+                            Unit: VND
+                        </span>
+
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+
+                        <div class="flex justify-between">
+                            <span>Monthly Income</span>
+                            <span id="pdfIncome"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Monthly Expense</span>
+                            <span id="pdfExpense"></span>
+                        </div>
+
+                        <div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
+
+                            <span>Net Cashflow</span>
+
+                            <span id="pdfCashflow"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RATIOS -->
+                <div class="border-2 border-[#04045d] rounded-xl p-5">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <h3 class="font-black text-[#04045d] text-lg">
+                            FINANCIAL INDICATE
+                        </h3>
+
+                        <span class="text-xs italic text-gray-400">
+                            Unit: %
+                        </span>
+
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+
+                        <div class="flex justify-between">
+                            <span>Debt to Assets Ratio</span>
+                            <span id="pdfDebtRatio"></span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Liquidity Ratio</span>
+                            <span id="pdfLiquidRatio"></span>
+                        </div>
+
+                        <div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
+
+                            <span>Net Worth</span>
+
+                            <span id="pdfNetWorth"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RISK -->
+        <div class="mb-10">
+
+            <h2 class="text-2xl font-black text-[#04045d] mb-5">
+                RISK PROFILE
+            </h2>
+
+            <div class="grid grid-cols-3 gap-5">
+
+                <div class="border rounded p-5 text-center">
+
+                    <p class="text-gray-500 text-sm">
+                        EXPECTED RETURN
+                    </p>
+
+                    <h3 id="pdfExpectedReturn"
+                    class="text-3xl font-black text-[#04045d] mt-3"></h3>
+
+                </div>
+
+                <div class="border rounded p-5 text-center">
+
+                    <p class="text-gray-500 text-sm">
+                        RISK TOLERANCE
+                    </p>
+
+                    <h3 id="pdfRisk"
+                    class="text-2xl font-black text-[#04045d] mt-3"></h3>
+
+                </div>
+
+                <div class="border rounded p-5 text-center">
+
+                    <p class="text-gray-500 text-sm">
+                        TIME HORIZON
+                    </p>
+
+                    <h3 id="pdfType"
+                    class="text-2xl font-black text-[#04045d] mt-3"></h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- STOCK -->
+        <div>
+
+            <h2 class="text-2xl font-black text-[#04045d] mb-6">
+                RECOMMENDED STOCKS
+            </h2>
+
+            <div id="recommendedStocksList"
+            class="grid grid-cols-5 gap-4"></div>
+
+        </div>
+
+        <!-- NOTE -->
+        <div class="mt-10 border-t pt-6">
+
+            <h3 class="text-lg font-black text-[#04045d] mb-4">
+                NOTE
+            </h3>
+
+            <div class="space-y-3 text-[13px] leading-6 text-black">
+
+                <p>
+                    Các mã cổ phiếu được đề xuất dựa trên tình hình tài chính hiện tại,
+                    mục tiêu đầu tư và mức độ chấp nhận rủi ro của khách hàng tại thời điểm đánh giá.
+                </p>
+
+                <p>
+                    Danh mục và các mã cổ phiếu được cung cấp chỉ mang tính chất tham khảo,
+                    không được xem là khuyến nghị mua, bán hoặc cam kết lợi nhuận đầu tư dưới bất kỳ hình thức nào.
+                </p>
+
+                <p>
+                    Trong trường hợp khách hàng có nhu cầu triển khai đầu tư hoặc cần thêm thông tin tư vấn,
+                    vui lòng xác nhận thông qua địa chỉ email:
+                    Investment@DOBNCapital.com.vn
+                </p>
+
+                <p>
+                    Toàn bộ thông tin cá nhân, tài chính và dữ liệu liên quan của khách hàng được Công ty cam kết bảo mật theo quy định nội bộ và các quy định pháp luật hiện hành.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
-
-</div>
-
-<!-- FINANCIAL -->
-<div class="mb-10">
-
-<h2 class="text-2xl font-black text-[#04045d] mb-6">
-    TÌNH HÌNH TÀI CHÍNH
-        <span class="text-gray-500 text-lg">
-            (CLIENT'S FINANCIAL SITUATION)
-        </span>
-</h2>
-<div class="grid grid-cols-2 gap-6">
-
-<!-- ASSETS -->
-<div class="border-2 border-[#04045d] rounded-xl p-5">
-
-<div class="flex justify-between items-center mb-5">
-
-<h3 class="font-black text-[#04045d] text-lg">
-ASSETS
-</h3>
-
-<span class="text-xs italic text-gray-400">
-Unit: VND
-</span>
-
-</div>
-
-<div class="space-y-3 text-sm">
-
-<div class="flex justify-between">
-<span>Cash</span>
-<span id="pdfCash"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Saving</span>
-<span id="pdfSaving"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Fixed Assets</span>
-<span id="pdfFixedAssets"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Other Assets</span>
-<span id="pdfOtherAssets"></span>
-</div>
-
-<div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
-
-<span>Total Assets</span>
-
-<span id="pdfTotalAssets"></span>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- LIABILITIES -->
-<div class="border-2 border-[#04045d] rounded-xl p-5">
-
-<div class="flex justify-between items-center mb-5">
-
-<h3 class="font-black text-[#04045d] text-lg">
-LIABILITIES
-</h3>
-
-<span class="text-xs italic text-gray-400">
-Unit: VND
-</span>
-
-</div>
-
-<div class="space-y-3 text-sm">
-
-<div class="flex justify-between">
-<span>Short-term Debt</span>
-<span id="pdfShortDebt"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Long-term Debt</span>
-<span id="pdfLongDebt"></span>
-</div>
-
-<div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
-<div class="flex justify-between items-center mb-5">
-
-<span>Total Debt</span>
-
-<span id="pdfTotalDebt"></span>
-
-</div>
-
-</div>
-
-<!-- CASHFLOW -->
-<div class="border-2 border-[#04045d] rounded-xl p-5">
-
-<div class="flex justify-between items-center mb-5">
-
-<h3 class="font-black text-[#04045d] text-lg">
-MONTHLY CASHFLOW
-</h3>
-
-<span class="text-xs italic text-gray-400">
-Unit: VND
-</span>
-
-</div>
-
-<div class="space-y-3 text-sm">
-
-<div class="flex justify-between">
-<span>Monthly Income</span>
-<span id="pdfIncome"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Monthly Expense</span>
-<span id="pdfExpense"></span>
-</div>
-
-<div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
-
-<span>Net Cashflow</span>
-
-<span id="pdfCashflow"></span>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RATIOS -->
-<div class="border-2 border-[#04045d] rounded-xl p-5">
-<h3 class="font-black text-[#04045d] text-lg">
-FINANCIAL INDICATE
-</h3>
-        <span class="text-xs italic text-gray-400">
-Unit: %
-</span>
-<div class="space-y-4 text-sm">
-
-<div class="flex justify-between">
-<span>Debt to Assets Ratio</span>
-<span id="pdfDebtRatio"></span>
-</div>
-
-<div class="flex justify-between">
-<span>Liquidity Ratio</span>
-<span id="pdfLiquidRatio"></span>
-</div>
-
-<div class="border-t pt-3 flex justify-between font-black text-[#04045d]">
-
-<span>Net Worth</span>
-
-<span id="pdfNetWorth"></span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RISK -->
-<div class="mb-10">
-
-<h2 class="text-2xl font-black text-[#04045d] mb-5">
-RISK PROFILE
-</h2>
-
-<div class="grid grid-cols-3 gap-5">
-
-<div class="border rounded p-5 text-center">
-
-<p class="text-gray-500 text-sm">
-EXPECTED RETURN
-</p>
-
-<h3 id="pdfExpectedReturn"
-class="text-3xl font-black text-[#04045d] mt-3"></h3>
-
-</div>
-
-<div class="border rounded p-5 text-center">
-
-<p class="text-gray-500 text-sm">
-RISK TOLERANCE
-</p>
-
-<h3 id="pdfRisk"
-class="text-2xl font-black text-[#04045d] mt-3"></h3>
-
-</div>
-
-<div class="border rounded p-5 text-center">
-
-<p class="text-gray-500 text-sm">
-TIME HORIZON
-</p>
-
-<h3 id="pdfType"
-class="text-2xl font-black text-[#04045d] mt-3"></h3>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- STOCK -->
-<div>
-
-<h2 class="text-2xl font-black text-[#04045d] mb-6">
-RECOMMENDED STOCKS
-</h2>
-
-<div id="recommendedStocksList"
-class="grid grid-cols-5 gap-4"></div>
-
-</div>
-
-<!-- NOTE -->
-<div class="mt-10 border-t pt-6">
-
-<h3 class="text-lg font-black text-[#04045d] mb-4">
-NOTE
-</h3>
-
-<div class="space-y-3 text-[13px] leading-6 text-black">
-
-<p>
-Các mã cổ phiếu được đề xuất dựa trên tình hình tài chính hiện tại,
-mục tiêu đầu tư và mức độ chấp nhận rủi ro của khách hàng tại thời điểm đánh giá.
-</p>
-
-<p>
-Danh mục và các mã cổ phiếu được cung cấp chỉ mang tính chất tham khảo,
-không được xem là khuyến nghị mua, bán hoặc cam kết lợi nhuận đầu tư dưới bất kỳ hình thức nào.
-</p>
-
-<p>
-Trong trường hợp khách hàng có nhu cầu triển khai đầu tư hoặc cần thêm thông tin tư vấn,
-vui lòng xác nhận thông qua địa chỉ email:
-Investment@DOBNCapital.com.vn
-</p>
-
-<p>
-Toàn bộ thông tin cá nhân, tài chính và dữ liệu liên quan của khách hàng được Công ty cam kết bảo mật theo quy định nội bộ và các quy định pháp luật hiện hành.
-</p>
-
-</div>
-
-</div>
-
-</div>
 
 </div>
 
@@ -864,267 +897,262 @@ Toàn bộ thông tin cá nhân, tài chính và dữ liệu liên quan của kh
 <div id="downloadBtnContainer"
 class="hidden text-center mt-8">
 
-<button onclick="downloadPDFFile()"
-class="bg-[#04045d] text-white px-10 py-4 rounded font-bold">
+    <button onclick="downloadPDFFile()"
+    class="bg-[#04045d] text-white px-10 py-4 rounded font-bold">
 
-DOWNLOAD PDF
+        DOWNLOAD PDF
 
-</button>
-
-</div>
+    </button>
 
 </div>
+
+<!-- JS -->
 <script src="js/sendToGoogleSheet.js"></script>
 <script src="js/recommendation.js"></script>
 
 <script>
 
 document.getElementById('financialForm')
-.addEventListener('submit',function(e){
+.addEventListener('submit', function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-// CLIENT
-const name =
-document.getElementById('custName').value;
+    // CLIENT
+    const name =
+    document.getElementById('custName').value;
 
-const id =
-document.getElementById('custID').value;
+    const id =
+    document.getElementById('custID').value;
 
-const nationality =
-document.getElementById('custNationality').value;
+    const nationality =
+    document.getElementById('custNationality').value;
 
-const email =
-document.getElementById('custEmail').value;
+    const email =
+    document.getElementById('custEmail').value;
 
-const phone =
-document.getElementById('custPhone').value;
+    const phone =
+    document.getElementById('custPhone').value;
 
-const address =
-document.getElementById('custAddress').value;
+    const address =
+    document.getElementById('custAddress').value;
 
-// FINANCIAL
-const cash =
-Number(document.getElementById('cash').value);
+    // FINANCIAL
+    const cash =
+    Number(document.getElementById('cash').value);
 
-const saving =
-Number(document.getElementById('saving').value);
+    const saving =
+    Number(document.getElementById('saving').value);
 
-const fixedAssets =
-Number(document.getElementById('fixedAssets').value);
+    const fixedAssets =
+    Number(document.getElementById('fixedAssets').value);
 
-const otherAssets =
-Number(document.getElementById('otherAssets').value);
+    const otherAssets =
+    Number(document.getElementById('otherAssets').value);
 
-const shortDebt =
-Number(document.getElementById('shortDebt').value);
+    const shortDebt =
+    Number(document.getElementById('shortDebt').value);
 
-const longDebt =
-Number(document.getElementById('longDebt').value);
+    const longDebt =
+    Number(document.getElementById('longDebt').value);
 
-const income =
-Number(document.getElementById('monthlyIncome').value);
+    const income =
+    Number(document.getElementById('monthlyIncome').value);
 
-const expense =
-Number(document.getElementById('monthlyExpense').value);
+    const expense =
+    Number(document.getElementById('monthlyExpense').value);
 
-const totalAssets =
-cash + saving + fixedAssets + otherAssets;
+    const totalAssets =
+    cash + saving + fixedAssets + otherAssets;
 
-const totalDebt =
-shortDebt + longDebt;
+    const totalDebt =
+    shortDebt + longDebt;
 
-const netWorth =
-totalAssets - totalDebt;
+    const netWorth =
+    totalAssets - totalDebt;
 
-const debtRatio =
-totalAssets > 0
-? ((totalDebt / totalAssets) * 100).toFixed(1) + '%'
-: '0%';
+    const debtRatio =
+    totalAssets > 0
+    ? ((totalDebt / totalAssets) * 100).toFixed(1) + '%'
+    : '0%';
 
-const liquidRatio =
-totalDebt > 0
-? ((cash + saving) / totalDebt).toFixed(2)
-: '0';
+    const liquidRatio =
+    totalDebt > 0
+    ? ((cash + saving) / totalDebt).toFixed(2)
+    : '0';
 
-// ================= SCORE SYSTEM =================
+    // SCORE
+    let totalScore = 0;
 
-let totalScore = 0;
+    document.querySelectorAll('.risk-question')
+    .forEach(question => {
 
-document.querySelectorAll('.risk-question')
-.forEach(question => {
+        totalScore += Number(question.value);
 
-    totalScore += Number(question.value);
+    });
 
-});
+    // CLIENT INPUT
+    const expectedReturn =
+    Number(
+    document.getElementById('expectedReturn').value
+    );
 
-// 10 QUESTIONS
-// MAX = 40
-// MIN = 10
+    const investmentHorizon =
+    document.getElementById('investmentHorizon').value;
 
-// CLIENT INPUT
-const expectedReturn =
-Number(
-document.getElementById('expectedReturn').value
-);
+    // RISK
+    let riskLevel = '';
+    let investmentType = '';
 
-const investmentHorizon =
-document.getElementById('investmentHorizon').value;
+    if(totalScore <= 18){
 
+        riskLevel = 'LOW RISK';
+        investmentType = 'Conservative';
 
-// RISK
-let riskLevel = '';
-let investmentType = '';
+    }
+    else if(totalScore <= 27){
 
-if(totalScore <= 18){
+        riskLevel = 'MEDIUM RISK';
+        investmentType = 'Balance';
 
-riskLevel = 'LOW RISK';
-investmentType = 'Conservative';
+    }
+    else{
 
-}
-else if(totalScore <= 27){
+        riskLevel = 'HIGH RISK';
+        investmentType = 'Aggressive';
 
-riskLevel = 'MEDIUM RISK';
-investmentType = 'Balance';
+    }
 
-}
-else{
+    // RECOMMEND
+    const recommendedStocks =
+    getRecommendations(
+        totalScore,
+        investmentType,
+        investmentHorizon
+    );
 
-riskLevel = 'HIGH RISK';
-investmentType = 'Aggressive';
+    // CLIENT PDF
+    document.getElementById('pdfName').innerText = name;
+    document.getElementById('pdfID').innerText = id;
+    document.getElementById('pdfNationality').innerText = nationality;
+    document.getElementById('pdfEmail').innerText = email;
+    document.getElementById('pdfPhone').innerText = phone;
+    document.getElementById('pdfAddress').innerText = address;
 
-}
+    // ASSETS
+    document.getElementById('pdfCash').innerText =
+    cash.toLocaleString('vi-VN') + ' VND';
 
-// RECOMMEND
-const recommendedStocks =
-getRecommendations(
-    totalScore,
-    investmentType,
-    investmentHorizon
-);
+    document.getElementById('pdfSaving').innerText =
+    saving.toLocaleString('vi-VN') + ' VND';
 
-// CLIENT PDF
-document.getElementById('pdfName').innerText = name;
-document.getElementById('pdfID').innerText = id;
-document.getElementById('pdfNationality').innerText = nationality;
-document.getElementById('pdfEmail').innerText = email;
-document.getElementById('pdfPhone').innerText = phone;
-document.getElementById('pdfAddress').innerText = address;
+    document.getElementById('pdfFixedAssets').innerText =
+    fixedAssets.toLocaleString('vi-VN') + ' VND';
 
-// ASSETS
-document.getElementById('pdfCash').innerText =
-cash.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfOtherAssets').innerText =
+    otherAssets.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfSaving').innerText =
-saving.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfTotalAssets').innerText =
+    totalAssets.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfFixedAssets').innerText =
-fixedAssets.toLocaleString('vi-VN') + ' VND';
+    // DEBT
+    document.getElementById('pdfShortDebt').innerText =
+    shortDebt.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfOtherAssets').innerText =
-otherAssets.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfLongDebt').innerText =
+    longDebt.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfTotalAssets').innerText =
-totalAssets.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfTotalDebt').innerText =
+    totalDebt.toLocaleString('vi-VN') + ' VND';
 
-// DEBT
-document.getElementById('pdfShortDebt').innerText =
-shortDebt.toLocaleString('vi-VN') + ' VND';
+    // CASHFLOW
+    document.getElementById('pdfIncome').innerText =
+    income.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfLongDebt').innerText =
-longDebt.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfExpense').innerText =
+    expense.toLocaleString('vi-VN') + ' VND';
 
-document.getElementById('pdfTotalDebt').innerText =
-totalDebt.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfCashflow').innerText =
+    (income - expense).toLocaleString('vi-VN') + ' VND';
 
-// CASHFLOW
-document.getElementById('pdfIncome').innerText =
-income.toLocaleString('vi-VN') + ' VND';
+    // RATIOS
+    document.getElementById('pdfDebtRatio').innerText =
+    debtRatio;
 
-document.getElementById('pdfExpense').innerText =
-expense.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfLiquidRatio').innerText =
+    liquidRatio;
 
-document.getElementById('pdfCashflow').innerText =
-(income - expense).toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfNetWorth').innerText =
+    netWorth.toLocaleString('vi-VN') + ' VND';
 
-// RATIOS
-document.getElementById('pdfDebtRatio').innerText =
-debtRatio;
+    // RISK
+    document.getElementById('pdfExpectedReturn').innerText =
+    expectedReturn + '%';
 
-document.getElementById('pdfLiquidRatio').innerText =
-liquidRatio;
+    document.getElementById('pdfRisk').innerText =
+    riskLevel;
 
-document.getElementById('pdfNetWorth').innerText =
-netWorth.toLocaleString('vi-VN') + ' VND';
+    document.getElementById('pdfType').innerText =
+    investmentHorizon;
 
-// RISK
-document.getElementById('pdfExpectedReturn').innerText =
-expectedReturn + '%';
+    // STOCKS
+    const container =
+    document.getElementById('recommendedStocksList');
 
-document.getElementById('pdfRisk').innerText =
-riskLevel;
+    container.innerHTML = '';
 
-document.getElementById('pdfType').innerText =
-investmentHorizon;
+    recommendedStocks.forEach(stock => {
 
-// STOCKS
-const container =
-document.getElementById('recommendedStocksList');
+        container.innerHTML += `
 
-container.innerHTML = '';
+        <a href="pdf/${stock.code}.pdf"
+        target="_blank"
+        class="border rounded-xl p-4 text-center hover:shadow-xl transition bg-white">
 
-recommendedStocks.forEach(stock => {
+            <img src="logo/${stock.code}.png"
+            class="w-16 h-16 object-contain mx-auto mb-3">
 
-container.innerHTML += `
+            <h3 class="font-black text-[#04045d]">
+                ${stock.code}
+            </h3>
 
-<a href="pdf/${stock.code}.pdf"
-target="_blank"
-class="border rounded-xl p-4 text-center hover:shadow-xl transition bg-white">
+            <p class="text-[10px] text-gray-500 mt-1 leading-4">
+                ${stock.name}
+            </p>
 
-<img src="logo/${stock.code}.png"
-class="w-16 h-16 object-contain mx-auto mb-3">
+        </a>
 
-<h3 class="font-black text-[#04045d]">
-${stock.code}
-</h3>
+        `;
 
-<p class="text-[10px] text-gray-500 mt-1 leading-4">
-${stock.name}
-</p>
+    });
 
-</a>
+    // SAVE TO GOOGLE SHEET
+    sendToGoogleSheet({
 
-`;
+        name,
+        phone,
+        email,
+        nationality,
 
-});
-// ================= SAVE TO GOOGLE SHEET =================
+        totalScore,
 
-sendToGoogleSheet({
+        riskTolerance: riskLevel,
 
-    name,
-    phone,
-    email,
-    nationality,
+        timeHorizon: investmentHorizon,
 
-    totalScore,
+        stock1: recommendedStocks[0]?.code || '',
+        stock2: recommendedStocks[1]?.code || '',
+        stock3: recommendedStocks[2]?.code || '',
+        stock4: recommendedStocks[3]?.code || '',
+        stock5: recommendedStocks[4]?.code || ''
 
-    riskTolerance: riskLevel,
+    });
 
-    timeHorizon: investmentHorizon,
+    // SHOW PDF
+    document.getElementById('pdfTemplate')
+    .classList.remove('hidden');
 
-    stock1: recommendedStocks[0]?.code || '',
-    stock2: recommendedStocks[1]?.code || '',
-    stock3: recommendedStocks[2]?.code || '',
-    stock4: recommendedStocks[3]?.code || '',
-    stock5: recommendedStocks[4]?.code || ''
-
-});
-// SHOW
-document.getElementById('pdfTemplate')
-.classList.remove('hidden');
-
-document.getElementById('downloadBtnContainer')
-.classList.remove('hidden');
+    document.getElementById('downloadBtnContainer')
+    .classList.remove('hidden');
 
 });
 
@@ -1142,11 +1170,8 @@ async function downloadPDFFile() {
     await html2canvas(element, {
 
         scale: 2,
-
         useCORS: true,
-
         backgroundColor: "#ffffff",
-
         scrollY: -window.scrollY
 
     });
@@ -1214,6 +1239,7 @@ async function downloadPDFFile() {
     );
 
 }
+
 </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
