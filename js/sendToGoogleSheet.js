@@ -1,4 +1,3 @@
-
 async function sendToGoogleSheet(formData){
 
     const scriptURL =
@@ -6,21 +5,23 @@ async function sendToGoogleSheet(formData){
 
     try{
 
-        await fetch(scriptURL, {
+        const response = await fetch(scriptURL, {
 
             method: "POST",
 
             headers: {
-                "Content-Type":
-                "application/json"
+                "Content-Type": "application/json"
             },
 
             body: JSON.stringify(formData)
 
         });
-       const result = await response.json();
+
+        const result = await response.json();
+
         console.log(
-            "Đã lưu khách hàng"
+            "Đã lưu khách hàng:",
+            result
         );
 
     }
@@ -35,4 +36,3 @@ async function sendToGoogleSheet(formData){
     }
 
 }
-```
