@@ -702,8 +702,6 @@ Unit: VND
 
 </div>
 
-</div>
-
 <!-- CASHFLOW -->
 <div class="border-2 border-[#04045d] rounded-xl p-5">
 
@@ -994,7 +992,7 @@ if(totalScore <= 18){
     riskLevel = 'LOW RISK';
 
 }
-else if(totalScore <= 29){
+else if(totalScore <= 27){
 
     riskLevel = 'MEDIUM RISK';
 
@@ -1031,8 +1029,8 @@ investmentType = 'GROWTH';
 // RECOMMEND
 const recommendedStocks =
 getRecommendations(
-    totalScore,
-    investmentHorizon
+    fundamentalscore,
+    horizon
 );
 
 // CLIENT PDF
