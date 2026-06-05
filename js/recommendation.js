@@ -40,20 +40,50 @@ const EXPANDED_STOCK_POOL = [
     { code: "YEG", name: "Công ty Cổ phần Tập đoàn Yeah1", type: "Short-term", fundamentalscore: "40.0", logo: "logo/YEG.png" }
 ];
 
-// ============================================
-// RECOMMENDATION ENGINE
-// ============================================
+```javascript id="qymdpk"
+function getRecommendations(
 
-function getRecommendations(score){
+    score,
+    riskType,
+    horizon
 
-    // SORT THE ENTIRE DATABASE
-    // BASED ON DISTANCE TO CLIENT SCORE
+){
 
-    const sortedStocks =
+    // FILTER SAME RISK + SAME HORIZON
 
-    [...EXPANDED_STOCK_POOL]
+    let filteredStocks =
 
-    .sort((a,b)=>{
+    EXPANDED_STOCK_POOL.filter(stock =>
+
+        stock.type === riskType
+
+        &&
+
+        stock.horizon === horizon
+
+    );
+
+    // IF TOO FEW STOCKS
+
+    if(filteredStocks.length < 5){
+
+        filteredStocks =
+
+        EXPANDED_STOCK_POOL.filter(stock =>
+
+            stock.type === riskType
+
+            ||
+
+            stock.horizon === horizon
+
+        );
+
+    }
+
+    // SORT BY SCORE DISTANCE
+
+    filteredStocks.sort((a,b)=>{
 
         return Math.abs(
             a.fundamentalscore - score
@@ -67,11 +97,11 @@ function getRecommendations(score){
 
     });
 
-    // RETURN TOP 5
-
-    return sortedStocks.slice(0,5);
+    return filteredStocks.slice(0,5);
 
 }
+```
+
 // Hàm kết nối lưu thông tin về Google Sheet
 function sendToGoogleSheet(formData) {
     // URL action form của Google Form (Thay ID form của bạn vào đây)
