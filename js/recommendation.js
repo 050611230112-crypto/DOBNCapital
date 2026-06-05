@@ -40,7 +40,6 @@ const EXPANDED_STOCK_POOL = [
     { code: "YEG", name: "Công ty Cổ phần Tập đoàn Yeah1", type: "Short-term", fundamentalscore: "40.0", logo: "logo/YEG.png" }
 ];
 
-```javascript id="qymdpk"
 function getRecommendations(
 
     score,
@@ -100,7 +99,6 @@ function getRecommendations(
     return filteredStocks.slice(0,5);
 
 }
-```
 
 // Hàm kết nối lưu thông tin về Google Sheet
 function sendToGoogleSheet(formData) {
