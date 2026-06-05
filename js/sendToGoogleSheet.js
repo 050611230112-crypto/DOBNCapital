@@ -1,7 +1,7 @@
 async function sendToGoogleSheet(formData){
 
     const scriptURL =
-    "https://script.google.com/macros/s/AKfycbzHFDtz-56Y5-DlrxIt0ZP7cqkqLw6US_hgm5lH2_7YYs6lbXZgetFIgSZFZ5ITkjJg9g/exec";
+    "https://script.google.com/macros/s/AKfycbxgMDHkltVnKlDWQ6HGK8B3ZPRVRo1lNP8Em5Jnd5-qdbHFLw4NT-9KXub7qch_eg06Fg/exec";
 
     try{
 
