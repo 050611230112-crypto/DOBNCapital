@@ -457,11 +457,11 @@ function switchTab(tab) {
 }
 
 // =============================================
-// BUILD ANALYSIS GRID
-// =============================================
+// BUILD ANALYSIS GRID — sắp xếp A-Z
 function buildGrid() {
   const grid = document.getElementById('companyGrid');
-  EXPANDED_STOCK_POOL.forEach(stock => {
+  const sorted = [...EXPANDED_STOCK_POOL].sort((a, b) => a.code.localeCompare(b.code));
+  sorted.forEach(stock => {
     const a = document.createElement('a');
     a.href = `pdf/${stock.code}.pdf`;
     a.target = '_blank';
@@ -476,19 +476,17 @@ function buildGrid() {
   });
 }
 
-// =============================================
-// BUILD STOCK SELECT DROPDOWN
-// =============================================
+// BUILD STOCK SELECT — sắp xếp A-Z
 function buildSelect() {
   const sel = document.getElementById('stockSelect');
-  EXPANDED_STOCK_POOL.forEach(stock => {
+  const sorted = [...EXPANDED_STOCK_POOL].sort((a, b) => a.code.localeCompare(b.code));
+  sorted.forEach(stock => {
     const opt = document.createElement('option');
     opt.value = stock.code;
     opt.textContent = `${stock.code} – ${stock.name}`;
     sel.appendChild(opt);
   });
 }
-
 // =============================================
 // SET DEFAULT DATE RANGE (6 months back)
 // =============================================
@@ -525,7 +523,7 @@ async function fetchStockData() {
   document.getElementById('fetchBtn').disabled = true;
 
   try {
-    const url = `https://apipubaws.tcbs.com.vn/stock-insight/v1/stock/bars-long-term?ticker=${ticker}&type=stock&resolution=${resolution}&from=${fromTs}&to=${toTs}`;
+const url = `https://corsproxy.io/?url=https://apipubaws.tcbs.com.vn/stock-insight/v1/stock/bars-long-term?ticker=${ticker}&type=stock&resolution=${resolution}&from=${fromTs}&to=${toTs}`;
     const res = await fetch(url);
     const json = await res.json();
 
