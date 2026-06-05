@@ -1184,13 +1184,19 @@ async function downloadPDFFile() {
 
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: false,
-        backgroundColor: '#ffffff',
-        scrollY: -window.scrollY
-    });
+const canvas = await html2canvas(element, {
+    scale: 2,
+    useCORS: true,
+    allowTaint: false,
+    backgroundColor: '#ffffff',
+    scrollY: -window.scrollY,
+    onclone: (doc) => {
+        // Xóa tất cả Tailwind classes khỏi clone để tránh oklch
+        doc.querySelectorAll('[class]').forEach(el => {
+            el.style.color = el.style.color || '';
+        });
+    }
+});
 
     // Khôi phục ảnh gốc
     images.forEach((img, i) => img.src = originalSrcs[i]);
