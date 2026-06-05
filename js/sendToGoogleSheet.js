@@ -18,7 +18,7 @@ async function sendToGoogleSheet(formData){
             body: JSON.stringify(formData)
 
         });
-
+       const result = await response.json();
         console.log(
             "Đã lưu khách hàng"
         );
