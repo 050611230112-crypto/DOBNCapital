@@ -89,7 +89,8 @@ function getRecommendations(
 
     score,
     riskType,
-    horizon
+    horizon,
+    logo
 
 ){
 
