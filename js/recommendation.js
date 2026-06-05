@@ -95,16 +95,12 @@ function getRecommendations(
 
     // ==========================================
     // PRIORITY 1
-    // SAME RISK + SAME HORIZON
+    // FILTER THEO TIME HORIZON
     // ==========================================
 
     let filteredStocks =
 
     EXPANDED_STOCK_POOL.filter(stock =>
-
-        stock.type === riskType
-
-        &&
 
         stock.horizon === horizon
 
@@ -113,8 +109,8 @@ function getRecommendations(
 
 
     // ==========================================
-    // PRIORITY 2
-    // SAME RISK
+    // NẾU KHÔNG ĐỦ STOCK
+    // THÌ LẤY THÊM CÙNG RISK
     // ==========================================
 
     if(filteredStocks.length < 5){
@@ -124,39 +120,13 @@ function getRecommendations(
         EXPANDED_STOCK_POOL.filter(stock =>
 
             stock.type === riskType
+
         );
 
         filteredStocks = [
 
             ...filteredStocks,
-
             ...sameRisk
-
-        ];
-
-    }
-
-
-
-    // ==========================================
-    // PRIORITY 3
-    // SAME HORIZON
-    // ==========================================
-
-    if(filteredStocks.length < 5){
-
-        const sameHorizon =
-
-        EXPANDED_STOCK_POOL.filter(stock =>
-
-            stock.horizon === horizon
-        );
-
-        filteredStocks = [
-
-            ...filteredStocks,
-
-            ...sameHorizon
 
         ];
 
@@ -183,7 +153,7 @@ function getRecommendations(
 
 
     // ==========================================
-    // SORT BY SCORE DISTANCE
+    // SORT THEO ĐIỂM GẦN NHẤT
     // ==========================================
 
     filteredStocks.sort((a,b)=>{
@@ -199,11 +169,13 @@ function getRecommendations(
         );
 
     });
-    // =========================================
+
+
+
+    // ==========================================
     // RETURN TOP 5
     // ==========================================
 
     return filteredStocks.slice(0,5);
 
 }
-```
