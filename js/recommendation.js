@@ -1,44 +1,89 @@
-// KHO DỮ LIỆU 32 MÃ CỔ PHIẾU CỦA DOBN CAPITAL — PHÂN LOẠI THEO KỲ HẠN ĐẦU TƯ VÀ ĐIỂM BIẾN ĐỘNG (THANG 40)
-// Long-term (Ít rủi ro/Dài hạn) | Medium-term (Cân bằng/Trung hạn) | Short-term (Biến động mạnh/Ngắn hạn)
 const EXPANDED_STOCK_POOL = [
-    // NHÓM LONG-TERM (Dài hạn chiến lược / Phòng thủ an toàn: 10 - 20 điểm)
-    { code: "VCB", name: "Ngân hàng TMCP Ngoại thương Việt Nam", type: "Long-term", fundamentalscore: "12.0", logo: "logo/VCB.png" },
-    { code: "BID", name: "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam", type: "Long-term", fundamentalscore: "14.0", logo: "logo/BID.png" },
-    { code: "GAS", name: "Tổng Công ty Khí Việt Nam", type: "Long-term", fundamentalscore: "14.0", logo: "logo/GAS.png" },
-    { code: "REE", name: "Công ty Cổ phần Cơ điện lạnh", type: "Long-term", fundamentalscore: "15.0", logo: "logo/REE.png" },
-    { code: "MBB", name: "Ngân hàng TMCP Quân đội", type: "Long-term", fundamentalscore: "16.0", logo: "logo/MBB.png" },
-    { code: "CTG", name: "Ngân hàng TMCP Công thương Việt Nam", type: "Long-term", fundamentalscore: "16.0", logo: "logo/CTG.png" },
-    { code: "PLX", name: "Tập đoàn Xăng dầu Việt Nam", type: "Long-term", fundamentalscore: "18.0", logo: "logo/PLX.png" },
-    { code: "BVH", name: "Tập đoàn Bảo Việt", type: "Long-term", fundamentalscore: "19.0", logo: "logo/BVH.png" },
 
-    // NHÓM MEDIUM-TERM (Trung hạn tăng trưởng / Phát triển ổn định: 21 - 31 điểm)
-    { code: "FPT", name: "Công ty Cổ phần FPT", type: "Medium-term", fundamentalscore: "22.0", logo: "logo/FPT.png" },
-    { code: "CTR", name: "Tổng Công ty Cổ phần Công trình Viettel", type: "Medium-term", fundamentalscore: "24.0", logo: "logo/CTR.png" },
-    { code: "GMD", name: "Công ty Cổ phần Gemadept", type: "Medium-term", fundamentalscore: "24.0", logo: "logo/GMD.png" },
-    { code: "HPG", name: "Công ty Cổ phần Tập đoàn Hòa Phát", type: "Medium-term", fundamentalscore: "25.0", logo: "logo/HPG.png" },
-    { code: "TCB", name: "Ngân hàng TMCP Kỹ thương Việt Nam", type: "Medium-term", fundamentalscore: "26.0", logo: "logo/TCB.png" },
-    { code: "MWG", name: "Công ty Cổ phần Đầu tư Thế Giới Di Động", type: "Medium-term", fundamentalscore: "26.0", logo: "logo/MWG.png" },
-    { code: "VTP", name: "Tổng Công ty Cổ phần Bưu chính Viettel", type: "Medium-term", fundamentalscore: "27.0", logo: "logo/VTP.png" },
-    { code: "DCM", name: "Công ty Cổ phần Phân bón Dầu khí Cà Mau", type: "Medium-term", fundamentalscore: "28.0", logo: "logo/DCM.png" },
-    { code: "DPM", name: "Tổng Công ty Phân bón và Hóa chất Dầu khí", type: "Medium-term", fundamentalscore: "28.0", logo: "logo/DPM.png" },
-    { code: "MSN", name: "Công ty Cổ phần Tập đoàn Masan", type: "Medium-term", fundamentalscore: "29.0", logo: "logo/MSN.png" },
-    { code: "KDH", name: "Công ty Cổ phần Đầu tư và Kinh doanh Nhà Khang Điền", type: "Medium-term", fundamentalscore: "30.0", logo: "logo/KDH.png" },
-    { code: "HDB", name: "Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh", type: "Medium-term", fundamentalscore: "31.0", logo: "logo/HDB.png" },
+    // ======================================================
+    // CONSERVATIVE + LONG TERM
+    // ======================================================
 
-    // NHÓM SHORT-TERM (Ngắn hạn tối ưu / Biến động & Chu kỳ: 32 - 40 điểm)
-    { code: "SSI", name: "Công ty Cổ phần Chứng khoán SSI", type: "Short-term", fundamentalscore: "33.0", logo: "logo/SSI.png" },
-    { code: "VCI", name: "Công ty Cổ phần Chứng khoán Vietcap", type: "Short-term", fundamentalscore: "33.0", logo: "logo/VCI.png" },
-    { code: "HCM", name: "Công ty Cổ phần Chứng khoán Thành phố Hồ Chí Minh", type: "Short-term", fundamentalscore: "34.0", logo: "logo/HCM.png" },
-    { code: "DGW", name: "Công ty Cổ phần Thế Giới Số", type: "Short-term", fundamentalscore: "34.0", logo: "logo/DGW.png" },
-    { code: "GEX", name: "Công ty Cổ phần Tập đoàn GELEX", type: "Short-term", fundamentalscore: "35.0", logo: "logo/GEX.png" },
-    { code: "VRE", name: "Công ty Cổ phần Vincom Retail", type: "Short-term", fundamentalscore: "36.0", logo: "logo/VRE.png" },
-    { code: "VHM", name: "Công ty Cổ phần Vinhomes", type: "Short-term", fundamentalscore: "37.0", logo: "logo/VHM.png" },
-    { code: "DXG", name: "Công ty Cổ phần Tập đoàn Đất Xanh", type: "Short-term", fundamentalscore: "38.0", logo: "logo/DXG.png" },
-    { code: "VIC", name: "Tập đoàn Vingroup", type: "Short-term", fundamentalscore: "39.0", logo: "logo/VIC.png" },
-    { code: "VJC", name: "Công ty Cổ phần Hàng không VietJet", type: "Short-term", fundamentalscore: "39.0", logo: "logo/VJC.png" },
-    { code: "NVL", name: "Công ty Cổ phần Tập đoàn Đầu tư Địa ốc No Va", type: "Short-term", fundamentalscore: "40.0", logo: "logo/NVL.png" },
-    { code: "YEG", name: "Công ty Cổ phần Tập đoàn Yeah1", type: "Short-term", fundamentalscore: "40.0", logo: "logo/YEG.png" }
+    { code:"VCB", name:"Ngân hàng TMCP Ngoại thương Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:12, expectedReturn:"8-10%", volatility:"Low", logo:"logo/VCB.png" },
+
+    { code:"BID", name:"Ngân hàng TMCP Đầu tư và Phát triển Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:14, expectedReturn:"8-11%", volatility:"Low", logo:"logo/BID.png" },
+
+    { code:"GAS", name:"Tổng Công ty Khí Việt Nam - CTCP", type:"Conservative", horizon:"Long-term", fundamentalscore:14, expectedReturn:"9-11%", volatility:"Low", logo:"logo/GAS.png" },
+
+    { code:"REE", name:"Công ty Cổ phần Cơ Điện Lạnh", type:"Conservative", horizon:"Long-term", fundamentalscore:15, expectedReturn:"9-12%", volatility:"Low", logo:"logo/REE.png" },
+
+    { code:"MBB", name:"Ngân hàng TMCP Quân đội", type:"Conservative", horizon:"Long-term", fundamentalscore:16, expectedReturn:"10-12%", volatility:"Low", logo:"logo/MBB.png" },
+
+    { code:"CTG", name:"Ngân hàng TMCP Công Thương Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:16, expectedReturn:"10-12%", volatility:"Low", logo:"logo/CTG.png" },
+
+    { code:"PLX", name:"Tập đoàn Xăng dầu Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:18, expectedReturn:"10-13%", volatility:"Low", logo:"logo/PLX.png" },
+
+    { code:"BVH", name:"Tập đoàn Bảo Việt", type:"Conservative", horizon:"Long-term", fundamentalscore:19, expectedReturn:"10-13%", volatility:"Low", logo:"logo/BVH.png" },
+
+
+
+    // ======================================================
+    // BALANCED + MEDIUM TERM
+    // ======================================================
+
+    { code:"FPT", name:"Công ty Cổ phần FPT", type:"Balanced", horizon:"Medium-term", fundamentalscore:22, expectedReturn:"12-15%", volatility:"Medium", logo:"logo/FPT.png" },
+
+    { code:"CTR", name:"Tổng Công ty Cổ phần Công trình Viettel", type:"Balanced", horizon:"Medium-term", fundamentalscore:24, expectedReturn:"12-15%", volatility:"Medium", logo:"logo/CTR.png" },
+
+    { code:"GMD", name:"Công ty Cổ phần Gemadept", type:"Balanced", horizon:"Medium-term", fundamentalscore:24, expectedReturn:"12-15%", volatility:"Medium", logo:"logo/GMD.png" },
+
+    { code:"HPG", name:"Công ty Cổ phần Tập đoàn Hòa Phát", type:"Balanced", horizon:"Medium-term", fundamentalscore:25, expectedReturn:"13-16%", volatility:"Medium", logo:"logo/HPG.png" },
+
+    { code:"TCB", name:"Ngân hàng TMCP Kỹ thương Việt Nam", type:"Balanced", horizon:"Medium-term", fundamentalscore:26, expectedReturn:"13-16%", volatility:"Medium", logo:"logo/TCB.png" },
+
+    { code:"MWG", name:"Công ty Cổ phần Đầu tư Thế Giới Di Động", type:"Balanced", horizon:"Medium-term", fundamentalscore:26, expectedReturn:"13-17%", volatility:"Medium", logo:"logo/MWG.png" },
+
+    { code:"VTP", name:"Tổng Công ty Cổ phần Bưu chính Viettel", type:"Balanced", horizon:"Medium-term", fundamentalscore:27, expectedReturn:"13-17%", volatility:"Medium", logo:"logo/VTP.png" },
+
+    { code:"DCM", name:"Công ty Cổ phần Phân bón Dầu khí Cà Mau", type:"Balanced", horizon:"Medium-term", fundamentalscore:28, expectedReturn:"14-18%", volatility:"Medium", logo:"logo/DCM.png" },
+
+    { code:"DPM", name:"Tổng Công ty Phân bón và Hóa chất Dầu khí", type:"Balanced", horizon:"Medium-term", fundamentalscore:28, expectedReturn:"14-18%", volatility:"Medium", logo:"logo/DPM.png" },
+
+    { code:"MSN", name:"Công ty Cổ phần Tập đoàn Masan", type:"Balanced", horizon:"Medium-term", fundamentalscore:29, expectedReturn:"14-18%", volatility:"Medium", logo:"logo/MSN.png" },
+
+    { code:"KDH", name:"Công ty Cổ phần Đầu tư và Kinh doanh Nhà Khang Điền", type:"Balanced", horizon:"Medium-term", fundamentalscore:30, expectedReturn:"14-18%", volatility:"Medium", logo:"logo/KDH.png" },
+
+    { code:"HDB", name:"Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh", type:"Balanced", horizon:"Medium-term", fundamentalscore:31, expectedReturn:"15-18%", volatility:"Medium", logo:"logo/HDB.png" },
+
+
+
+    // ======================================================
+    // AGGRESSIVE + SHORT TERM
+    // ======================================================
+
+    { code:"SSI", name:"Công ty Cổ phần Chứng khoán SSI", type:"Aggressive", horizon:"Short-term", fundamentalscore:33, expectedReturn:"18-22%", volatility:"High", logo:"logo/SSI.png" },
+
+    { code:"VCI", name:"Công ty Cổ phần Chứng khoán Vietcap", type:"Aggressive", horizon:"Short-term", fundamentalscore:33, expectedReturn:"18-22%", volatility:"High", logo:"logo/VCI.png" },
+
+    { code:"HCM", name:"Công ty Cổ phần Chứng khoán Thành phố Hồ Chí Minh", type:"Aggressive", horizon:"Short-term", fundamentalscore:34, expectedReturn:"18-22%", volatility:"High", logo:"logo/HCM.png" },
+
+    { code:"DGW", name:"Công ty Cổ phần Thế Giới Số", type:"Aggressive", horizon:"Short-term", fundamentalscore:34, expectedReturn:"18-24%", volatility:"High", logo:"logo/DGW.png" },
+
+    { code:"GEX", name:"Công ty Cổ phần Tập đoàn GELEX", type:"Aggressive", horizon:"Short-term", fundamentalscore:35, expectedReturn:"18-24%", volatility:"High", logo:"logo/GEX.png" },
+
+    { code:"VRE", name:"Công ty Cổ phần Vincom Retail", type:"Aggressive", horizon:"Short-term", fundamentalscore:36, expectedReturn:"19-24%", volatility:"High", logo:"logo/VRE.png" },
+
+    { code:"VHM", name:"Công ty Cổ phần Vinhomes", type:"Aggressive", horizon:"Short-term", fundamentalscore:37, expectedReturn:"20-25%", volatility:"High", logo:"logo/VHM.png" },
+
+    { code:"DXG", name:"Công ty Cổ phần Tập đoàn Đất Xanh", type:"Aggressive", horizon:"Short-term", fundamentalscore:38, expectedReturn:"20-25%", volatility:"High", logo:"logo/DXG.png" },
+
+    { code:"VIC", name:"Tập đoàn Vingroup - CTCP", type:"Aggressive", horizon:"Short-term", fundamentalscore:39, expectedReturn:"20-25%", volatility:"High", logo:"logo/VIC.png" },
+
+    { code:"VJC", name:"Công ty Cổ phần Hàng không Vietjet", type:"Aggressive", horizon:"Short-term", fundamentalscore:39, expectedReturn:"20-25%", volatility:"High", logo:"logo/VJC.png" },
+
+    { code:"NVL", name:"Công ty Cổ phần Tập đoàn Đầu tư Địa ốc No Va", type:"Aggressive", horizon:"Short-term", fundamentalscore:40, expectedReturn:"25%+", volatility:"Very High", logo:"logo/NVL.png" },
+
+    { code:"YEG", name:"Công ty Cổ phần Tập đoàn Yeah1", type:"Aggressive", horizon:"Short-term", fundamentalscore:40, expectedReturn:"25%+", volatility:"Very High", logo:"logo/YEG.png" }
+
 ];
+// ======================================================
+// DOBN CAPITAL RECOMMENDATION ENGINE
+// ======================================================
 
 function getRecommendations(
 
@@ -48,7 +93,10 @@ function getRecommendations(
 
 ){
 
-    // FILTER SAME RISK + SAME HORIZON
+    // ==========================================
+    // PRIORITY 1
+    // SAME RISK + SAME HORIZON
+    // ==========================================
 
     let filteredStocks =
 
@@ -62,25 +110,81 @@ function getRecommendations(
 
     );
 
-    // IF TOO FEW STOCKS
+
+
+    // ==========================================
+    // PRIORITY 2
+    // SAME RISK
+    // ==========================================
 
     if(filteredStocks.length < 5){
 
-        filteredStocks =
+        const sameRisk =
 
         EXPANDED_STOCK_POOL.filter(stock =>
 
             stock.type === riskType
-
-            ||
-
-            stock.horizon === horizon
-
         );
+
+        filteredStocks = [
+
+            ...filteredStocks,
+
+            ...sameRisk
+
+        ];
 
     }
 
+
+
+    // ==========================================
+    // PRIORITY 3
+    // SAME HORIZON
+    // ==========================================
+
+    if(filteredStocks.length < 5){
+
+        const sameHorizon =
+
+        EXPANDED_STOCK_POOL.filter(stock =>
+
+            stock.horizon === horizon
+        );
+
+        filteredStocks = [
+
+            ...filteredStocks,
+
+            ...sameHorizon
+
+        ];
+
+    }
+
+
+
+    // ==========================================
+    // REMOVE DUPLICATES
+    // ==========================================
+
+    filteredStocks =
+
+    [...new Map(
+
+        filteredStocks.map(stock =>
+
+            [stock.code, stock]
+
+        )
+
+    ).values()];
+
+
+
+    // ==========================================
     // SORT BY SCORE DISTANCE
+    // ==========================================
 
     filteredStocks.sort((a,b)=>{
 
@@ -96,26 +200,75 @@ function getRecommendations(
 
     });
 
-    return filteredStocks.slice(0,5);
+
+
+    // ==========================================
+    // DIVERSIFICATION FILTER
+    // AVOID SAME SECTOR
+    // ==========================================
+
+    const diversified = [];
+
+    const usedSectors = [];
+
+    filteredStocks.forEach(stock => {
+
+        if(
+
+            diversified.length < 5
+
+            &&
+
+            !usedSectors.includes(stock.sector)
+
+        ){
+
+            diversified.push(stock);
+
+            usedSectors.push(stock.sector);
+
+        }
+
+    });
+
+
+
+    // ==========================================
+    // FINAL FALLBACK
+    // ==========================================
+
+    if(diversified.length < 5){
+
+        filteredStocks.forEach(stock => {
+
+            if(
+
+                diversified.length < 5
+
+                &&
+
+                !diversified.find(s =>
+
+                    s.code === stock.code
+                )
+
+            ){
+
+                diversified.push(stock);
+
+            }
+
+        });
+
+    }
+
+
+
+    // ==========================================
+    // RETURN TOP 5
+    // ==========================================
+
+    return diversified.slice(0,5);
 
 }
-
-// Hàm kết nối lưu thông tin về Google Sheet
-function sendToGoogleSheet(formData) {
-    // URL action form của Google Form (Thay ID form của bạn vào đây)
-    const formURL = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
-    
-    const data = new FormData();
-    data.append("entry.111111111", formData.name); 
-    data.append("entry.222222222", formData.phone);
-    data.append("entry.333333333", formData.assets);
-    data.append("entry.444444444", formData.debts);
-    data.append("entry.555555555", formData.riskScore);
-
-    fetch(formURL, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
-    }).then(() => console.log("Dữ liệu khách hàng đã đồng bộ sang Google Sheet thành công!"))
-      .catch(err => console.error("Lỗi kết nối đồng bộ:", err));
-}
+```
