@@ -1158,23 +1158,19 @@ document.getElementById('financialForm')
 
 // DOWNLOAD PDF
 async function downloadPDFFile() {
-
-    const { jsPDF } = window.jspdf;
-
-    const element =
-    document.getElementById('pdfTemplate');
-
+    const element = document.getElementById('pdfTemplate');
     element.classList.remove('hidden');
 
-    const canvas =
-    await html2canvas(element, {
+    // Chờ browser render xong
+    await new Promise(resolve => setTimeout(resolve, 500));
 
+    const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
+        allowTaint: true,       // ← thêm dòng này
         backgroundColor: "#ffffff",
         scrollY: -window.scrollY
-
-    });
+    })
 
     const imgData =
     canvas.toDataURL('image/png');
