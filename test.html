@@ -523,7 +523,7 @@ async function fetchStockData() {
   document.getElementById('fetchBtn').disabled = true;
 
   try {
-const url = `https://corsproxy.io/?url=https://apipubaws.tcbs.com.vn/stock-insight/v1/stock/bars-long-term?ticker=${ticker}&type=stock&resolution=${resolution}&from=${fromTs}&to=${toTs}`;
+const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://apipubaws.tcbs.com.vn/stock-insight/v1/stock/bars-long-term?ticker=' + ticker + '&type=stock&resolution=' + resolution + '&from=' + fromTs + '&to=' + toTs)}`;
     const res = await fetch(url);
     const json = await res.json();
 
