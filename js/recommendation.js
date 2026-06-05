@@ -41,27 +41,38 @@ const EXPANDED_STOCK_POOL = [
     { code: "YEG", name: "Công ty Cổ phần Tập đoàn Yeah1", type: "Aggressive", fundamentalscore: "40.0", logo: "logo/YEG.png" }          // Biến động mạnh nhất
 ];
 
-// Thuật toán chọn lọc tự động 5 mã cổ phiếu dựa trên số điểm khảo sát
-function getRecommendations(score) {
-    let riskCategory = "Balanced";
-    if (score <= 5) riskCategory = "Conservative";
-    else if (score > 10) riskCategory = "Aggressive";
+// ============================================
+// RECOMMENDATION ENGINE
+// ============================================
 
-    // Lọc danh sách mã trùng khớp với loại hình rủi ro của khách
-    let filtered = stockDatabase.filter(stock => stock.type === riskCategory);
-    
-    // Xáo trộn ngẫu nhiên danh sách đã lọc để mỗi khách hàng ra một tổ hợp ngẫu nhiên khác nhau (tăng tính khách quan)
-    filtered.sort(() => 0.5 - Math.random());
-    
-    // Nếu trong nhóm không đủ 5 mã, tự động lấy bù từ các nhóm khác
-    if (filtered.length < 5) {
-        let leftovers = stockDatabase.filter(stock => stock.type !== riskCategory).sort(() => 0.5 - Math.random());
-        filtered = [...filtered, ...leftovers];
-    }
-    
-    return filtered.slice(0, 5); // Trả về đúng 5 mã tối ưu
+function getRecommendations(score){
+
+    // SORT THE ENTIRE DATABASE
+    // BASED ON DISTANCE TO CLIENT SCORE
+
+    const sortedStocks =
+
+    [...EXPANDED_STOCK_POOL]
+
+    .sort((a,b)=>{
+
+        return Math.abs(
+            a.fundamentalscore - score
+        )
+
+        -
+
+        Math.abs(
+            b.fundamentalscore - score
+        );
+
+    });
+
+    // RETURN TOP 5
+
+    return sortedStocks.slice(0,5);
+
 }
-
 // Hàm kết nối lưu thông tin về Google Sheet
 function sendToGoogleSheet(formData) {
     // URL action form của Google Form (Thay ID form của bạn vào đây)
