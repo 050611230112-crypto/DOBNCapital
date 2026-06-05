@@ -961,15 +961,49 @@ totalDebt > 0
 ? ((cash + saving) / totalDebt).toFixed(2)
 : '0';
 
-// SCORE
+// ================= SCORE SYSTEM =================
+
 let totalScore = 0;
 
 document.querySelectorAll('.risk-question')
 .forEach(question => {
 
-totalScore += Number(question.value);
+    totalScore += Number(question.value);
 
 });
+
+// 10 QUESTIONS
+// MAX = 40
+// MIN = 10
+
+// CLIENT INPUT
+const expectedReturn =
+Number(
+document.getElementById('expectedReturn').value
+);
+
+const investmentHorizon =
+document.getElementById('investmentHorizon').value;
+
+// ================= RISK LEVEL =================
+
+let riskLevel = '';
+
+if(totalScore <= 18){
+
+    riskLevel = 'LOW RISK';
+
+}
+else if(totalScore <= 29){
+
+    riskLevel = 'MEDIUM RISK';
+
+}
+else{
+
+    riskLevel = 'HIGH RISK';
+
+}
 
 // RISK
 let riskLevel = '';
@@ -996,7 +1030,10 @@ investmentType = 'GROWTH';
 
 // RECOMMEND
 const recommendedStocks =
-getRecommendations(totalScore);
+getRecommendations(
+    totalScore,
+    investmentHorizon
+);
 
 // CLIENT PDF
 document.getElementById('pdfName').innerText = name;
@@ -1053,14 +1090,14 @@ document.getElementById('pdfNetWorth').innerText =
 netWorth.toLocaleString('vi-VN') + ' VND';
 
 // RISK
-document.getElementById('pdfScore').innerText =
-totalScore + '/32';
+document.getElementById('pdfExpectedReturn').innerText =
+expectedReturn + '%';
 
 document.getElementById('pdfRisk').innerText =
 riskLevel;
 
 document.getElementById('pdfType').innerText =
-investmentType;
+investmentHorizon;
 
 // STOCKS
 const container =
@@ -1092,7 +1129,28 @@ ${stock.name}
 `;
 
 });
+// ================= SAVE TO GOOGLE SHEET =================
 
+sendToGoogleSheet({
+
+    name,
+    phone,
+    email,
+    nationality,
+
+    totalScore,
+
+    riskTolerance: riskLevel,
+
+    timeHorizon: investmentHorizon,
+
+    stock1: recommendedStocks[0]?.code || '',
+    stock2: recommendedStocks[1]?.code || '',
+    stock3: recommendedStocks[2]?.code || '',
+    stock4: recommendedStocks[3]?.code || '',
+    stock5: recommendedStocks[4]?.code || ''
+
+});
 // SHOW
 document.getElementById('pdfTemplate')
 .classList.remove('hidden');
@@ -1107,38 +1165,51 @@ async function downloadPDFFile() {
 
     const { jsPDF } = window.jspdf;
 
-    const element = document.getElementById('pdfTemplate');
+    const element =
+    document.getElementById('pdfTemplate');
 
-    // HIỆN PDF TRƯỚC KHI CHỤP
     element.classList.remove('hidden');
 
-    const canvas = await html2canvas(element, {
-        scale: 3,
+    const canvas =
+    await html2canvas(element, {
+
+        scale: 2,
+
         useCORS: true,
-        logging: false,
-        backgroundColor: "#ffffff"
+
+        backgroundColor: "#ffffff",
+
+        scrollY: -window.scrollY
+
     });
 
-    const imgData = canvas.toDataURL('image/png');
+    const imgData =
+    canvas.toDataURL('image/png');
 
-    const pdf = new jsPDF({
-        orientation: 'p',
-        unit: 'mm',
-        format: 'a4'
-    });
+    const pdf = new jsPDF(
+        'p',
+        'mm',
+        'a4'
+    );
 
-    const pageWidth = 210;
-    const pageHeight = 297;
+    const pdfWidth =
+    pdf.internal.pageSize.getWidth();
 
-    const imgWidth = pageWidth;
+    const pdfHeight =
+    pdf.internal.pageSize.getHeight();
+
+    const imgWidth =
+    pdfWidth;
 
     const imgHeight =
-        (canvas.height * imgWidth) / canvas.width;
+    (canvas.height * imgWidth)
+    / canvas.width;
 
-    let heightLeft = imgHeight;
+    let heightLeft =
+    imgHeight;
+
     let position = 0;
 
-    // PAGE 1
     pdf.addImage(
         imgData,
         'PNG',
@@ -1148,12 +1219,12 @@ async function downloadPDFFile() {
         imgHeight
     );
 
-    heightLeft -= pageHeight;
+    heightLeft -= pdfHeight;
 
-    // MULTI PAGE
-    while (heightLeft > 0) {
+    while(heightLeft > 0){
 
-        position = heightLeft - imgHeight;
+        position =
+        heightLeft - imgHeight;
 
         pdf.addPage();
 
@@ -1166,12 +1237,14 @@ async function downloadPDFFile() {
             imgHeight
         );
 
-        heightLeft -= pageHeight;
+        heightLeft -= pdfHeight;
+
     }
 
     pdf.save(
-        'DOBN_Investment_Recommendation_Report.pdf'
+        'DOBN_Capital_Report.pdf'
     );
+
 }
 </script>
 <!-- Google tag (gtag.js) -->
