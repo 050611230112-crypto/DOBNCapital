@@ -283,3 +283,7 @@ body {
   );
   pointer-events: none;
 }
+/* Fix oklch cho html2canvas */
+* {
+    --tw-shadow-color: rgba(0,0,0,0.1) !important;
+}
