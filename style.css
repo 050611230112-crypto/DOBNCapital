@@ -209,11 +209,38 @@ table {
   overflow-x: auto; /* ✅ backup thêm */
 }
 /* FOOTER */
-footer{
-  background:#0b3d91;
-  color:white;
-  text-align:center;
-  padding:15px;
+/* FOOTER */
+footer {
+  background: #0b3d91;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  
+  /* Thêm những dòng này */
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+/* Đảm bảo body full height */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e9edf5;
+  min-height: 100vh;        /* ← thêm */
+  display: flex;            /* ← thêm */
+  flex-direction: column;   /* ← thêm */
+}
+
+/* Wrapper không được chiếm hết không gian */
+.wrapper {
+  width: 95%;
+  margin: 20px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  background: white;
+  flex: 1;   /* ← thêm dòng này */
 }
 
 .video-wrapper {
