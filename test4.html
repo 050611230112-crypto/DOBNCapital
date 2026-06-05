@@ -1158,84 +1158,65 @@ document.getElementById('financialForm')
 
 // DOWNLOAD PDF
 async function downloadPDFFile() {
+    const { jsPDF } = window.jspdf;
     const element = document.getElementById('pdfTemplate');
     element.classList.remove('hidden');
 
-    // Chờ browser render xong
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Đổi ảnh sang base64 để tránh CORS
+    const images = element.querySelectorAll('img');
+    const originalSrcs = [];
+
+    await Promise.all([...images].map(async (img, i) => {
+        originalSrcs[i] = img.src;
+        try {
+            const res = await fetch(img.src);
+            const blob = await res.blob();
+            const base64 = await new Promise(r => {
+                const reader = new FileReader();
+                reader.onload = () => r(reader.result);
+                reader.readAsDataURL(blob);
+            });
+            img.src = base64;
+        } catch(e) {
+            // Bỏ qua ảnh lỗi
+        }
+    }));
+
+    await new Promise(resolve => setTimeout(resolve, 800));
 
     const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
-        allowTaint: true,       // ← thêm dòng này
-        backgroundColor: "#ffffff",
+        allowTaint: false,
+        backgroundColor: '#ffffff',
         scrollY: -window.scrollY
-    })
+    });
 
-    const imgData =
-    canvas.toDataURL('image/png');
+    // Khôi phục ảnh gốc
+    images.forEach((img, i) => img.src = originalSrcs[i]);
 
-    const pdf = new jsPDF(
-        'p',
-        'mm',
-        'a4'
-    );
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
 
-    const pdfWidth =
-    pdf.internal.pageSize.getWidth();
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
-    const pdfHeight =
-    pdf.internal.pageSize.getHeight();
-
-    const imgWidth =
-    pdfWidth;
-
-    const imgHeight =
-    (canvas.height * imgWidth)
-    / canvas.width;
-
-    let heightLeft =
-    imgHeight;
-
+    let heightLeft = imgHeight;
     let position = 0;
 
-    pdf.addImage(
-        imgData,
-        'PNG',
-        0,
-        position,
-        imgWidth,
-        imgHeight
-    );
-
+    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
     heightLeft -= pdfHeight;
 
-    while(heightLeft > 0){
-
-        position =
-        heightLeft - imgHeight;
-
+    while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
         pdf.addPage();
-
-        pdf.addImage(
-            imgData,
-            'PNG',
-            0,
-            position,
-            imgWidth,
-            imgHeight
-        );
-
+        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
         heightLeft -= pdfHeight;
-
     }
 
-    pdf.save(
-        'DOBN_Capital_Report.pdf'
-    );
-
+    pdf.save('DOBN_Capital_Report.pdf');
 }
-
 </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
