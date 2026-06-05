@@ -199,76 +199,11 @@ function getRecommendations(
         );
 
     });
-
-
-
-    // ==========================================
-    // DIVERSIFICATION FILTER
-    // AVOID SAME SECTOR
-    // ==========================================
-
-    const diversified = [];
-
-    const usedSectors = [];
-
-    filteredStocks.forEach(stock => {
-
-        if(
-
-            diversified.length < 5
-
-            &&
-
-            !usedSectors.includes(stock.sector)
-
-        ){
-
-            diversified.push(stock);
-
-            usedSectors.push(stock.sector);
-
-        }
-
-    });
-
-
-
-    // ==========================================
-    // FINAL FALLBACK
-    // ==========================================
-
-    if(diversified.length < 5){
-
-        filteredStocks.forEach(stock => {
-
-            if(
-
-                diversified.length < 5
-
-                &&
-
-                !diversified.find(s =>
-
-                    s.code === stock.code
-                )
-
-            ){
-
-                diversified.push(stock);
-
-            }
-
-        });
-
-    }
-
-
-
-    // ==========================================
+    // =========================================
     // RETURN TOP 5
     // ==========================================
 
-    return diversified.slice(0,5);
+    return filteredStocks.slice(0,5);
 
 }
 ```
