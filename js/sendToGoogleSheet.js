@@ -1,6 +1,6 @@
 async function sendToGoogleSheet(formData){
     const scriptURL =
-    "https://script.google.com/macros/s/AKfycbxgMDHkltVnKlDWQ6HGK8B3ZPRVRo1lNP8Em5Jnd5-qdbHFLw4NT-9KXub7qch_eg06Fg/exec";
+    "https://script.google.com/macros/s/AKfycbwzNi-cvJ8wQUidh7T9Qj4ka1VvXGUufiETqd3R0IqIAsGRpHv0PL0szOYMfjQGfiVDHA/exec";
     try{
         await fetch(scriptURL, {
             method: "POST",
