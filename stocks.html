@@ -3,11 +3,310 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOBN CAPITAL</title>
+<title>DOBN CAPITAL - Stock</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
+<style>
+/* ===================== STOCK PAGE STYLES ===================== */
+.stock-hero {
+  background: linear-gradient(135deg, #04045d 0%, #0a0a8a 50%, #04045d 100%);
+  padding: 60px 40px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.stock-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.015) 40px,
+    rgba(255,255,255,0.015) 80px
+  );
+}
+.stock-hero h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 6px;
+  position: relative;
+}
+.stock-hero p {
+  color: rgba(255,255,255,0.6);
+  margin-top: 8px;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+/* ---- TAB SELECTOR ---- */
+.tab-selector {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px 10px;
+  background: #f4f6fb;
+}
+.tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 48px;
+  border: 2.5px solid #d1d5db;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 220px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tab-btn:hover {
+  border-color: #04045d;
+  box-shadow: 0 8px 28px rgba(4,4,93,0.15);
+  transform: translateY(-3px);
+}
+.tab-btn.active {
+  border-color: #04045d;
+  background: #04045d;
+  color: white;
+  box-shadow: 0 8px 28px rgba(4,4,93,0.3);
+  transform: translateY(-3px);
+}
+.tab-btn i {
+  font-size: 2rem;
+  color: #04045d;
+  transition: color 0.3s;
+}
+.tab-btn.active i { color: white; }
+.tab-btn span {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #04045d;
+  transition: color 0.3s;
+}
+.tab-btn.active span { color: white; }
+.tab-btn small {
+  color: #6b7280;
+  font-size: 0.78rem;
+  transition: color 0.3s;
+}
+.tab-btn.active small { color: rgba(255,255,255,0.7); }
+
+/* ---- PANELS ---- */
+.panel { display: none; padding: 40px; background: #f4f6fb; min-height: 500px; }
+.panel.active { display: block; }
+.panel-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #04045d;
+  border-left: 5px solid #04045d;
+  padding-left: 16px;
+  margin-bottom: 32px;
+  letter-spacing: 2px;
+}
+
+/* ---- ANALYSIS GRID ---- */
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+.company-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: block;
+}
+.company-card:hover {
+  border-color: #04045d;
+  box-shadow: 0 8px 24px rgba(4,4,93,0.15);
+  transform: translateY(-4px);
+}
+.company-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 12px;
+  display: block;
+}
+.company-card .code {
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #04045d;
+}
+.company-card .name {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.company-card .badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.badge-Conservative { background: #dcfce7; color: #166534; }
+.badge-Balanced { background: #fef9c3; color: #854d0e; }
+.badge-Aggressive { background: #fee2e2; color: #991b1b; }
+
+/* ---- STOCK PRICE PANEL ---- */
+.price-controls {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.price-controls label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #04045d;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.price-controls select,
+.price-controls input {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #04045d;
+  outline: none;
+  transition: border-color 0.2s;
+  background: white;
+}
+.price-controls select:focus,
+.price-controls input:focus {
+  border-color: #04045d;
+}
+.btn-fetch {
+  background: #04045d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 28px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  align-self: flex-end;
+}
+.btn-fetch:hover { background: #0a0a8a; transform: translateY(-1px); }
+.btn-fetch:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ---- STAT CARDS ---- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-top: 3px solid #04045d;
+}
+.stat-card .stat-label {
+  font-size: 0.72rem;
+  color: #6b7280;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.stat-card .stat-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #04045d;
+  margin-top: 6px;
+}
+.stat-card .stat-value.up { color: #16a34a; }
+.stat-card .stat-value.down { color: #dc2626; }
+
+/* ---- CHART ---- */
+.chart-wrapper {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  position: relative;
+}
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.chart-header h3 {
+  font-weight: 900;
+  color: #04045d;
+  font-size: 1.1rem;
+}
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #04045d;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-overlay p { color: #04045d; font-weight: 700; font-size: 0.85rem; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+}
+.empty-state i { font-size: 3rem; margin-bottom: 16px; display: block; }
+.empty-state p { font-size: 1rem; }
+
+@media (max-width: 768px) {
+  .tab-selector { flex-direction: column; align-items: center; }
+  .tab-btn { min-width: 280px; }
+  .company-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .panel { padding: 20px; }
+  .price-controls { flex-direction: column; }
+}
+</style>
+</head>
 <body>
 
 <!-- HEADER -->
@@ -15,38 +314,322 @@
   <div class="logo">
     <img src="DOBN/logo.jpg">
   </div>
-
   <nav>
-      <a href="index.html" class="active"><i class="fas fa-home"></i> Homepage</a>
-      <a href="about.html"><i class="fas fa-building"></i> About Us</a>
-      <a href="products.html"><i class="fas fa-briefcase"></i> Products</a>
-      <a href="customer.html" class="highlight-nav"><i class="fas fa-user-tie"></i> Services</a>
-      <a href="stocks.html"><i class="fas fa-chart-line"></i> Stock</a>
-      <a href="esg.html"><i class="fas fa-leaf"></i> ESG </a>
-      <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
-      <a href="support.html"><i class="fas fa-headset"></i> Support</a>
-   
- 
+    <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
+    <a href="about.html"><i class="fas fa-building"></i> About Us</a>
+    <a href="products.html"><i class="fas fa-briefcase"></i> Products</a>
+    <a href="customer.html" class="highlight-nav"><i class="fas fa-user-tie"></i> Services</a>
+    <a href="stocks.html" class="active"><i class="fas fa-chart-line"></i> Stock</a>
+    <a href="esg.html"><i class="fas fa-leaf"></i> ESG</a>
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="support.html"><i class="fas fa-headset"></i> Support</a>
   </nav>
-        <div class="auth-buttons">
-            <button class="btn-login">Đăng Nhập</button>
-            <button class="btn-register">Mở Tài Khoản</button>
-        </div>
+  <div class="auth-buttons">
+    <button class="btn-login">Đăng Nhập</button>
+    <button class="btn-register">Mở Tài Khoản</button>
+  </div>
 </header>
 
-<!-- Google tag (gtag.js) -->
+<!-- HERO -->
+<div class="stock-hero">
+  <h1>STOCK CENTER</h1>
+  <p>ANALYSIS REPORT &nbsp;·&nbsp; LIVE PRICE DATA</p>
+</div>
+
+<!-- TAB SELECTOR -->
+<div class="tab-selector">
+  <button class="tab-btn" id="tabAnalysis" onclick="switchTab('analysis')">
+    <i class="fas fa-file-chart-column"></i>
+    <span>ANALYSIS REPORT</span>
+    <small>Báo cáo phân tích 32 công ty</small>
+  </button>
+  <button class="tab-btn" id="tabPrice" onclick="switchTab('price')">
+    <i class="fas fa-chart-line"></i>
+    <span>STOCK PRICE</span>
+    <small>Biểu đồ giá đóng cửa theo ngày/tháng</small>
+  </button>
+</div>
+
+<!-- ========== PANEL 1: ANALYSIS REPORT ========== -->
+<div class="panel" id="panelAnalysis">
+  <div class="panel-title"><i class="fas fa-file-chart-column" style="margin-right:10px"></i>ANALYSIS REPORT</div>
+  <div class="company-grid" id="companyGrid"></div>
+</div>
+
+<!-- ========== PANEL 2: STOCK PRICE ========== -->
+<div class="panel" id="panelPrice">
+  <div class="panel-title"><i class="fas fa-chart-line" style="margin-right:10px"></i>STOCK PRICE</div>
+
+  <!-- CONTROLS -->
+  <div class="price-controls">
+    <div>
+      <label>MÃ CỔ PHIẾU</label>
+      <select id="stockSelect">
+        <option value="">-- Chọn công ty --</option>
+      </select>
+    </div>
+    <div>
+      <label>TỪ NGÀY</label>
+      <input type="date" id="fromDate">
+    </div>
+    <div>
+      <label>ĐẾN NGÀY</label>
+      <input type="date" id="toDate">
+    </div>
+    <div>
+      <label>HIỂN THỊ</label>
+      <select id="resolutionSelect">
+        <option value="D">Theo ngày</option>
+        <option value="W">Theo tuần</option>
+        <option value="M">Theo tháng</option>
+      </select>
+    </div>
+    <button class="btn-fetch" id="fetchBtn" onclick="fetchStockData()">
+      <i class="fas fa-search"></i> XEM BIỂU ĐỒ
+    </button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-row" id="statRow" style="display:none">
+    <div class="stat-card">
+      <div class="stat-label">Giá Mới Nhất</div>
+      <div class="stat-value" id="statLast">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cao Nhất (kỳ)</div>
+      <div class="stat-value up" id="statHigh">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Thấp Nhất (kỳ)</div>
+      <div class="stat-value down" id="statLow">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Thay Đổi</div>
+      <div class="stat-value" id="statChange">--</div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-wrapper">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <p>Đang tải dữ liệu...</p>
+    </div>
+    <div id="emptyState" class="empty-state">
+      <i class="fas fa-chart-area"></i>
+      <p>Chọn mã cổ phiếu và nhấn <strong>XEM BIỂU ĐỒ</strong> để bắt đầu</p>
+    </div>
+    <div id="chartArea" style="display:none">
+      <div class="chart-header">
+        <h3 id="chartTitle">--</h3>
+      </div>
+      <canvas id="priceChart" height="100"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-VVRTLD2GMN');
 </script>
+
 <!-- FOOTER -->
 <footer>
   <p>© 2026 DOBN CAPITAL - Demo Website</p>
 </footer>
 
+<!-- =================== SCRIPT =================== -->
+<script src="js/recommendation.js"></script>
+<script>
+
+// =============================================
+// TAB SWITCHING
+// =============================================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab' + (tab === 'analysis' ? 'Analysis' : 'Price')).classList.add('active');
+  document.getElementById('panel' + (tab === 'analysis' ? 'Analysis' : 'Price')).classList.add('active');
+}
+
+// =============================================
+// BUILD ANALYSIS GRID — sắp xếp A-Z
+function buildGrid() {
+  const grid = document.getElementById('companyGrid');
+  const sorted = [...EXPANDED_STOCK_POOL].sort((a, b) => a.code.localeCompare(b.code));
+  sorted.forEach(stock => {
+    const a = document.createElement('a');
+    a.href = `pdf/${stock.code}.pdf`;
+    a.target = '_blank';
+    a.className = 'company-card';
+    a.innerHTML = `
+      <img src="logo/${stock.code}.png" onerror="this.src='logo/default.png'" alt="${stock.code}">
+      <div class="code">${stock.code}</div>
+      <div class="name">${stock.name}</div>
+      <span class="badge badge-${stock.type}">${stock.type}</span>
+    `;
+    grid.appendChild(a);
+  });
+}
+
+// BUILD STOCK SELECT — sắp xếp A-Z
+function buildSelect() {
+  const sel = document.getElementById('stockSelect');
+  const sorted = [...EXPANDED_STOCK_POOL].sort((a, b) => a.code.localeCompare(b.code));
+  sorted.forEach(stock => {
+    const opt = document.createElement('option');
+    opt.value = stock.code;
+    opt.textContent = `${stock.code} – ${stock.name}`;
+    sel.appendChild(opt);
+  });
+}
+// =============================================
+// SET DEFAULT DATE RANGE (6 months back)
+// =============================================
+function setDefaultDates() {
+  const today = new Date();
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(today.getMonth() - 6);
+  document.getElementById('toDate').value = today.toISOString().split('T')[0];
+  document.getElementById('fromDate').value = sixMonthsAgo.toISOString().split('T')[0];
+}
+
+// =============================================
+// FETCH STOCK PRICE FROM TCBS API
+// =============================================
+let priceChart = null;
+
+async function fetchStockData() {
+  const ticker = document.getElementById('stockSelect').value;
+  if (!ticker) { alert('Vui lòng chọn mã cổ phiếu!'); return; }
+
+  const from = document.getElementById('fromDate').value;
+  const to = document.getElementById('toDate').value;
+  const resolution = document.getElementById('resolutionSelect').value;
+
+  if (!from || !to) { alert('Vui lòng chọn khoảng thời gian!'); return; }
+
+  const fromTs = Math.floor(new Date(from).getTime() / 1000);
+  const toTs   = Math.floor(new Date(to).getTime() / 1000);
+
+  document.getElementById('loadingOverlay').style.display = 'flex';
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('chartArea').style.display = 'none';
+  document.getElementById('statRow').style.display = 'none';
+  document.getElementById('fetchBtn').disabled = true;
+
+  try {
+const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://apipubaws.tcbs.com.vn/stock-insight/v1/stock/bars-long-term?ticker=' + ticker + '&type=stock&resolution=' + resolution + '&from=' + fromTs + '&to=' + toTs)}`;
+    const res = await fetch(url);
+    const json = await res.json();
+
+    const bars = json.data;
+    if (!bars || bars.length === 0) {
+      alert('Không có dữ liệu cho khoảng thời gian này.');
+      document.getElementById('emptyState').style.display = 'block';
+      return;
+    }
+
+    const labels = bars.map(b => {
+      const d = new Date(b.tradingDate || (b.time * 1000));
+      return d.toLocaleDateString('vi-VN');
+    });
+    const closes = bars.map(b => b.close);
+
+    const maxClose = Math.max(...closes);
+    const minClose = Math.min(...closes);
+    const lastClose = closes[closes.length - 1];
+    const firstClose = closes[0];
+    const change = ((lastClose - firstClose) / firstClose * 100).toFixed(2);
+
+    const fmt = v => v.toLocaleString('vi-VN') + ' ₫';
+    document.getElementById('statLast').textContent = fmt(lastClose * 1000);
+    document.getElementById('statHigh').textContent = fmt(maxClose * 1000);
+    document.getElementById('statLow').textContent  = fmt(minClose * 1000);
+    const chEl = document.getElementById('statChange');
+    chEl.textContent = (change >= 0 ? '+' : '') + change + '%';
+    chEl.className = 'stat-value ' + (change >= 0 ? 'up' : 'down');
+    document.getElementById('statRow').style.display = 'grid';
+
+    const stock = EXPANDED_STOCK_POOL.find(s => s.code === ticker);
+    document.getElementById('chartTitle').textContent =
+      `${ticker} – ${stock ? stock.name : ''} | Giá đóng cửa`;
+
+    const isUp = lastClose >= firstClose;
+    const lineColor = isUp ? '#16a34a' : '#dc2626';
+    const fillColor = isUp ? 'rgba(22,163,74,0.08)' : 'rgba(220,38,38,0.08)';
+
+    if (priceChart) priceChart.destroy();
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    priceChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Giá đóng cửa (nghìn VND)',
+          data: closes,
+          borderColor: lineColor,
+          backgroundColor: fillColor,
+          borderWidth: 2,
+          pointRadius: bars.length > 60 ? 0 : 3,
+          pointHoverRadius: 5,
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `  ${ctx.parsed.y.toLocaleString('vi-VN')} nghìn VND`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { maxTicksLimit: 10, color: '#6b7280', font: { size: 11 } },
+            grid: { color: 'rgba(0,0,0,0.04)' }
+          },
+          y: {
+            ticks: {
+              color: '#6b7280',
+              font: { size: 11 },
+              callback: v => v.toLocaleString('vi-VN')
+            },
+            grid: { color: 'rgba(0,0,0,0.06)' }
+          }
+        }
+      }
+    });
+
+    document.getElementById('chartArea').style.display = 'block';
+
+  } catch (err) {
+    console.error(err);
+    alert('Lỗi khi tải dữ liệu. Vui lòng thử lại sau.\n\n' + err.message);
+    document.getElementById('emptyState').style.display = 'block';
+  } finally {
+    document.getElementById('loadingOverlay').style.display = 'none';
+    document.getElementById('fetchBtn').disabled = false;
+  }
+}
+
+// =============================================
+// INIT
+// =============================================
+window.addEventListener('DOMContentLoaded', () => {
+  buildGrid();
+  buildSelect();
+  setDefaultDates();
+  switchTab('analysis');
+});
+</script>
 </body>
 </html>
