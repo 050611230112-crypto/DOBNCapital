@@ -362,17 +362,25 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
 </div>
 
 <!-- SURVEY -->
-<div class="mb-12">
+ <div class="mb-12">
 
-    <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
-        KHẢO SÁT ĐẦU TƯ
-        <span class="text-gray-500 text-lg">
-            (INVESTMENT SURVEY)
-        </span>
-    </h2>
+            <h2 class="text-2xl font-black text-[#04045d] border-b-2 border-[#04045d] pb-2 mb-8">
+                KHẢO SÁT ĐẦU TƯ
+            </h2>
+
             <div class="grid grid-cols-3 gap-6 mb-10">
+
+                <div>
+                    <label>Mức chấp nhận rủi ro (%)</label>
+
+                    <input type="number"
+                    id="riskPercent"
+                    class="w-full border p-3 mt-2 rounded">
+                </div>
+
                 <div>
                     <label>Lợi suất kỳ vọng (%)</label>
+
                     <input type="number"
                     id="expectedReturn"
                     class="w-full border p-3 mt-2 rounded">
@@ -384,142 +392,160 @@ class="bg-white rounded-2xl shadow-2xl p-10 mb-12">
                     <select id="investmentHorizon"
                     class="w-full border p-3 mt-2 rounded">
 
-                        <option>Short-term</option>
-                        <option>Medium-term</option>
-                        <option>Long-term</option>
+                        <option>Short Term</option>
+                        <option>Medium Term</option>
+                        <option>Long Term</option>
 
                     </select>
                 </div>
 
             </div>
-    <div class="space-y-5">
 
-        <div>
-            <p class="font-bold mb-3">
-                1. Mục tiêu đầu tư?
-            </p>
+            <!-- 8 QUESTIONS -->
+            <div class="space-y-8">
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Bảo toàn vốn</option>
-                <option value="2">Tăng trưởng ổn định</option>
-                <option value="3">Tăng trưởng nhanh</option>
-                <option value="4">Lợi nhuận cực cao</option>
-            </select>
-        </div>
+                <div>
+                    <p class="font-bold mb-3">
+                        1. Mục tiêu đầu tư của bạn là gì?
+                    </p>
 
-        <div>
-            <p class="font-bold mb-3">
-                2. Danh mục giảm 20%?
-            </p>
+                    <select class="risk-question w-full border p-3 rounded">
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Bán ngay</option>
-                <option value="2">Giữ nguyên</option>
-                <option value="3">Mua thêm</option>
-                <option value="4">Mua mạnh</option>
-            </select>
-        </div>
+                        <option value="1">Bảo toàn vốn và tránh rủi ro</option>
+                        <option value="2">Tăng trưởng vốn ổn định kết hợp với bảo toàn vốn</option>
+                        <option value="3">Tăng trưởng vốn nhanh nhưng vẫn chú trọng đến an toàn 1 phần</option>
+                        <option value="4">Tìm kiếm lợi nhuận cực cao mặc dù có rủi ro lớn</option>
 
-        <div>
-            <p class="font-bold mb-3">
-                3. Kiến thức tài chính?
-            </p>
+                    </select>
+                </div>
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Rất ít</option>
-                <option value="2">Cơ bản</option>
-                <option value="3">Khá tốt</option>
-                <option value="4">Chuyên sâu</option>
-            </select>
-        </div>
+                <div>
+                    <p class="font-bold mb-3">
+                        2. Nếu danh mục đầu tư của bạn giảm 20% trong thời gian ngắn bạn sẽ làm gì?
+                    </p>
 
-        <div>
-            <p class="font-bold mb-3">
-                4. Đầu tư rủi ro cao?
-            </p>
+                    <select class="risk-question w-full border p-3 rounded">
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Không đầu tư</option>
-                <option value="2">Đầu tư ít</option>
-                <option value="3">Có nghiên cứu</option>
-                <option value="4">Đầu tư mạnh</option>
-            </select>
-        </div>
+                        <option value="1">Bán ra ngay để cắt lỗ</option>
+                        <option value="2">Cảm thấy lo lắng nhưng giữ nguyên danh mục và chờ phục hồin</option>
+                        <option value="3">Xem đây là cơ hội để mua vào thêm</option>
+                        <option value="4">Mua vào ngay lập tức vì tin thị trường sẽ phục hồi</option>
 
-        <div>
-            <p class="font-bold mb-3">
-                5. Khi thị trường biến động?
-            </p>
+                    </select>
+                </div>
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Hoảng loạn</option>
-                <option value="2">Lo lắng</option>
-                <option value="3">Tìm cơ hội</option>
-                <option value="4">Đầu tư thêm</option>
-            </select>
-        </div>
+                <div>
+                    <p class="font-bold mb-3">
+                        3. Mức độ hiểu biết của bạn về thị trường tài chính là:
+                    </p>
 
-        <div>
-            <p class="font-bold mb-3">
-                6. Khi kinh tế bất ổn?
-            </p>
+                    <select class="risk-question w-full border p-3 rounded">
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Giữ tiền mặt</option>
-                <option value="2">Theo dõi</option>
-                <option value="3">Mua cổ phiếu giảm</option>
-                <option value="4">Mua mạnh</option>
-            </select>
-        </div>
+                        <option value="1">Rất ít kinh nghiệm</option>
+                        <option value="2">Hiểu biết cơ bản, mới bắt đầu đầu tư</option>
+                        <option value="3">Trung bình – theo dõi và nghiên cứu thường xuyên</option>
+                        <option value="4">Rất hiểu biết, có chiến lược đầu tư riêng</option>
 
-        <div>
-            <p class="font-bold mb-3">
-                7. Đầu tư mạo hiểm?
-            </p>
+                    </select>
+                </div>
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Từ chối</option>
-                <option value="2">Đầu tư nhỏ</option>
-                <option value="3">Có nghiên cứu</option>
-                <option value="4">Đầu tư ngay</option>
-            </select>
-        </div>
+                <div>
+                    <p class="font-bold mb-3">
+                        4. Khi nghe tin về cơ hội đầu tư với lợi nhuận cao nhưng rủi ro lớn, bạn sẽ:
+                    </p>
 
-        <div>
-            <p class="font-bold mb-3">
-                8. Khả năng chịu rủi ro?
-            </p>
+                    <select class="risk-question w-full border p-3 rounded">
 
-            <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Rất thấp</option>
-                <option value="2">Thấp</option>
-                <option value="3">Trung bình</option>
-                <option value="4">Cao</option>
-            </select>
-        </div>
+                        <option value="1">Không đầu tư vì quá rủi ro</option>
+                        <option value="2">Đầu tư với số tiền nhỏ để thử nghiệm</option>
+                        <option value="3">Đầu tư một phần nếu có đủ thông tin và nghiên cứu kỹ</option>
+                        <option value="4">Đầu tư mạnh mẽ vì tin rằng lợi nhuận sẽ bù đắp rủi ro</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        5. Khi thị trường biến động mạnh, bạn thường:
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Hoảng loạn và bán ra ngay</option>
+                        <option value="2">Cảm thấy lo lắng nhưng giữ bình tĩnh</option>
+                        <option value="3">Theo dõi sát sao và tìm cơ hội mua vào</option>
+                        <option value="4">Tận dụng biến động để đầu tư thêm</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        6. Trong bối cảnh kinh tế không ổn định, bạn sẽ:
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Chuyển sang tài sản an toàn (tiền mặt, trái phiếu)</option>
+                        <option value="2">Giữ nguyên danh mục và theo dõi tình hình</option>
+                        <option value="3">Tìm cơ hội đầu tư vào cổ phiếu bị giảm giá</option>
+                        <option value="4">Mua vào thêm mạnh mẽ vì tin thị trường sẽ phục hồi</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        7. Khi có cơ hội đầu tư mạo hiểm với tiềm năng lợi nhuận lớn, bạn sẽ:
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Từ chối vì không muốn mạo hiểm</option>
+                        <option value="2">Cân nhắc và đầu tư một phần nhỏ</option>
+                        <option value="3">Đầu tư nếu có sự tư vấn và nghiên cứu đầy đủ</option>
+                        <option value="4">Đầu tư mà không do dự</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-3">
+                        8. Bạn tự đánh giá khả năng chấp nhận rủi ro của mình là:
+                    </p>
+
+                    <select class="risk-question w-full border p-3 rounded">
+
+                        <option value="1">Rất thấp – ưu tiên an toàn tuyệt đối</option>
+                        <option value="2">Thấp – không muốn biến động quá lớn</option>
+                        <option value="3">Trung bình – sẵn sàng chịu rủi ro vừa phải để có lợi nhuận tốt hơn</option>
+                        <option value="4">Cao – sẵn sàng mạo hiểm để đạt được lợi nhuận vượt trội</option>
+
+                    </select>
+                </div>
         
         <div>
             <p class="font-bold mb-3">
-                9. Khả năng chịu rủi ro?
+                9. Mục tiêu đầu tư về thời gian của bạn là
             </p>
 
             <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Rất thấp</option>
-                <option value="2">Thấp</option>
-                <option value="3">Trung bình</option>
-                <option value="4">Cao</option>
+                <option value="1">Ngắn hạn (dưới 3 năm)</option>
+                <option value="2">Trung hạn (3-5 năm)</option>
+                <option value="3">Dài hạn (5-10 năm)</option>
+                <option value="4">Rất dài hạn (trên 10 năm)</option>
             </select>
         </div>
         <div>
             <p class="font-bold mb-3">
-                10. Khả năng chịu rủi ro?
+                10. Khoản tiền bạn sẵn sàng đầu tư (mà nếu mất đi vẫn đảm bảo cuộc sống) chiếm bao nhiêu % tổng tài sản?
             </p>
 
             <select class="risk-question w-full border p-3 rounded">
-                <option value="1">Rất thấp</option>
-                <option value="2">Thấp</option>
-                <option value="3">Trung bình</option>
-                <option value="4">Cao</option>
+                <option value="1">Dưới 10%</option>
+                <option value="2">Từ 10% - 25%</option>
+                <option value="3">Từ 25% - 50%</option>
+                <option value="4">Trên 50%</option>
             </select>
         </div>
     </div>
