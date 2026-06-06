@@ -1156,69 +1156,47 @@ document.getElementById('financialForm')
 
 });
 
-// DOWNLOAD PDF
 async function downloadPDFFile() {
     const { jsPDF } = window.jspdf;
     const element = document.getElementById('pdfTemplate');
     element.classList.remove('hidden');
 
-    // Đổi ảnh sang base64 để tránh CORS
-    const images = element.querySelectorAll('img');
-    const originalSrcs = [];
-
-    await Promise.all([...images].map(async (img, i) => {
-        originalSrcs[i] = img.src;
-        try {
-            const res = await fetch(img.src);
-            const blob = await res.blob();
-            const base64 = await new Promise(r => {
-                const reader = new FileReader();
-                reader.onload = () => r(reader.result);
-                reader.readAsDataURL(blob);
-            });
-            img.src = base64;
-        } catch(e) {
-            // Bỏ qua ảnh lỗi
-        }
-    }));
-
     await new Promise(resolve => setTimeout(resolve, 800));
 
-const canvas = await html2canvas(element, {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: '#ffffff',
-    scrollY: -window.scrollY,
-    onclone: (doc) => {
-        // Xóa tất cả Tailwind classes khỏi clone để tránh oklch
-        doc.querySelectorAll('[class]').forEach(el => {
-            el.style.color = el.style.color || '';
-        });
-    }
-});
+    const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: '#ffffff',
+        scrollY: -window.scrollY
+    });
 
-    // Khôi phục ảnh gốc
-    images.forEach((img, i) => img.src = originalSrcs[i]);
-
-    const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();   // 210mm
+    const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
 
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+    // Tính chiều cao 1 trang theo pixel canvas
+    const pageHeightPx = Math.floor(canvas.width * pdfHeight / pdfWidth);
+    let yOffset = 0;
 
-    let heightLeft = imgHeight;
-    let position = 0;
+    while (yOffset < canvas.height) {
+        // Cắt từng trang
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = Math.min(pageHeightPx, canvas.height - yOffset);
 
-    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-    heightLeft -= pdfHeight;
+        const ctx = pageCanvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+        ctx.drawImage(canvas, 0, yOffset, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
 
-    while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-        heightLeft -= pdfHeight;
+        const imgData = pageCanvas.toDataURL('image/png');
+        const imgHeight = (pageCanvas.height * pdfWidth) / canvas.width;
+
+        if (yOffset > 0) pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, imgHeight);
+
+        yOffset += pageHeightPx;
     }
 
     pdf.save('DOBN_Capital_Report.pdf');
