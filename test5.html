@@ -942,56 +942,32 @@ document.getElementById('financialForm')
     });
 
     // SHOW PDF
-    document.getElementById('pdfTemplate')
-    .classList.remove('hidden');
 
-    document.getElementById('downloadBtnContainer')
-    .classList.remove('hidden');
+    document.getElementById('pdfPage1').classList.remove('hidden');
+document.getElementById('pdfPage2').classList.remove('hidden');
+document.getElementById('downloadBtnContainer').classList.remove('hidden');
 
 });
 
 async function downloadPDFFile() {
     const { jsPDF } = window.jspdf;
-    const element = document.getElementById('pdfTemplate');
-    element.classList.remove('hidden');
+    const page1 = document.getElementById('pdfPage1');
+    const page2 = document.getElementById('pdfPage2');
+    page1.classList.remove('hidden');
+    page2.classList.remove('hidden');
 
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: false,
-        backgroundColor: '#ffffff',
-        scrollY: -window.scrollY
-    });
-
     const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();   // 210mm
-    const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
 
-    // Tính chiều cao 1 trang theo pixel canvas
-    const pageHeightPx = Math.floor(canvas.width * pdfHeight / pdfWidth);
-    let yOffset = 0;
+    const canvas1 = await html2canvas(page1, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    pdf.addImage(canvas1.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
 
-    while (yOffset < canvas.height) {
-        // Cắt từng trang
-        const pageCanvas = document.createElement('canvas');
-        pageCanvas.width = canvas.width;
-        pageCanvas.height = Math.min(pageHeightPx, canvas.height - yOffset);
-
-        const ctx = pageCanvas.getContext('2d');
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-        ctx.drawImage(canvas, 0, yOffset, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
-
-        const imgData = pageCanvas.toDataURL('image/png');
-        const imgHeight = (pageCanvas.height * pdfWidth) / canvas.width;
-
-        if (yOffset > 0) pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, imgHeight);
-
-        yOffset += pageHeightPx;
-    }
+    pdf.addPage();
+    const canvas2 = await html2canvas(page2, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    pdf.addImage(canvas2.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
 
     pdf.save('DOBN_Capital_Report.pdf');
 }
