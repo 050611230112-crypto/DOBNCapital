@@ -790,7 +790,7 @@
   }
 
   /* Gửi dữ liệu lên Google Sheet */
-  async function sendToGoogleSheet(formData) {
+  async function support(formData) {
     const scriptURL =
       "https://script.google.com/macros/s/AKfycbwzNi-cvJ8wQUidh7T9Qj4ka1VvXGUufiETqd3R0IqIAsGRpHv0PL0szOYMfjQGfiVDHA/exec";
     try {
@@ -837,7 +837,7 @@
       noi_dung:   msg
     };
 
-    await sendToGoogleSheet(formData);
+    await support(formData);
 
     /* Hiện toast thành công */
     const toast = document.getElementById('toast');
@@ -866,7 +866,7 @@
     for (const [key, anchor] of Object.entries(map)) {
       if (q.includes(key)) { document.querySelector(anchor)?.scrollIntoView({behavior:'smooth',block:'start'}); return; }
     }
-    alert('Không tìm thấy kết quả phù hợp. Vui lòng liên hệ hotline 028 1234 5678.');
+    alert('Không tìm thấy kết quả phù hợp. Vui lòng liên hệ hotline 028 xxxx xxxx.');
   }
   document.getElementById('searchInput').addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
 
