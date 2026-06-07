@@ -649,7 +649,7 @@
         <label>Nội Dung</label>
         <textarea placeholder="Mô tả chi tiết vấn đề bạn gặp phải…" id="f-message"></textarea>
       </div>
-      <button class="btn-submit" onclick="submitForm()">
+      <button class="btn-submit" onclick="submitSupportForm()">
         <i class="fas fa-paper-plane"></i> Gửi Yêu Cầu
       </button>
     </div>
@@ -781,78 +781,13 @@
 <div id="toast"><i class="fas fa-check-circle"></i> Yêu cầu đã được gửi thành công!</div>
 
 <script>
+ <script>
   /* FAQ accordion */
   function toggleFaq(el) {
     const item = el.closest('.faq-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
-  }
-
-  /* Gửi dữ liệu lên Google Sheet */
-  async function sendToGoogleSheet(formData) {
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwzNi-cvJ8wQUidh7T9Qj4ka1VvXGUufiETqd3R0IqIAsGRpHv0PL0szOYMfjQGfiVDHA/exec";
-    try {
-      await fetch(scriptURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      console.log("Đã gửi dữ liệu lên Google Sheet:", formData);
-    } catch (error) {
-      console.error("Lỗi Google Sheet:", error);
-    }
-  }
-
-  /* Form submit */
-  async function submitForm() {
-    const name     = document.getElementById('f-name').value.trim();
-    const phone    = document.getElementById('f-phone').value.trim();
-    const email    = document.getElementById('f-email').value.trim();
-    const category = document.getElementById('f-category').value.trim();
-    const priority = document.getElementById('f-priority').value.trim();
-    const msg      = document.getElementById('f-message').value.trim();
-
-    if (!name || !email || !msg) {
-      alert('Vui lòng điền đầy đủ Họ tên, Email và Nội dung.');
-      return;
-    }
-
-    /* Đổi nút thành trạng thái loading */
-    const btn = document.querySelector('.btn-submit');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi…';
-
-    /* Tạo object dữ liệu gửi lên Sheet */
-    const formData = {
-      formType:   "SUPPORT",
-      timestamp:  new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-      ho_ten:     name,
-      dien_thoai: phone,
-      email:      email,
-      danh_muc:   category,
-      uu_tien:    priority,
-      noi_dung:   msg
-    };
-
-    await sendToGoogleSheet(formData);
-
-    /* Hiện toast thành công */
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3500);
-
-    /* Reset form */
-    ['f-name','f-phone','f-email','f-category','f-priority','f-message'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
-
-    /* Khôi phục nút */
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi Yêu Cầu';
   }
 
   /* Search */
@@ -874,12 +809,12 @@
   function updateStatus() {
     const pill = document.getElementById('statusPill');
     const now = new Date();
-    const day = now.getDay(); // 0=Sun, 6=Sat
+    const day = now.getDay();
     const h = now.getHours(); const m = now.getMinutes();
     const mins = h * 60 + m;
     let open = false;
-    if (day >= 1 && day <= 5 && mins >= 480 && mins < 1050) open = true; // M-F 8:00-17:30
-    if (day === 6 && mins >= 510 && mins < 720) open = true; // Sat 8:30-12:00
+    if (day >= 1 && day <= 5 && mins >= 480 && mins < 1050) open = true;
+    if (day === 6 && mins >= 510 && mins < 720) open = true;
     pill.className = 'status-pill ' + (open ? 'status-open' : '');
     pill.style.background = open ? '' : 'rgba(192,57,43,.15)';
     pill.style.color = open ? '' : '#f87171';
@@ -888,5 +823,6 @@
   }
   updateStatus();
 </script>
+<script src="support.js"></script>
 </body>
 </html>
