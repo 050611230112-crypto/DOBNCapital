@@ -33,6 +33,8 @@ const EXPANDED_STOCK_POOL = [
     { code:"MSN", name:"Công ty Cổ phần Tập đoàn Masan", type:"Balanced", horizon:"Medium-term", fundamentalscore:29, expectedReturn:"14-18%", volatility:"Medium", exchange:"HOSE", logo:"logo/MSN.png" },
     { code:"KDH", name:"Công ty Cổ phần Đầu tư và Kinh doanh Nhà Khang Điền", type:"Balanced", horizon:"Medium-term", fundamentalscore:30, expectedReturn:"14-18%", volatility:"Medium", exchange:"HOSE", logo:"logo/KDH.png" },
     { code:"HDB", name:"Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh", type:"Balanced", horizon:"Medium-term", fundamentalscore:31, expectedReturn:"15-18%", volatility:"Medium", exchange:"HOSE", logo:"logo/HDB.png" },
+{ code:"IDC", name:"Tổng Công ty IDICO - CTCP", type:"Balanced", horizon:"Medium-term", fundamentalscore:25, expectedReturn:"13-16%", volatility:"Medium", exchange:"HNX", logo:"logo/IDC.png" },
+    { code:"OIL", name:"Tổng Công ty Dầu Việt Nam - CTCP", type:"Balanced", horizon:"Medium-term", fundamentalscore:27, expectedReturn:"12-15%", volatility:"Medium", exchange:"UPCOM", logo:"logo/OIL.png" },
 
     // ======================================================
     // AGGRESSIVE + SHORT TERM
