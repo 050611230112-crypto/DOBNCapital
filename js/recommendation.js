@@ -16,7 +16,7 @@ const EXPANDED_STOCK_POOL = [
     { code:"VGI", name:"Tổng Công ty Cổ phần Đầu tư Quốc tế Viettel", type:"Conservative", horizon:"Long-term", fundamentalscore:17, expectedReturn:"10-14%", volatility:"Low", exchange:"UPCOM", logo:"logo/VGI.png" },
     { code:"PLX", name:"Tập đoàn Xăng dầu Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:18, expectedReturn:"10-13%", volatility:"Low", exchange:"HOSE", logo:"logo/PLX.png" },
     { code:"BVH", name:"Tập đoàn Bảo Việt", type:"Conservative", horizon:"Long-term", fundamentalscore:19, expectedReturn:"10-13%", volatility:"Low", exchange:"HOSE", logo:"logo/BVH.png" },
-    { code:"VNM", name:"Công ty Cổ phần Sữa Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:20, expectedReturn:"8-11%", volatility:"Low", exchange:"HOSE", logo:"logo/VNM.png" }
+    { code:"VNM", name:"Công ty Cổ phần Sữa Việt Nam", type:"Conservative", horizon:"Long-term", fundamentalscore:20, expectedReturn:"8-11%", volatility:"Low", exchange:"HOSE", logo:"logo/VNM.png" },
      
     // ======================================================
     // BALANCED + MEDIUM TERM
