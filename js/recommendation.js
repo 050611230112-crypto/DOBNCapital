@@ -50,7 +50,7 @@ const EXPANDED_STOCK_POOL = [
     { code:"VIC", name:"Tập đoàn Vingroup - CTCP", type:"Aggressive", horizon:"Short-term", fundamentalscore:39, expectedReturn:"20-25%", volatility:"High", exchange:"HOSE", logo:"logo/VIC.png" },
     { code:"VJC", name:"Công ty Cổ phần Hàng không Vietjet", type:"Aggressive", horizon:"Short-term", fundamentalscore:39, expectedReturn:"20-25%", volatility:"High", exchange:"HOSE", logo:"logo/VJC.png" },
     { code:"NVL", name:"Công ty Cổ phần Tập đoàn Đầu tư Địa ốc No Va", type:"Aggressive", horizon:"Short-term", fundamentalscore:40, expectedReturn:"25%+", volatility:"Very High", exchange:"HOSE", logo:"logo/NVL.png" },
-    { code:"YEG", name:"Công ty Cổ phần Tập đoàn Yeah1", type:"Aggressive", horizon:"Short-term", fundamentalscore:40, expectedReturn:"25%+", volatility:"Very High", exchange:"HOSE", logo:"logo/YEG.png" }
+    { code:"YEG", name:"Công ty Cổ phần Tập đoàn Yeah1", type:"Aggressive", horizon:"Short-term", fundamentalscore:40, expectedReturn:"25%+", volatility:"Very High", exchange:"HOSE", logo:"logo/YEG.png" },
 { code:"SHS", name:"Công ty Cổ phần Chứng khoán Sài Gòn - Hà Nội", type:"Aggressive", horizon:"Short-term", fundamentalscore:34, expectedReturn:"18-23%", volatility:"High", exchange:"HNX", logo:"logo/SHS.png" },
     { code:"MSR", name:"Công ty Cổ phần Masan High-Tech Materials", type:"Aggressive", horizon:"Short-term", fundamentalscore:36, expectedReturn:"20-25%", volatility:"High", exchange:"UPCOM", logo:"logo/MSR.png" },
     { code:"EVF", name:"Công ty Cổ phần Tài chính Điện lực", type:"Aggressive", horizon:"Short-term", fundamentalscore:38, expectedReturn:"20-26%", volatility:"High", exchange:"HOSE", logo:"logo/EVF.png" },
