@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lịch Sử Phát Triển — Đảng Trong Tim</title>
+<meta name="description" content="Dòng thời gian 1929–1945: hành trình ra đời và phát triển của Đảng Cộng sản Việt Nam trong bối cảnh thế giới.">
+<link rel="stylesheet" href="assets/st.css">
+</head>
+<body>
+
+<!-- ============== HEADER ============== -->
+<header class="site-header">
+  <div class="site-header__bar">
+    <a href="aboutlsd.html" class="brand">
+      <span class="brand__mark">Đ</span>
+      <span class="brand__text">
+        <span class="brand__title">Đảng Trong Tim</span>
+        <span class="brand__sub">Bảo tàng số · Lịch sử Đảng</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="aboutlsd.html">Thông điệp nhà sáng lập</a></li>
+        <li><a href="di-san-thanh-tuu-dau-an.html">Di sản – Thành tựu – Dấu ấn</a></li>
+        <li class="is-active"><a href="lich-su-phat-trien.html">Lịch sử phát triển</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Mở menu"><span></span></button>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero__bg">
+    <div class="ph" data-ph="Ảnh: Quốc dân Đại hội Tân Trào, 1945">
+      <img src="images/4.jpg" alt="Dòng thời gian lịch sử 1929-1945" data-ph-fallback>
+    </div>
+  </div>
+  <div class="hero__veil"></div>
+  <div class="hero__spine"></div>
+  <div class="hero__inner">
+    <span class="hero__eyebrow">Về chúng tôi</span>
+    <h1><em>Dòng thời gian 1929 – 1945</em>Lịch sử phát triển</h1>
+    <p class="hero__desc">Từ Đại khủng hoảng kinh tế thế giới đến Cách mạng Tháng Tám — hành trình của Đảng đặt trong dòng chảy lịch sử toàn cầu. Chạm vào mỗi mốc son để xem chi tiết.</p>
+  </div>
+</section>
+
+<!-- ============== SUB-NAV ============== -->
+<nav class="subnav">
+  <div class="subnav__inner">
+    <a href="aboutlsd.html">Thông điệp nhà sáng lập</a>
+    <a href="di-san-thanh-tuu-dau-an.html">Di sản – Thành tựu – Dấu ấn</a>
+    <a href="lich-su-phat-trien.html" class="is-active">Lịch sử phát triển</a>
+  </div>
+</nav>
+
+<!-- ============== TIMELINE ============== -->
+<section class="section">
+  <div class="wrap reveal">
+    <span class="eyebrow">Niên biểu 1929 – 1945</span>
+    <h2 class="headline">Việt Nam trong <em>dòng chảy lịch sử thế giới</em></h2>
+    <p class="lede">Mỗi thẻ mốc thời gian dưới đây tương ứng với một sự kiện — trong nước hoặc quốc tế — đã góp phần định hình con đường cách mạng Việt Nam. Nhấn vào một mốc bất kỳ để xem đầy đủ diễn biến, nhân vật và ý nghĩa lịch sử.</p>
+
+    <div class="tl-legend">
+      <span class="tl-legend__item"><span class="tl-legend__dot"></span>Sự kiện trong nước</span>
+      <span class="tl-legend__item"><span class="tl-legend__dot world"></span>Bối cảnh quốc tế</span>
+    </div>
+
+    <div class="timeline" id="timeline"><!-- render bằng JS từ TIMELINE_DATA --></div>
+  </div>
+</section>
+
+<div class="rule wrap"><div class="rule__gem"></div></div>
+
+<!-- ============== CÂU KẾT ============== -->
+<section class="closing reveal">
+  <blockquote>"Dù phải đốt cháy cả dãy Trường Sơn cũng phải kiên quyết <em>giành cho được độc lập!</em>"</blockquote>
+  <cite>— Hồ Chí Minh —</cite>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__top">
+      <nav class="site-footer__nav">
+        <a href="aboutlsd.html">Thông điệp nhà sáng lập</a>
+        <a href="di-san-thanh-tuu-dau-an.html">Di sản – Thành tựu – Dấu ấn</a>
+        <a href="lich-su-phat-trien.html">Lịch sử phát triển</a>
+      </nav>
+      <p class="site-footer__note">Sản phẩm học tập của nhóm "Đảng Trong Tim" trong khuôn khổ môn Lịch sử Đảng Cộng sản Việt Nam.</p>
+    </div>
+    <div class="site-footer__bottom">
+      <span class="site-footer__copy">© 2026 Nhóm Đảng Trong Tim — Tư liệu phục vụ học tập.</span>
+      <div class="site-footer__social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== MODAL CHI TIẾT SỰ KIỆN ============== -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+  <div class="modal" id="modal">
+    <button class="modal__close" id="modalClose" aria-label="Đóng">✕</button>
+    <div class="modal__hero">
+      <div class="ph" data-ph="Ảnh minh họa sự kiện">
+        <img id="mImg" src="" alt="" data-ph-fallback>
+      </div>
+      <div class="modal__hero-veil"></div>
+      <div class="modal__hero-label">
+        <div id="mBadge" class="modal__badge"></div>
+        <div id="mDate" class="modal__date"></div>
+        <h2 id="mTitle" class="modal__title"></h2>
+      </div>
+    </div>
+    <div class="modal__body">
+      <div class="modal__facts" id="mFacts"></div>
+      <div class="modal__cols">
+        <div>
+          <div class="modal__label">Diễn biến</div>
+          <p class="modal__text" id="mDetail1"></p>
+          <p class="modal__text" id="mDetail2"></p>
+        </div>
+        <div>
+          <div class="modal__label">Nhân vật &amp; địa điểm</div>
+          <p class="modal__text" id="mPeople"></p>
+          <div class="modal__world">
+            <div class="modal__label" style="border:none;padding:0;margin:0 0 0.5rem;">Bối cảnh quốc tế</div>
+            <ul id="mWorldList"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal__sig"><p id="mSig"></p></div>
+    </div>
+  </div>
+</div>
+
+<button class="to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
+
+<script src="assets/main.js"></script>
+<script>
+/* ============================================================
+   DỮ LIỆU DÒNG THỜI GIAN 1929–1945
+   side: 'vn' (trong nước) | 'world' (bối cảnh quốc tế)
+   ============================================================ */
+const TIMELINE_DATA = [
+{
+  id:'w1', side:'world', date:'1929 – 1933', title:'Đại Khủng Hoảng Kinh Tế Thế Giới',
+  blurb:'Hệ thống tư bản toàn cầu rung chuyển — tiền đề cho phong trào cách mạng tại các thuộc địa.',
+  img:'images/5.jpg',
+  facts:[{val:'29/10/1929',lbl:'Ngày Wall Street sụp đổ'},{val:'25%',lbl:'Tỷ lệ thất nghiệp tại Mỹ'},{val:'Toàn cầu',lbl:'Phạm vi khủng hoảng'},{val:'1933',lbl:'Năm đáy của khủng hoảng'}],
+  d1:'Ngày 29/10/1929 ("Thứ Ba Đen"), thị trường chứng khoán Wall Street sụp đổ thảm khốc. Làn sóng khủng hoảng lan khắp thế giới trong vòng vài tháng, phá hủy hệ thống ngân hàng, đóng cửa hàng nghìn nhà máy, đẩy hàng triệu người vào cảnh thất nghiệp.',
+  d2:'Tại các thuộc địa như Đông Dương, khủng hoảng càng thảm khốc hơn: giá nông sản (lúa gạo, cao su, cà phê) sụt giảm mạnh, thực dân tăng cường bóc lột để bù đắp tổn thất. Đời sống công nhân, nông dân thêm cùng khổ — tạo điều kiện cho phong trào cách mạng bùng phát.',
+  people:'Tổng thống Herbert Hoover (Mỹ) bất lực trước khủng hoảng. Franklin Roosevelt lên cầm quyền 1933 với chính sách "New Deal". Tại Việt Nam, toàn quyền Pasquier tăng cường bóc lột thuộc địa để bù đắp cho chính quốc.',
+  world:['Khủng hoảng thúc đẩy chủ nghĩa phát xít trỗi dậy ở Đức, Ý, Nhật','Phong trào cộng sản và xã hội quốc tế lớn mạnh vượt bậc','Liên Xô — không bị ảnh hưởng — trở thành hình mẫu hấp dẫn với nhiều nước'],
+  sig:'Đại Khủng hoảng là lửa thử vàng — hệ thống tư bản thực dân lộ rõ sự mục ruỗng, đẩy phong trào giải phóng dân tộc tại Đông Dương lên một tầm cao mới.'
+},
+{
+  id:'e1', side:'vn', date:'03 · 02 · 1930', title:'Thành Lập Đảng Cộng Sản Việt Nam',
+  blurb:'Nguyễn Ái Quốc chủ trì Hội nghị hợp nhất ba tổ chức cộng sản tại Hồng Kông.',
+  img:'images/6.jpg',
+  facts:[{val:'3',lbl:'Tổ chức cộng sản hợp nhất'},{val:'1930',lbl:'Năm thành lập'},{val:'Hồng Kông',lbl:'Địa điểm hội nghị'},{val:'Trần Phú',lbl:'Tổng Bí thư đầu tiên'}],
+  d1:'Ngày 3 tháng 2 năm 1930, tại Cửu Long, Hồng Kông, lãnh tụ Nguyễn Ái Quốc chủ trì hội nghị hợp nhất ba tổ chức: Đông Dương Cộng sản Đảng, An Nam Cộng sản Đảng và Đông Dương Cộng sản Liên đoàn thành một Đảng Cộng sản Việt Nam thống nhất.',
+  d2:'Ngày 1 tháng 6 năm 1930, Hội nghị BCH Trung ương lần thứ nhất họp tại Hương Cảng thông qua Luận cương chính trị do đồng chí Trần Phú soạn thảo, xác định con đường cách mạng giải phóng dân tộc gắn liền với cách mạng ruộng đất.',
+  people:'Nguyễn Ái Quốc (Hồ Chí Minh) — chủ trì hội nghị. Trần Phú — Tổng Bí thư đầu tiên. Địa điểm: số 186 phố Tam Lung, Cửu Long, Hồng Kông. Bí mật tổ chức trong điều kiện bị thực dân Pháp truy lùng gắt gao.',
+  world:['Đại Khủng hoảng Kinh tế 1929–1933 làm rung chuyển hệ thống tư bản toàn cầu','Phong trào cộng sản quốc tế đang lên cao ở nhiều nước châu Á','Quốc tế Cộng sản (Comintern) ủng hộ và hướng dẫn các phong trào giải phóng dân tộc'],
+  sig:'Mở ra kỷ nguyên mới trong lịch sử dân tộc Việt Nam — lần đầu tiên cách mạng Việt Nam có một Đảng tiên phong với đường lối, cương lĩnh rõ ràng dẫn đường.'
+},
+{
+  id:'e2', side:'vn', date:'1930 – 1931', title:'Phong Trào Xô Viết Nghệ Tĩnh',
+  blurb:'"Tiếng sấm Xô Viết" — chính quyền cách mạng đầu tiên trên đất Việt Nam.',
+  img:'images/7.jpg',
+  facts:[{val:'1930',lbl:'Năm bùng phát'},{val:'Nghệ An & Hà Tĩnh',lbl:'Trung tâm phong trào'},{val:'Hàng nghìn',lbl:'Người tham gia biểu tình'},{val:'Xô Viết',lbl:'Chính quyền cách mạng'}],
+  d1:'Tháng 9 năm 1930, phong trào đấu tranh của công nhân và nông dân bùng phát dữ dội ở Nghệ An và Hà Tĩnh. Cuộc biểu tình ngày 12/9/1930 tại huyện Nam Đàn có trên 2 vạn người tham gia — máy bay Pháp ném bom, nhiều người hy sinh.',
+  d2:'Tại nhiều huyện xã, chính quyền Xô Viết được thành lập — giảm tô, chia ruộng đất, xóa nợ, mở lớp học. Đây là hình thức nhà nước cách mạng đầu tiên trên đất Việt Nam. Thực dân Pháp đàn áp dã man nhưng không thể dập tắt ngọn lửa yêu nước.',
+  people:'Lãnh đạo phong trào gồm nhiều đảng viên trung kiên như Lê Hồng Phong, Nguyễn Thị Minh Khai. Địa bàn trải rộng từ Vinh, Hà Tĩnh đến các huyện nông thôn. Pháp điều động lính lê dương và máy bay ném bom để đàn áp.',
+  world:['Đại Khủng hoảng kinh tế đẩy người lao động toàn thế giới vào cảnh bần cùng','Liên Xô đang xây dựng mô hình nhà nước Xô Viết — nguồn cảm hứng lớn','Phong trào lao động và cộng sản đang lên khắp châu Á: Trung Quốc, Ấn Độ, Indonesia'],
+  sig:'"Tiếng sấm Xô Viết" — bước tập dượt đầu tiên của quần chúng nhân dân dưới sự lãnh đạo của Đảng, để lại bài học quý báu về xây dựng chính quyền cách mạng.'
+},
+{
+  id:'w3', side:'world', date:'1936 – 1938', title:'Mặt Trận Bình Dân Lên Cầm Quyền Tại Pháp',
+  blurb:'Chính phủ cánh tả tại Pháp nới lỏng kiểm duyệt — mở không gian đấu tranh công khai.',
+  img:'images/8.jpg',
+  facts:[{val:'5/1936',lbl:'Blum thành lập chính phủ'},{val:'40 giờ',lbl:'Tuần làm việc mới tại Pháp'},{val:'2 năm',lbl:'Thời gian cầm quyền'},{val:'Đông Dương',lbl:'Hưởng lợi gián tiếp'}],
+  d1:'Tháng 5 năm 1936, liên minh cánh tả (Xã hội + Cộng sản + Cấp tiến) thắng cử tại Pháp, thành lập chính phủ Mặt trận Bình dân do Léon Blum làm Thủ tướng. Các cải cách lao động lớn được ban hành: tuần 40 giờ, nghỉ phép có lương, tăng lương.',
+  d2:'Tại Đông Dương, chính phủ Blum ân xá nhiều tù chính trị, nới lỏng kiểm duyệt báo chí. Đảng Cộng sản Việt Nam tận dụng triệt để khoảng không gian chính trị này để hoạt động công khai, phát triển lực lượng và tuyên truyền cách mạng.',
+  people:'Léon Blum — Thủ tướng Pháp, lãnh tụ Đảng Xã hội. Maurice Thorez — lãnh tụ Đảng Cộng sản Pháp, ủng hộ phong trào thuộc địa. Tại Việt Nam: Nguyễn Văn Cừ, Trường Chinh lãnh đạo phong trào công khai.',
+  world:['Nội chiến Tây Ban Nha bùng nổ — thách thức lớn với Mặt trận Bình dân','Đức tái vũ trang, chiếm Rhineland — áp lực quốc phòng khiến Blum không thể tập trung cải cách','Phong trào công nhân toàn châu Âu lên cao — đình công lớn ở Pháp, Bỉ, Hà Lan'],
+  sig:'Khoảng không gian chính trị ngắn ngủi nhưng quý giá — Đảng ta tận dụng tối đa để xây dựng lực lượng, chuẩn bị cho giai đoạn đấu tranh quyết định.'
+},
+{
+  id:'e3', side:'vn', date:'1936 – 1939', title:'Phong Trào Dân Chủ — Đông Dương Đại Hội',
+  blurb:'Hàng triệu người ký kiến nghị đòi quyền tự do, dân chủ.',
+  img:'images/9.jpg',
+  facts:[{val:'3 năm',lbl:'Giai đoạn đấu tranh'},{val:'Hàng triệu',lbl:'Người ký kiến nghị'},{val:'Quốc ngữ',lbl:'Phong trào truyền bá'},{val:'Công khai',lbl:'Hình thức đấu tranh mới'}],
+  d1:'Khi Mặt trận Bình dân lên cầm quyền ở Pháp (1936), Đảng chủ trương chuyển sang đấu tranh dân sinh dân chủ công khai. Phong trào Đông Dương Đại hội bùng nổ — hàng triệu người ký kiến nghị đòi quyền tự do, dân chủ gửi đến phái đoàn Godart.',
+  d2:'Báo chí cách mạng nở rộ với hàng chục tờ báo công khai như Dân chúng, Tin tức, Lao động... Phong trào truyền bá Quốc ngữ xóa mù chữ cho hàng triệu người, chuẩn bị lực lượng chính trị và văn hóa cho giai đoạn đấu tranh tiếp theo.',
+  people:'Nguyễn Văn Cừ — Tổng Bí thư từ 1938. Nhiều nhà trí thức tiến bộ tham gia: Hải Triều, Trường Chinh... Trung tâm phong trào: Hà Nội, Sài Gòn, Huế. Pháp buộc phải nhượng bộ một số quyền dân sinh cơ bản.',
+  world:['Mặt trận Bình dân (Léon Blum) cầm quyền ở Pháp 1936–1938 — tạo không gian chính trị','Nội chiến Tây Ban Nha 1936–1939 — phát xít Franco được Đức-Ý hậu thuẫn','Nhật Bản xâm lược Trung Quốc 1937 — nguy cơ chiến tranh Thái Bình Dương gia tăng'],
+  sig:'Đảng học cách vận động quần chúng rộng rãi qua con đường hợp pháp — xây dựng nền tảng chính trị vững chắc cho giai đoạn tổng khởi nghĩa sau này.'
+},
+{
+  id:'w4', side:'world', date:'01 · 09 · 1939', title:'Chiến Tranh Thế Giới II Bùng Nổ',
+  blurb:'Đức xâm lược Ba Lan — Pháp bại trận, Đông Dương rơi vào cảnh "một cổ hai tròng".',
+  img:'images/10.jpg',
+  facts:[{val:'1/9/1939',lbl:'Đức xâm lược Ba Lan'},{val:'6 năm',lbl:'Thời gian chiến tranh'},{val:'70–85 triệu',lbl:'Người chết toàn thế giới'},{val:'30+',lbl:'Quốc gia tham chiến'}],
+  d1:'Rạng sáng 1/9/1939, 1,5 triệu quân Đức ào ạt xâm lược Ba Lan từ ba hướng. Hai ngày sau, Pháp và Anh tuyên chiến với Đức — Chiến tranh Thế giới lần II chính thức bùng nổ. Đây là cuộc chiến tàn khốc nhất lịch sử nhân loại.',
+  d2:'Tháng 6/1940, Pháp bại trận trước Đức, ký hiệp định đình chiến nhục nhã. Chính phủ Vichy bù nhìn ra đời, nhượng Đông Dương cho Nhật. Đông Dương bị kéo vào vòng xoáy chiến tranh — "một cổ hai tròng" Nhật-Pháp.',
+  people:'Adolf Hitler — kẻ gây chiến. Winston Churchill — Thủ tướng Anh kiên cường. Franklin Roosevelt — Tổng thống Mỹ. Tại Đông Dương: Toàn quyền Catroux sau đó Decoux cầm quyền dưới áp lực kép Pháp-Nhật.',
+  world:['Phong trào phát xít toàn châu Âu: Đức, Ý, Tây Ban Nha, Hungary, Romania','Liên Xô ký Hiệp ước Ribbentrop-Molotov 8/1939 — tạm thời hòa hoãn với Đức','Nhật Bản nhân cơ hội mở rộng chiếm đóng châu Á — Đông Dương, Mã Lai, Philippines'],
+  sig:'Chiến tranh thế giới tạo ra cuộc tái sắp xếp quyền lực toàn cầu — kẻ mạnh suy yếu, thuộc địa tìm thấy thời cơ. Đây là bối cảnh quyết định cho Cách mạng Tháng Tám 1945.'
+},
+{
+  id:'e4', side:'vn', date:'1939 – 1941', title:'Chuyển Hướng Chiến Lược — Khởi Nghĩa Bắc Sơn & Nam Kỳ',
+  blurb:'Nhật chiếm Đông Dương, mầm mống Quân đội Nhân dân Việt Nam hình thành.',
+  img:'images/11.jpg',
+  facts:[{val:'1940',lbl:'Năm Nhật chiếm Đông Dương'},{val:'2',lbl:'Cuộc khởi nghĩa lớn'},{val:'Cao Bằng',lbl:'Căn cứ địa cách mạng'},{val:'Hai tròng',lbl:'Áp bức Nhật + Pháp'}],
+  d1:'Nhật Bản ép Pháp nhượng Đông Dương (9/1940). Khởi nghĩa Bắc Sơn (9/1940) tại Lạng Sơn nổ ra khi Nhật-Pháp giao tranh — lần đầu tiên ta cầm súng đánh Pháp. Dù thất bại, đây là mầm mống của Cứu quốc quân và Quân đội nhân dân sau này.',
+  d2:'Khởi nghĩa Nam Kỳ (11/1940) — cuộc nổi dậy quy mô lớn của nông dân Nam Bộ, dùng gậy tầm vông chống súng đạn thực dân. Thực dân Pháp đàn áp đẫm máu, hàng nghìn người hy sinh. Đảng rút ra bài học: cần chuẩn bị lực lượng kỹ càng hơn.',
+  people:'Chu Văn Tấn — chỉ huy khởi nghĩa Bắc Sơn, sau thành lập Cứu quốc quân. Võ Văn Tần, Nguyễn Thị Minh Khai, Hà Huy Tập — những chiến sĩ Nam Kỳ anh dũng hy sinh. Vùng chiến sự: Lạng Sơn, các tỉnh Nam Bộ.',
+  world:['Pháp đầu hàng Đức 6/1940 — Đông Dương bị bỏ rơi, Nhật thừa cơ chiếm đóng','Hội nghị Tripartite 9/1940 — Đức, Ý, Nhật liên minh phát xít','Anh một mình chống Đức — Trận Anh quốc (Battle of Britain) trên bầu trời London'],
+  sig:'Bắc Sơn khởi nghĩa — mầm mống của Quân đội Nhân dân Việt Nam. Những tiếng súng đầu tiên tuy chưa thành công nhưng hun đúc ý chí và tích lũy kinh nghiệm chiến đấu vô giá.'
+},
+{
+  id:'w6', side:'world', date:'22 · 06 · 1941', title:'Đức Tấn Công Liên Xô — Chiến Trường Đông Phương',
+  blurb:'Chiến dịch Barbarossa mở màn — Liên Xô trở thành trụ cột chống phát xít.',
+  img:'images/12.jpg',
+  facts:[{val:'22/6/1941',lbl:'Chiến dịch Barbarossa mở màn'},{val:'3 triệu',lbl:'Quân Đức tấn công Liên Xô'},{val:'27 triệu',lbl:'Dân Liên Xô hy sinh'},{val:'1943',lbl:'Stalingrad — điểm ngoặt'}],
+  d1:'Rạng sáng 22/6/1941, 3 triệu quân Đức cùng đồng minh đồng loạt tấn công Liên Xô trên mặt trận dài 2.900 km. Chiến dịch Barbarossa là cuộc tấn công lớn nhất lịch sử chiến tranh. Ban đầu Đức thắng chớp nhoáng, tiến sâu vào lãnh thổ Liên Xô.',
+  d2:'Nhưng mùa đông Nga và sức kháng cự của Hồng quân chặn đứng đà tiến công. Trận Stalingrad (1942-1943) là bước ngoặt — Đức thua trận quyết định nhất. Từ đó Hồng quân phản công không ngừng, tiến về Berlin. Liên Xô trở thành lực lượng chống phát xít hùng mạnh nhất.',
+  people:'Hitler phạm sai lầm chiến lược nghiêm trọng khi mở mặt trận phía Đông. Thống soái Zhukov lãnh đạo Hồng quân phản công. Stalin củng cố quyền lực trong chiến tranh. Tại Việt Nam: Liên Xô chiến đấu trở thành nguồn cảm hứng lớn cho cách mạng.',
+  world:['Anh-Mỹ-Liên Xô thành lập liên minh Đồng minh chống phát xít','Nhật tấn công Trân Châu Cảng 7/12/1941 — Mỹ chính thức tham chiến','Chiến tranh Thái Bình Dương mở ra — Nhật tạm thời chiếm ưu thế'],
+  sig:'Liên Xô chịu đựng và đánh bại phát xít Đức — tạo ra cục diện quốc tế thuận lợi cho phong trào giải phóng dân tộc trên toàn thế giới, trong đó có Việt Nam.'
+},
+{
+  id:'e5', side:'vn', date:'Tháng 5 · 1941', title:'Hội Nghị TW 8 — Mặt Trận Việt Minh Ra Đời',
+  blurb:'Bác Hồ trở về Tổ quốc sau 30 năm bôn ba — Việt Minh ra đời tại Pắc Bó.',
+  img:'images/13.jpg',
+  facts:[{val:'30 năm',lbl:'Thời gian bôn ba của Bác'},{val:'Pắc Bó',lbl:'Căn cứ địa lịch sử'},{val:'Việt Minh',lbl:'Mặt trận đoàn kết toàn dân'},{val:'1941',lbl:'Năm trở về Tổ quốc'}],
+  d1:'Tháng 2/1941, lãnh tụ Nguyễn Ái Quốc vượt biên giới trở về đất nước sau 30 năm bôn ba khắp năm châu. Người chọn hang Pắc Bó (Cao Bằng) làm căn cứ địa, đặt tên suối là Lê-nin, núi là Các-Mác và sáng tác nhiều bài thơ bất hủ.',
+  d2:'Từ ngày 10 đến 19/5/1941, Hội nghị BCH TW lần thứ 8 họp tại Pắc Bó. Người chủ trì, quyết định thành lập Mặt trận Việt Nam Độc lập Đồng minh (Việt Minh) — ngọn cờ đoàn kết vượt mọi ranh giới giai cấp, tôn giáo, hướng về độc lập dân tộc.',
+  people:'Hồ Chí Minh — lãnh tụ tối cao. Trường Chinh — Tổng Bí thư. Võ Nguyên Giáp — phụ trách quân sự. Địa điểm: hang Pắc Bó, xã Trường Hà, huyện Hà Quảng, tỉnh Cao Bằng — sát biên giới Việt-Trung.',
+  world:['Đức tấn công Liên Xô 22/6/1941 — Mặt trận Đông phương mở ra','Nhật tiếp tục mở rộng chiếm đóng Đông Nam Á — Mã Lai, Philippines, Myanmar','Hiến chương Đại Tây Dương 8/1941 — Mỹ-Anh cam kết ủng hộ quyền tự quyết của các dân tộc'],
+  sig:'"Giờ quyết định cho vận mệnh dân tộc ta đã đến" — Việt Minh trở thành ngọn cờ tập hợp sức mạnh toàn dân, bước nền tảng không thể thiếu cho Cách mạng Tháng Tám.'
+},
+{
+  id:'w7', side:'world', date:'07 · 12 · 1941', title:'Nhật Tấn Công Trân Châu Cảng — Mỹ Tham Chiến',
+  blurb:'Mỹ chính thức tham chiến — cán cân toàn cầu thay đổi sâu sắc.',
+  img:'images/14.jpg',
+  facts:[{val:'7/12/1941',lbl:'Ngày tấn công'},{val:'2.403',lbl:'Lính Mỹ thiệt mạng'},{val:'8/12/1941',lbl:'Mỹ tuyên chiến với Nhật'},{val:'1945',lbl:'Nhật thất bại hoàn toàn'}],
+  d1:'Sáng sớm 7/12/1941, hải quân Nhật Bản bất ngờ tấn công căn cứ hải quân Mỹ tại Trân Châu Cảng (Pearl Harbor), Hawaii. 353 máy bay Nhật ném bom và ngư lôi, đánh chìm 4 thiết giáp hạm, phá hủy gần 200 máy bay, giết 2.403 quân nhân Mỹ.',
+  d2:'Ngày 8/12/1941, Quốc hội Mỹ tuyên chiến với Nhật Bản. Mỹ chính thức tham gia Chiến tranh Thế giới II. Sự tham chiến của Mỹ làm thay đổi hoàn toàn cán cân lực lượng — phát xít sẽ tất bại.',
+  people:'Đô đốc Yamamoto — người thiết kế trận đánh. Tổng thống Roosevelt — lãnh đạo Mỹ trong chiến tranh. Tướng MacArthur — chỉ huy tối cao ở Thái Bình Dương. Nhật kiểm soát Đông Nam Á nhưng sức mạnh kinh tế Mỹ sẽ nghiền nát họ.',
+  world:['Nhật chiếm Philippines, Mã Lai, Indonesia, Miến Điện trong vài tháng','Trận Midway 6/1942 — Mỹ đánh tan hải quân Nhật, xoay chiều Thái Bình Dương','Đồng minh hình thành: Mỹ-Anh-Liên Xô-Trung Hoa — lực lượng áp đảo phát xít'],
+  sig:'Mỹ tham chiến đồng nghĩa với phát xít Nhật tất bại — chỉ còn là vấn đề thời gian. Điều này tạo ra thời cơ chiến lược vàng cho Cách mạng Tháng Tám Việt Nam.'
+},
+{
+  id:'w8', side:'world', date:'1943 – 1944', title:'Thế Chiến Xoay Chiều — Phát Xít Suy Yếu',
+  blurb:'Đức thua Stalingrad, Đồng minh đổ bộ Normandy — khoảng trống quyền lực hình thành.',
+  img:'images/15.jpg',
+  facts:[{val:'2/2/1943',lbl:'Đức thua Stalingrad'},{val:'6/6/1944',lbl:'Đồng minh đổ bộ Normandy (D-Day)'},{val:'150.000',lbl:'Quân Đồng minh đổ bộ D-Day'},{val:'1944–1945',lbl:'Nhật thua liên tiếp ở TBD'}],
+  d1:'Tháng 2/1943, trận Stalingrad kết thúc với thất bại thảm khốc của quân Đức — 300.000 quân đầu hàng, bước ngoặt lớn nhất của Chiến tranh Thế giới II. Hồng quân bắt đầu phản công liên tục. Tháng 5/1943, Đức-Ý thất bại tại Bắc Phi. Ý đầu hàng 9/1943.',
+  d2:'Ngày 6/6/1944 (D-Day), Đồng minh đổ bộ bờ biển Normandy với 150.000 quân — mặt trận thứ hai tại Tây Âu mở ra. Đức bị kẹp giữa hai gọng kìm Đông-Tây. Tại Thái Bình Dương, Nhật thua liên tiếp: Midway, Guadalcanal, Philippines — sức mạnh quân sự kiệt sức.',
+  people:'Thống soái Eisenhower chỉ huy Đồng minh tại Tây Âu. Zhukov dẫn Hồng quân tiến về Berlin. MacArthur tái chiếm Philippines. Tại Việt Nam: tin tức chiến thắng của Đồng minh lan rộng, cổ vũ tinh thần cách mạng.',
+  world:['Hội nghị Tehran 11/1943 — Churchill, Roosevelt, Stalin lần đầu gặp mặt, phối hợp chiến lược','Đế quốc Nhật mất quyền kiểm soát biển — đường tiếp tế bị cắt đứt','Các dân tộc bị chiếm đóng ở châu Á bắt đầu nổi dậy mạnh hơn'],
+  sig:'Phát xít suy yếu toàn diện — khoảng trống quyền lực hình thành ở nhiều thuộc địa. Đảng ta nhận định chính xác: thời cơ tổng khởi nghĩa đang đến gần.'
+},
+{
+  id:'e6', side:'vn', date:'22 · 12 · 1944', title:'Đội Việt Nam Tuyên Truyền Giải Phóng Quân',
+  blurb:'34 chiến sĩ đầu tiên — tiền thân của Quân đội Nhân dân Việt Nam.',
+  img:'images/16.jpg',
+  facts:[{val:'34',lbl:'Chiến sĩ ban đầu'},{val:'34',lbl:'Khẩu súng các loại'},{val:'22/12',lbl:'Ngày thành lập — nay là Ngày Quân đội'},{val:'Cao Bằng',lbl:'Nơi thành lập'}],
+  d1:'Theo chỉ thị của lãnh tụ Hồ Chí Minh, ngày 22 tháng 12 năm 1944, đồng chí Võ Nguyên Giáp đứng ra tuyên bố thành lập Đội Việt Nam Tuyên truyền Giải phóng quân tại khu rừng Trần Hưng Đạo, châu Nguyên Bình, tỉnh Cao Bằng.',
+  d2:'Đội có 34 chiến sĩ với 34 khẩu súng các loại. Chỉ trong 2 ngày đầu ra đời (25-26/12/1944), đội tập kích thắng lợi hai đồn địch Phai Khắt và Nà Ngần, diệt và bắt sống nhiều lính Pháp. Đây là tiền thân của Quân đội Nhân dân Việt Nam anh hùng.',
+  people:'Võ Nguyên Giáp — Đại tướng đầu tiên, chỉ huy đội. Hoàng Sâm — Đội trưởng đầu tiên. Xích Thắng — Chính trị viên. Địa điểm: khu rừng Trần Hưng Đạo, nay thuộc huyện Nguyên Bình, tỉnh Cao Bằng.',
+  world:['Đồng minh đổ bộ Normandy 6/6/1944 — Đức bắt đầu thua trên mặt trận phía Tây','Liên Xô phản công mạnh mẽ, tiến về phía Berlin','Nhật Bản bắt đầu thất thế ở Thái Bình Dương — bại trận ở Philippines'],
+  sig:'34 người mở đầu cho một đội quân triệu người sau này — Ngày 22/12 được chọn là Ngày thành lập Quân đội Nhân dân Việt Nam, kỷ niệm mỗi năm.'
+},
+{
+  id:'e8', side:'vn', date:'Cuối 1944 – Đầu 1945', title:'Nạn Đói Khủng Khiếp — Hơn 2 Triệu Người Chết',
+  blurb:'Chính sách vơ vét của Nhật-Pháp gây thảm họa đói tại Bắc Bộ.',
+  img:'images/17.jpg',
+  facts:[{val:'2 triệu+',lbl:'Người chết đói'},{val:'Bắc Bộ',lbl:'Vùng thảm họa chính'},{val:'1944–1945',lbl:'Thời gian nạn đói'},{val:'Việt Minh',lbl:'Tổ chức phá kho thóc'}],
+  d1:'Cuối năm 1944 đến đầu năm 1945, chính sách vơ vét lúa gạo phục vụ chiến tranh của Nhật, cộng với chính sách cai trị hà khắc của Pháp, đã gây ra nạn đói khủng khiếp tại các tỉnh Bắc Bộ, cướp đi sinh mạng của hơn hai triệu người dân vô tội.',
+  d2:'Nạn đói tập trung nặng nề nhất ở các tỉnh Thái Bình, Nam Định, Ninh Bình, Hà Nam. Việt Minh tổ chức các đội tự vệ phá kho thóc của Nhật để cứu đói cho dân, kết hợp tuyên truyền cách mạng — hành động vừa nhân đạo vừa có ý nghĩa chính trị sâu sắc.',
+  people:'Nạn nhân: chủ yếu là nông dân nghèo các tỉnh Bắc Bộ, đặc biệt Thái Bình, Nam Định, Ninh Bình, Hà Nam. Việt Minh tổ chức phá kho thóc của Nhật, Pháp phân phát cho người nghèo — hành động nhân đạo kết hợp tuyên truyền cách mạng hiệu quả.',
+  world:['Chiến tranh thế giới đang vào giai đoạn gay cấn nhất — lương thực thiếu hụt toàn cầu','Nhật Bản vơ vét tài nguyên khắp Đông Nam Á phục vụ chiến tranh','Các thuộc địa Anh, Pháp, Hà Lan đều chịu cảnh bóc lột cùng cực tương tự'],
+  sig:'Nỗi đau dân tộc sâu sắc nhất trở thành sức mạnh cách mạng không gì cản nổi — Việt Minh phá kho thóc Nhật, Pháp cứu đói, giành trọn trái tim và ý chí của nhân dân.'
+},
+{
+  id:'w9', side:'world', date:'04 – 11 · 02 · 1945', title:'Hội Nghị Yalta — Phân Chia Trật Tự Thế Giới',
+  blurb:'Ba cường quốc Đồng minh định hình số phận thế giới hậu chiến.',
+  img:'images/18.jpg',
+  facts:[{val:'2/1945',lbl:'Hội nghị Yalta diễn ra'},{val:'3',lbl:'Cường quốc tham dự'},{val:'LHQ',lbl:'Quyết định thành lập'},{val:'Thuộc địa',lbl:'Số phận được định đoạt'}],
+  d1:'Từ 4-11/2/1945, ba lãnh tụ Đồng minh Roosevelt (Mỹ), Churchill (Anh) và Stalin (Liên Xô) họp tại Yalta, bán đảo Crimea để phân chia trật tự thế giới sau chiến tranh. Nhiều quyết định lớn được đưa ra ảnh hưởng đến số phận các thuộc địa.',
+  d2:'Đồng minh quyết định: Liên Xô sẽ tham chiến chống Nhật, Đức sẽ bị chia cắt, Liên Hợp Quốc được thành lập. Đối với Đông Dương, Mỹ và Anh tạm thời chấp thuận để Pháp quay trở lại — quyết định mà Việt Minh phải nhanh chóng vô hiệu hóa bằng cách tuyên bố độc lập trước.',
+  people:'Franklin D. Roosevelt — Tổng thống Mỹ (qua đời 12/4/1945). Winston Churchill — Thủ tướng Anh. Joseph Stalin — lãnh tụ Liên Xô. Ba cường quốc quyết định số phận thế giới, trong đó có tương lai các thuộc địa Á-Phi.',
+  world:['Đức đang sụp đổ — Hitler tự sát 30/4/1945, Đức đầu hàng 8/5/1945','Nhật Bản suy yếu nhưng vẫn kháng cự, Mỹ chuẩn bị ném bom nguyên tử','Phong trào giải phóng dân tộc nổi lên ở Indonesia, Ấn Độ, Mã Lai'],
+  sig:'Yalta phân chia thế giới theo lợi ích cường quốc — nhưng Việt Minh đã sẵn sàng hành động để tự định đoạt vận mệnh mình trước khi các cường quốc kịp can thiệp.'
+},
+{
+  id:'e7', side:'vn', date:'09 · 03 · 1945', title:'Nhật Đảo Chính Pháp — Thời Cơ Vàng Đến',
+  blurb:'Bộ máy cai trị Pháp sụp đổ trong một đêm — khoảng trống quyền lực hình thành.',
+  img:'images/19.jpg',
+  facts:[{val:'Một đêm',lbl:'Thời gian đảo chính'},{val:'Toàn Đông Dương',lbl:'Phạm vi sụp đổ'},{val:'80 năm',lbl:'Ách thực dân kết thúc'},{val:'03/1945',lbl:'Tháng đảo chính'}],
+  d1:'Đêm 9 tháng 3 năm 1945, Nhật Bản bất ngờ tấn công và lật đổ toàn bộ bộ máy cai trị Pháp trên khắp Đông Dương chỉ trong một đêm. Toàn quyền Decoux bị bắt, hầu hết lính Pháp bị giải giáp hoặc bỏ chạy.',
+  d2:'Đảng ta ngay lập tức ra Chỉ thị "Nhật-Pháp bắn nhau và hành động của chúng ta" — xác định kẻ thù chính bây giờ là phát xít Nhật. Phong trào kháng Nhật bùng phát mạnh. Vùng giải phóng được mở rộng nhanh chóng từ Cao Bằng, Thái Nguyên xuống Tuyên Quang.',
+  people:'Toàn quyền Đông Dương Jean Decoux bị Nhật bắt. Tướng Matsumoto chỉ huy đảo chính. Đảng ta: Trường Chinh, Võ Nguyên Giáp điều hành phong trào kháng Nhật. Tại Huế, vua Bảo Đại tuyên bố độc lập (hình thức) dưới bảo trợ của Nhật.',
+  world:['Mỹ thả bom B-29 tàn phá các thành phố Nhật Bản liên tục','Đức sắp thất bại hoàn toàn — Hitler tự sát ngày 30/4/1945','Hội nghị Yalta 2/1945 đã định hình trật tự thế giới mới hậu chiến'],
+  sig:'"Thời cơ ngàn năm có một" — sự sụp đổ của thực dân Pháp tạo ra khoảng trống quyền lực mà Đảng và Việt Minh sẵn sàng lấp đầy bằng cuộc tổng khởi nghĩa.'
+},
+{
+  id:'w10', side:'world', date:'06 & 09 · 08 · 1945', title:'Bom Nguyên Tử — Nhật Bản Đầu Hàng',
+  blurb:'Nhật Bản đầu hàng vô điều kiện — thời cơ tổng khởi nghĩa chín muồi.',
+  img:'images/20.jpg',
+  facts:[{val:'6/8/1945',lbl:'Bom nguyên tử Hiroshima'},{val:'9/8/1945',lbl:'Bom nguyên tử Nagasaki'},{val:'200.000+',lbl:'Người chết tức thì'},{val:'15/8/1945',lbl:'Nhật tuyên bố đầu hàng'}],
+  d1:'Ngày 6/8/1945, Mỹ ném quả bom nguyên tử đầu tiên xuống Hiroshima, xóa sổ gần như toàn bộ thành phố trong tích tắc, giết hơn 70.000 người ngay lập tức. Ngày 9/8, quả bom thứ hai rơi xuống Nagasaki. Liên Xô đồng thời tuyên chiến và tấn công quân Nhật ở Mãn Châu.',
+  d2:'Ngày 15/8/1945, Nhật Hoàng Hirohito đọc chiếu thư tuyên bố đầu hàng vô điều kiện. Đây là thời khắc quyết định: khoảng trống quyền lực tại Đông Dương hình thành — quân Nhật chưa kịp rút, quân Đồng minh chưa vào, Việt Minh phải hành động ngay lập tức.',
+  people:'Tổng thống Truman ra lệnh ném bom. Nhật Hoàng Hirohito tuyên bố đầu hàng. Tại Việt Nam: Hồ Chí Minh và Đảng nhận tin, lập tức phát lệnh Tổng khởi nghĩa — thời cơ ngàn năm có một đã đến.',
+  world:['Thế chiến II kết thúc hoàn toàn — trật tự thế giới mới hình thành','Mỹ và Liên Xô nổi lên là hai siêu cường — Chiến tranh Lạnh bắt đầu','Phong trào giải phóng dân tộc bùng nổ toàn cầu: Indonesia, Ấn Độ, Ghana...'],
+  sig:'Nhật Bản đầu hàng — khoảnh khắc lịch sử 70 năm một lần. Đảng và Việt Minh đã chuẩn bị sẵn sàng, lập tức phát lệnh Tổng khởi nghĩa, làm nên Cách mạng Tháng Tám vĩ đại.'
+},
+{
+  id:'e9', side:'vn', date:'16 – 17 · 08 · 1945', title:'Quốc Dân Đại Hội Tân Trào — Lệnh Tổng Khởi Nghĩa',
+  blurb:'Ủy ban Giải phóng dân tộc ra đời — lệnh Tổng khởi nghĩa lan khắp cả nước.',
+  img:'images/21.jpg',
+  facts:[{val:'15/8/1945',lbl:'Nhật đầu hàng Đồng minh'},{val:'Tân Trào',lbl:'Thủ đô khu giải phóng'},{val:'10',lbl:'Chính sách Việt Minh thông qua'},{val:'48 giờ',lbl:'Từ lệnh đến khởi nghĩa'}],
+  d1:'Ngày 15/8/1945, Nhật Bản tuyên bố đầu hàng vô điều kiện sau khi Mỹ ném bom nguyên tử. Đảng họp Hội nghị toàn quốc (13-15/8) rồi Quốc dân Đại hội tại Tân Trào (16-17/8), quyết định phát lệnh Tổng khởi nghĩa trên toàn quốc.',
+  d2:'Quốc dân Đại hội thông qua 10 chính sách lớn của Việt Minh, bầu Ủy ban Giải phóng dân tộc Việt Nam (Chính phủ lâm thời) do Hồ Chí Minh làm Chủ tịch. Bài hát "Tiến quân ca" của Văn Cao được chọn làm Quốc ca. Lệnh khởi nghĩa lan nhanh khắp đất nước.',
+  people:'Chủ tịch Hồ Chí Minh ốm nặng nhưng vẫn chủ trì hội nghị. Trường Chinh — Tổng Bí thư điều hành. Võ Nguyên Giáp chỉ huy lực lượng vũ trang. Địa điểm: làng Tân Trào, huyện Sơn Dương, tỉnh Tuyên Quang — thủ đô kháng chiến.',
+  world:['06/8/1945 — Bom nguyên tử Hiroshima, 200.000 người chết','09/8/1945 — Bom nguyên tử Nagasaki, Liên Xô tuyên chiến với Nhật','15/8/1945 — Nhật Bản đầu hàng vô điều kiện — khoảng trống quyền lực tại Đông Dương'],
+  sig:'"Dù phải đốt cháy cả dãy Trường Sơn cũng phải kiên quyết giành cho được độc lập!" — Giờ phút lịch sử đã điểm, toàn dân đứng lên.'
+},
+{
+  id:'e10', side:'vn', date:'19 · 08 · 1945', title:'Cách Mạng Tháng Tám Thành Công',
+  blurb:'14 ngày làm nên thắng lợi toàn quốc — chấm dứt chế độ phong kiến, thực dân.',
+  img:'images/22.jpg',
+  facts:[{val:'14 ngày',lbl:'Từ lệnh đến thắng lợi toàn quốc'},{val:'19/8',lbl:'Hà Nội giải phóng'},{val:'25/8',lbl:'Bảo Đại thoái vị'},{val:'Rất ít',lbl:'Đổ máu tại Hà Nội'}],
+  d1:'Ngày 19/8/1945, hàng chục vạn nhân dân Hà Nội và các tỉnh lân cận tập hợp trước Nhà hát Lớn, sau đó tiến chiếm Phủ Khâm sai, Tòa thị chính, trại lính bảo an và các cơ quan đầu não. Cuộc khởi nghĩa diễn ra thần tốc, gần như không đổ máu.',
+  d2:'Trong chưa đầy hai tuần, cách mạng thắng lợi trên phạm vi cả nước. Ngày 23/8 tại Huế, ngày 25/8 tại Sài Gòn. Vua Bảo Đại thoái vị ngày 25/8 trao ấn kiếm cho đại diện Chính phủ lâm thời, chấm dứt chế độ phong kiến hàng nghìn năm của Việt Nam.',
+  people:'Chủ tịch Hồ Chí Minh — lãnh đạo tối cao. Quần chúng nhân dân Hà Nội, Huế, Sài Gòn đồng loạt nổi dậy. Vua Bảo Đại trao ấn kiếm cho Trần Huy Liệu. Tổng khởi nghĩa do Ủy ban Khởi nghĩa toàn quốc trực tiếp chỉ đạo.',
+  world:['Nhật Bản chính thức ký đầu hàng 2/9/1945 trên chiến hạm Missouri','Quân Đồng minh chuẩn bị vào Đông Dương giải giáp quân Nhật — nguy cơ tái chiếm thuộc địa','Liên Hợp Quốc thành lập 26/6/1945 — nguyên tắc quyền dân tộc tự quyết được khẳng định'],
+  sig:'Một trong những cuộc cách mạng thần tốc và ít đổ máu nhất lịch sử thế giới — 15 năm chuẩn bị cho 14 ngày thay đổi vận mệnh dân tộc và khai sinh ra nước Việt Nam mới.'
+}
+];
+
+/* ============================================================
+   RENDER TIMELINE
+   ============================================================ */
+const tlEl = document.getElementById('timeline');
+tlEl.innerHTML = TIMELINE_DATA.map(function(ev, i){
+  var typeLabel = ev.side === 'vn' ? '◈ Trong nước' : '🌐 Bối cảnh quốc tế';
+  return (
+    '<div class="tl-item reveal' + (ev.side === 'world' ? ' is-world' : '') + '">' +
+      '<div class="tl-card" data-event="' + ev.id + '" tabindex="0" role="button" aria-label="Xem chi tiết: ' + ev.title + '">' +
+        '<span class="tl-card__type">' + typeLabel + '</span>' +
+        '<div class="tl-card__date">' + ev.date + '</div>' +
+        '<h3 class="tl-card__title">' + ev.title + '</h3>' +
+        '<span class="tl-card__cta">Xem chi tiết</span>' +
+      '</div>' +
+      '<div class="tl-item__dot"></div>' +
+      '<div class="tl-spacer"></div>' +
+    '</div>'
+  );
+}).join('');
+
+/* Kích hoạt hiệu ứng reveal cho các thẻ vừa render */
+(function(){
+  var els = tlEl.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  },{threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+function openModal(id){
+  var d = TIMELINE_DATA.find(function(x){ return x.id === id; });
+  if(!d) return;
+  document.getElementById('mBadge').textContent = d.side === 'vn' ? '◈ Trong nước · Sự kiện' : '🌐 Bối cảnh quốc tế';
+  document.getElementById('mDate').textContent = d.date;
+  document.getElementById('mTitle').textContent = d.title;
+  var img = document.getElementById('mImg');
+  img.src = d.img; img.alt = d.title;
+  document.getElementById('mDetail1').textContent = d.d1;
+  document.getElementById('mDetail2').textContent = d.d2;
+  document.getElementById('mPeople').textContent = d.people;
+  document.getElementById('mSig').textContent = d.sig;
+
+  document.getElementById('mFacts').innerHTML = d.facts.map(function(f){
+    return '<div class="modal__fact"><div class="modal__fact-val">' + f.val + '</div><div class="modal__fact-lbl">' + f.lbl + '</div></div>';
+  }).join('');
+
+  document.getElementById('mWorldList').innerHTML = d.world.map(function(w){ return '<li>' + w + '</li>'; }).join('');
+
+  var backdrop = document.getElementById('modalBackdrop');
+  backdrop.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal').scrollTop = 0;
+}
+function closeModal(){
+  document.getElementById('modalBackdrop').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+tlEl.addEventListener('click', function(e){
+  var card = e.target.closest('.tl-card');
+  if(card) openModal(card.getAttribute('data-event'));
+});
+tlEl.addEventListener('keydown', function(e){
+  if(e.key === 'Enter' || e.key === ' '){
+    var card = e.target.closest('.tl-card');
+    if(card){ e.preventDefault(); openModal(card.getAttribute('data-event')); }
+  }
+});
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalBackdrop').addEventListener('click', function(e){
+  if(e.target === document.getElementById('modalBackdrop')) closeModal();
+});
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
